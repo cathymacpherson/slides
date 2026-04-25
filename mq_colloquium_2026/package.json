@@ -1,0 +1,9 @@
+{
+  "name": "mq-colloquium-2026",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Custom HTML slide deck for a research portfolio colloquium.",
+  "scripts": {
+    "serve": "python -m http.server 8000"
+  }
+}
