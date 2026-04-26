@@ -47,7 +47,7 @@
 
         <section class="slide card-slide slide-intro" data-title="Definition">
           <div class="slide-inner">
-            <div class="eyebrow">Framing</div>
+            <div class="eyebrow">Introduction</div>
             <h1>What Is Interpersonal Coordination?</h1>
             <div class="definition-slide-layout">
               <div class="definition-top-row">
@@ -102,11 +102,17 @@
             <div class="eyebrow">Foundational work</div>
             <h1>Starting Simple: Rhythmic Coordination</h1>
             <div class="split-layout pendulums-body">
-              <ul>
-                <li><strong>Approach:</strong> Began with simple rhythmic tasks such as pendulum swinging.</li>
-                <li><strong>Findings:</strong> Higher levels of traits associated with social anxiety, generalised anxiety, and autism were linked with less stable coordination.</li>
-                <li><strong>Outcome:</strong> It established a basic relationship between subclinical symptom profiles and interpersonal coordination.</li>
-              </ul>
+              <div class="pendulum-text-box">
+                <ul>
+                  <li><strong>Approach:</strong> Began with simple rhythmic tasks such as pendulum swinging.</li>
+                  <li><strong>Findings:</strong> Higher levels of traits associated with anxiety and autism were linked with less stable coordination.</li>
+                  <li><strong>Outcome:</strong> It established a basic relationship between subclinical symptom profiles and interpersonal coordination.</li>
+                </ul>
+                <div class="pendulum-reference-box">
+                  <div class="pendulum-reference-heading">RELATED PAPER</div>
+                  <p>Macpherson, M. C., Marie, D., Schön, S., &amp; Miles, L. K. (2020). Evaluating the interplay between subclinical levels of mental health symptoms and coordination dynamics. <em>British Journal of Psychology.</em></p>
+                </div>
+              </div>
               <div class="split-figure">
                 <img src="assets/pendulum-diagram-stick.png" alt="Pendulum diagram illustrating rhythmic coordination" />
                 <img class="split-figure-bottom" src="assets/pendulum-results.svg" alt="Graph showing relationship between symptom traits and coordination stability" />
@@ -180,73 +186,75 @@
           <aside class="notes"><ul><li>You'll notice that the previous studies used simple movement tasks like pendulum swinging and arm curls.</li><li>But in day-to-day life, we coordinate in a much more complex and multimodal way.</li></ul></aside>
         </section>
 
-        <section class="slide standard-slide" data-title="Why Start Simple">
+        <section class="slide method-comparison-slide" data-title="Motion Capture Methods">
           <div class="slide-inner">
             <div class="eyebrow">Methodological history</div>
-            <h1>Why We Started Simple</h1>
-            <ul class="bullet-list roomy">
-              <li><strong>Physical sensors were the gold standard</strong> — but they must be attached to the body, limiting capture to individual body parts.</li>
-              <li><strong>Full-body capture required more:</strong> multi-sensor suits and infrared camera systems that were expensive, time-consuming to set up, and intrusive.</li>
-              <li><strong>The cost of precision:</strong> the more accurate the capture, the less natural the experiment.</li>
-            </ul>
-          </div>
-          <aside class="notes"><ul><li>It turns out that moving to real interaction is not straightforward.</li><li>Physical sensors have been the gold standard, but they require attachment to the body and are best suited to capturing individual body parts only.</li><li>More complex setups — multi-sensor suits, infrared camera systems — have historically been expensive, time-consuming, and take a certain element of realism from the experiment.</li></ul></aside>
-        </section>
-
-        <section class="slide figure-slide pose-slide" data-title="What Has Changed">
-          <div class="slide-inner">
-            <div class="figure-copy">
-              <div class="eyebrow">Computer vision revolution</div>
-              <h1>A New Landscape</h1>
-              <ul class="bullet-list">
-                <li><strong>Standard webcams</strong> can now capture socially meaningful movement in real time.</li>
-                <li><strong>Pose estimation tools</strong> like MediaPipe and OpenPose extract detailed positional data across hundreds of keypoints.</li>
-                <li><strong>The whole body, in context</strong> — face, head, torso, and limbs during natural interaction.</li>
-              </ul>
+            <h1>From Sensors To Pose Estimation</h1>
+            <div class="method-comparison-grid">
+              <article class="method-card fragment">
+                <h2>Physical Sensors</h2>
+                <ul class="bullet-list">
+                  <li>Attach directly to the body.</li>
+                  <li>Capture precise movement from selected body parts.</li>
+                  <li>Often expensive and time-consuming to set up.</li>
+                </ul>
+                <figure class="method-media">
+                  <img src="assets/multisensor-pose.png" alt="Multi-sensor pose capture setup" />
+                </figure>
+              </article>
+              <article class="method-card fragment">
+                <h2>Pose Estimation</h2>
+                <ul class="bullet-list">
+                  <li>Works from ordinary video or webcam footage.</li>
+                  <li>Extracts keypoints across the whole body.</li>
+                  <li>Preserves natural interaction contexts.</li>
+                </ul>
+                <figure class="method-media method-video">
+                  <video src="assets/openpose-video.mp4" preload="metadata" playsinline data-click-play aria-label="OpenPose therapy video"></video>
+                </figure>
+              </article>
             </div>
-            <div class="figure-frame"><img src="assets/pose-estimation.svg" alt="Pose estimation keypoint diagram" /></div>
           </div>
-          <aside class="notes"><ul><li>Thankfully, recent advances in computer vision have completely changed the landscape of motion capture.</li><li>A standard webcam can now be used to capture movement.</li><li>Pose estimation tools like MediaPipe and OpenPose can extract detailed positional data across hundreds of keypoints — face, head, torso, and limbs — during natural interaction.</li></ul></aside>
+          <aside class="notes"><ul><li>It turns out that moving to real interaction is not straightforward.</li><li>Physical sensors have been the gold standard, but they require attachment to the body and are best suited to capturing individual body parts only.</li><li>More complex setups such as multi-sensor suits and infrared camera systems have historically been expensive, time-consuming, and intrusive.</li><li>Recent advances in computer vision have changed that landscape: pose estimation tools like OpenPose can extract detailed positional data from ordinary video while preserving more natural interaction.</li></ul></aside>
         </section>
 
-        <section class="slide standard-slide" data-title="The Pipeline Challenge">
+        <section class="slide guide-slide" data-title="Pose Estimation Challenges">
           <div class="slide-inner">
-            <div class="eyebrow">Post-processing</div>
-            <h1>Capturing Data Is Only The Start</h1>
-            <ul class="bullet-list roomy">
-              <li><strong>Rich but complex:</strong> pose estimation produces hundreds of samples of positional data per second across multiple people.</li>
-              <li><strong>Coordination requires comparability:</strong> we need to remove bias from camera angles and handle the occlusion of keypoints.</li>
-              <li><strong>No established guidelines</strong> existed for post-processing pose data in dyadic coordination research.</li>
-            </ul>
-            <div class="result-callout">
-              <div class="result-kicker">MiND lab contribution</div>
-              <p>Led by a PhD student in the lab, we developed best-practice guidelines for post-processing pose estimation data in coordination research.</p>
+            <div class="eyebrow">New Analysis Pipeline</div>
+            <h1>Pose Estimation Challenges</h1>
+            <div class="guide-layout">
+              <a class="guide-preview" href="https://mind-laboratory.github.io/Pose-Dynamics/guide.html" target="_blank" rel="noreferrer" aria-label="Open Pose Analysis Quick Guide">
+                <img src="assets/pose-dynamics-guide.png" alt="Screenshot of the Pose Analysis Quick Guide" />
+              </a>
+              <div class="guide-copy">
+                <ul class="bullet-list roomy">
+                  <li><strong>Challenge:</strong> Hundreds of samples, biased by camera angle/position.</li>
+                  <li><strong>Best practice guidelines:</strong> Didn't really exist.</li>
+                  <li><strong>Analysis framework:</strong> Step-by-step from acquisition and feature selection through to linear and recurrence analysis.</li>
+                </ul>
+                <div class="guide-reference-box">
+                  <div class="guide-reference-heading">RELATED PREPRINT</div>
+                  <p class="guide-reference">Sale, C., Macpherson, M. C., Patil, G., Miles, K., Kallen, R., Wallot, S., &amp; Richardson, M. J. (2026). <em>Nonlinear methods for analyzing pose in behavioral research.</em></p>
+                </div>
+              </div>
             </div>
           </div>
           <aside class="notes"><ul><li>These advances seemed like a great option for moving the work towards capturing real-time interaction.</li><li>But as we began to collect and analyse this data, we realised things were more complicated than we first thought.</li><li>These algorithms capture hundreds of samples of positional data, but quantifying coordination relies on being able to compare people without bias from camera angles or keypoint occlusion.</li><li>Given how new these tools were, there weren't any best practice guidelines for post-processing pose data.</li><li>And so, led by one of the wonderful PhD students in the MiND lab, we wrote some.</li></ul></aside>
         </section>
 
-        <section class="slide section-break" data-title="Recent Directions">
-          <div class="slide-inner">
-            <h1>Putting It To Work</h1>
-            <p>In developing these guidelines, we drew on data from several studies. Here is one I've been closely involved in.</p>
-          </div>
-          <aside class="notes"><ul><li>In developing these guidelines, we used data from a number of studies.</li><li>Today I want to talk about one in particular that I've been involved in over the past couple of years.</li></ul></aside>
-        </section>
-
         <section class="slide figure-slide noise-slide" data-title="Conversation In Noise">
           <div class="slide-inner">
+            <div class="eyebrow">Case study</div>
+            <h1>Coordination In Noisy Environments</h1>
             <div class="figure-copy">
-              <div class="eyebrow">Mosaic study</div>
-              <h1>Coordination In Noisy Environments</h1>
               <ul class="bullet-list">
-                <li>Collaborated with linguists Kelly Miles and Jörg Buchholz to study conversation under increasing background noise.</li>
-                <li>Pairs wore acoustically open headphones and conversed across four noise conditions: office, café, food court, and party.</li>
-                <li>Used pose estimation, velocity vectors, and recurrence analysis to quantify interpersonal coordination.</li>
+                <li><strong>Question:</strong> Does interpersonal coordination fluctuate as a function of background noise?</li>
+                <li><strong>Approach:</strong> pairs of people converse while listening to various background noises.</li>
+                <li><strong>Analysis:</strong> pose estimation to extract movement data from cameras, then cross-recurrence analysis.</li>
+                <li><strong>Key finding:</strong> individuals exhibited a higher degree of facial and upper body coordination as background noise rose.</li>
               </ul>
               <div class="result-callout">
-                <div class="result-kicker">Key result</div>
-                <p>Facial and upper body coordination both <strong>increased</strong> as background noise rose — suggesting coordination may facilitate communication under difficult conditions.</p>
+                <p>Coordination may serve to facilitate communication under difficult environmental constraints.</p>
               </div>
             </div>
             <div class="figure-frame"><img src="assets/background-noise-method.svg" alt="Background noise conversation method" /></div>
@@ -254,7 +262,7 @@
           <aside class="notes"><ul><li>This study was run by wonderful colleagues in linguistics — Kelly Miles and Jörg Buchholz — and aimed to examine the influence of background noise on conversation and communication breakdowns.</li><li>Participants came to the lab in pairs and conversed while wearing acoustically open headphones, exposed to increasing background noise from an office, café, food court, and party.</li><li>We used pose estimation to extract positional data, converted it into velocity vectors, and ran recurrence analysis to determine the degree to which coordination emerged.</li><li>We found that individuals exhibited a higher degree of coordination across both facial and upper body movements as background noise rose.</li><li>This suggests that coordination may serve to facilitate communication under difficult environmental constraints.</li></ul></aside>
         </section>
 
-        <section class="slide standard-slide" data-title="Psychotherapy">
+        <section class="slide standard-slide psychotherapy-slide" data-title="Psychotherapy">
           <div class="slide-inner">
             <div class="eyebrow">Macquarie Lighthouse Fellowship</div>
             <h1>Coordination In Psychotherapy</h1>

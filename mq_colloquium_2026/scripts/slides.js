@@ -302,6 +302,17 @@ slides.forEach((slide, index) => {
   });
 });
 
+document.querySelectorAll("[data-click-play]").forEach((media) => {
+  media.addEventListener("click", (event) => {
+    event.stopPropagation();
+    if (media.paused) {
+      media.play();
+    } else {
+      media.pause();
+    }
+  });
+});
+
 window.addEventListener("storage", (event) => {
   if (event.key !== STORAGE_KEY || !event.newValue) return;
   try {
