@@ -626,28 +626,14 @@ body {
   padding-top: 0;
 }
 
-.pendulum-reference-box {
-  border: 1px solid rgba(17, 17, 17, 0.12);
-  background: rgba(255, 255, 255, 0.72);
-  border-radius: 8px;
-  display: grid;
+.reference-callout {
   gap: 10px;
   padding: 18px 20px;
 }
 
-.pendulum-reference-heading {
-  color: var(--mq-red);
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  line-height: 1;
-}
-
-.pendulum-reference-box p {
-  color: rgba(17, 17, 17, 0.62);
+.reference-callout p {
   font-size: 18px;
-  font-weight: 400;
-  line-height: 1.28;
+  line-height: 1.32;
   margin: 0;
 }
 
@@ -655,12 +641,45 @@ body {
   gap: 0px;
 }
 
-.slide-pendulums .split-figure img:not(.split-figure-bottom) {
-  max-height: 380px;
+.pendulum-asset {
+  align-items: center;
+  background: rgba(255, 255, 255, 0.9);
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 14px 30px rgba(17, 17, 17, 0.06);
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 0;
+  padding: 12px 42px 12px 54px;
+  position: relative;
+}
+
+.pendulum-asset figcaption {
+  color: var(--mq-red);
+  font-size: 16px;
+  font-weight: 800;
+  left: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  position: absolute;
+  text-transform: uppercase;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center;
+}
+
+.pendulum-asset-method img {
+  height: auto;
+  max-height: 240px;
+  max-width: 88%;
+  object-fit: contain;
+  object-position: center center;
+  width: auto;
 }
 
 .slide-pendulums .split-figure-bottom {
-  margin-top: -20px;
+  margin-top: 0;
 }
 
 .bullet-list {
@@ -993,27 +1012,54 @@ body {
   gap: 22px;
 }
 
+.noise-text-box,
+.psychotherapy-text-box {
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-left: 8px solid var(--mq-red);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 38px rgba(17, 17, 17, 0.07);
+  padding: 28px 32px;
+}
+
 .noise-slide .figure-copy .bullet-list {
   gap: 15px;
 }
 
 .noise-slide .figure-copy li {
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.34;
+}
+
+.noise-visual {
+  display: grid;
+  grid-column: 2;
+  grid-row: 3;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 18px;
+  min-height: 0;
 }
 
 .noise-slide .result-callout {
-  padding: 24px 26px;
+  padding: 24px 28px 26px;
 }
 
 .noise-slide .result-callout p {
-  font-size: 28px;
+  font-size: 30px;
   line-height: 1.34;
 }
 
+.noise-takeaway {
+  border-left-width: 8px;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 246, 244, 0.92));
+  box-shadow: 0 18px 38px rgba(17, 17, 17, 0.08);
+}
+
+.noise-takeaway .result-kicker {
+  margin-bottom: 10px;
+}
+
 .noise-slide .figure-frame {
-  grid-column: 2;
-  grid-row: 3;
   height: 100%;
   min-height: 0;
 }
@@ -1078,6 +1124,7 @@ body {
 .method-media img,
 .method-media video {
   display: block;
+  border-radius: 8px;
   width: min(100%, 520px);
   height: 100%;
 }
@@ -1162,34 +1209,69 @@ body {
   word-break: break-word;
 }
 
-.guide-reference-box {
-  border: 1px solid rgba(17, 17, 17, 0.12);
-  background: rgba(255, 255, 255, 0.72);
-  border-radius: 8px;
-  display: grid;
-  gap: 10px;
-  padding: 18px 20px;
-}
-
-.guide-reference-heading {
-  color: var(--mq-red);
-  font-size: 15px;
-  font-weight: 800;
-  letter-spacing: 0.08em;
-  line-height: 1;
-}
-
-.guide-reference {
-  color: rgba(17, 17, 17, 0.62);
-  font-size: 22px;
-  font-weight: 400;
-  line-height: 1.28;
-  margin: 0;
-}
-
 .psychotherapy-slide h1 {
   max-width: none;
   white-space: nowrap;
+}
+
+.psychotherapy-slide .slide-inner {
+  display: grid;
+  grid-template-rows: auto auto 1fr;
+  gap: 20px;
+}
+
+.psychotherapy-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 0.88fr) minmax(520px, 1.12fr);
+  gap: 34px;
+  min-height: 0;
+  align-items: stretch;
+}
+
+.psychotherapy-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  justify-content: center;
+  min-height: 0;
+}
+
+.psychotherapy-text-box {
+  justify-content: center;
+}
+
+.psychotherapy-slide .bullet-list li {
+  font-size: 26px !important;
+  line-height: 1.34;
+}
+
+.psychotherapy-slide .result-callout p {
+  font-size: 20px;
+  line-height: 1.32;
+}
+
+.psychotherapy-visual {
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 18px;
+  min-height: 0;
+}
+
+.psychotherapy-figure {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.psychotherapy-figure img {
+  display: block;
+  height: 100%;
+  max-height: 430px;
+  max-width: 100%;
+  object-fit: contain;
 }
 
 .pathway-grid {
@@ -1239,6 +1321,71 @@ body {
   font-size: 18px;
   color: rgba(17, 17, 17, 0.55);
   max-width: 38em;
+}
+
+.acknowledgements-copy {
+  max-width: 680px;
+}
+
+.acknowledgements-panels {
+  display: grid;
+  gap: 20px;
+  min-width: 560px;
+}
+
+.acknowledgements-panel {
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-left: 8px solid var(--mq-red);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 18px 38px rgba(17, 17, 17, 0.07);
+  display: grid;
+  padding: 28px 34px;
+}
+
+.acknowledgements-funders {
+  padding-bottom: 24px;
+  padding-top: 24px;
+}
+
+.acknowledgements-panel h2 {
+  color: var(--mq-red);
+  font-size: 30px;
+  margin-bottom: 16px;
+}
+
+.acknowledgements-groups {
+  display: grid;
+  gap: 12px;
+}
+
+.acknowledgements-groups h3 {
+  color: rgba(17, 17, 17, 0.82);
+  font-size: 20px;
+  line-height: 1.1;
+  margin-bottom: 4px;
+}
+
+.acknowledgements-groups p {
+  color: rgba(17, 17, 17, 0.68);
+  font-size: 17px;
+  line-height: 1.28;
+}
+
+.acknowledgements-panel ul {
+  display: grid;
+  gap: 8px;
+}
+
+.acknowledgements-panel li {
+  font-size: 21px;
+  line-height: 1.28;
+}
+
+.acknowledgements-slide .closing-meta {
+  color: rgba(17, 17, 17, 0.68);
+  font-size: 22px;
+  margin-top: 12px;
 }
 
 .notes {
