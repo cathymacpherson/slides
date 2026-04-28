@@ -6,6 +6,9 @@ const deckViewport = document.querySelector(".deck-viewport");
 const params = new URLSearchParams(window.location.search);
 const isPresenter = params.get("view") === "presenter";
 const STORAGE_KEY = "mq_colloquium_slide_state";
+const CHANNEL_KEY = "mq_colloquium_slide_channel";
+const CLIENT_ID = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
+const syncChannel = "BroadcastChannel" in window ? new BroadcastChannel(CHANNEL_KEY) : null;
 
 let currentIndex = 0;
 let currentStep = 0;
@@ -18,12 +21,15 @@ function getFragments(index) {
   return Array.from(slides[index]?.querySelectorAll('.fragment') || []);
 }
 
-function renderFragments(slideIndex, step) {
-  const fragments = getFragments(slideIndex);
+function applyFragmentState(fragments, step) {
   fragments.forEach((frag, i) => {
     const revealClass = frag.dataset.revealClass || 'visible';
     frag.classList.toggle(revealClass, i < step);
   });
+}
+
+function renderFragments(slideIndex, step) {
+  applyFragmentState(getFragments(slideIndex), step);
 }
 
 function readStoredState() {
@@ -34,8 +40,30 @@ function readStoredState() {
   }
 }
 
+function statePayload() {
+  return { index: currentIndex, step: currentStep, source: CLIENT_ID, updatedAt: Date.now() };
+}
+
 function writeStoredState() {
-  localStorage.setItem(STORAGE_KEY, JSON.stringify({ index: currentIndex, updatedAt: Date.now() }));
+  const payload = statePayload();
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(payload));
+  syncChannel?.postMessage(payload);
+}
+
+function applyRemoteState(state) {
+  if (!state || state.source === CLIENT_ID || typeof state.index !== "number") return;
+
+  const nextIndex = clamp(state.index, 0, slides.length - 1);
+  const nextStep = clamp(typeof state.step === "number" ? state.step : 0, 0, getFragments(nextIndex).length);
+
+  if (nextIndex !== currentIndex) {
+    currentStep = nextStep;
+    render(nextIndex, { skipHash: isPresenter, skipStorage: true });
+  } else if (nextStep !== currentStep) {
+    currentStep = nextStep;
+    renderFragments(currentIndex, currentStep);
+    updatePresenter(currentIndex);
+  }
 }
 
 function updateNotes(index) {
@@ -48,7 +76,18 @@ function cloneSlide(index) {
   const clone = slides[index].cloneNode(true);
   clone.classList.add("active");
   clone.removeAttribute("aria-hidden");
+  applyFragmentState(Array.from(clone.querySelectorAll(".fragment")), index === currentIndex ? currentStep : 0);
   return clone;
+}
+
+function updatePresenterScale() {
+  if (!presenterRefs?.currentHost) return;
+  const slide = presenterRefs.currentHost.querySelector(".slide");
+  if (!slide) return;
+
+  const hostRect = presenterRefs.currentHost.getBoundingClientRect();
+  const scale = Math.min(hostRect.width / 1600, hostRect.height / 900);
+  presenterRefs.currentHost.style.setProperty("--presenter-slide-scale", scale);
 }
 
 function formatDuration(ms) {
@@ -63,18 +102,15 @@ function updatePresenter(index) {
   if (!presenterRefs) return;
 
   presenterRefs.currentHost.innerHTML = "";
-  presenterRefs.nextHost.innerHTML = "";
 
   const currentSlide = cloneSlide(index);
-  const nextSlide = cloneSlide(Math.min(index + 1, slides.length - 1));
 
   if (currentSlide) presenterRefs.currentHost.appendChild(currentSlide);
-  if (nextSlide) presenterRefs.nextHost.appendChild(nextSlide);
+  updatePresenterScale();
 
   const notes = slides[index]?.querySelector(".notes");
   presenterRefs.notes.innerHTML = notes ? notes.innerHTML : "<p>No speaker notes for this slide.</p>";
   presenterRefs.currentLabel.textContent = slides[index]?.dataset.title || `Slide ${index + 1}`;
-  presenterRefs.nextLabel.textContent = slides[index + 1]?.dataset.title || "End of deck";
   presenterRefs.page.textContent = `${index + 1} / ${slides.length}`;
 }
 
@@ -108,6 +144,7 @@ function fromHash() {
   if (match) {
     render(Number.parseInt(match[1], 10) - 1, { skipHash: true, skipStorage: true });
   } else if (typeof stored.index === "number") {
+    currentStep = clamp(typeof stored.step === "number" ? stored.step : 0, 0, getFragments(stored.index).length);
     render(stored.index, { skipHash: true, skipStorage: true });
   } else {
     render(0, { skipHash: true, skipStorage: true });
@@ -163,34 +200,23 @@ function setupPresenter() {
   shell.className = "presenter-shell";
   shell.innerHTML = `
     <div class="presenter-main">
-      <div class="presenter-stage">
-        <div class="presenter-panel">
-          <div class="presenter-panel-header">Current Slide</div>
-          <div class="presenter-panel-title" id="presenter-current-label"></div>
-          <div class="presenter-slide-host" id="presenter-current"></div>
-        </div>
-        <div class="presenter-panel">
-          <div class="presenter-panel-header">Next Slide</div>
-          <div class="presenter-panel-title" id="presenter-next-label"></div>
-          <div class="presenter-slide-host presenter-next-host" id="presenter-next"></div>
-        </div>
-      </div>
-      <aside class="presenter-sidebar">
-        <div class="presenter-meta">
-          <div class="presenter-meta-card">
-            <div class="presenter-panel-header">Slide</div>
-            <div class="presenter-page" id="presenter-page">1 / ${slides.length}</div>
+      <div class="presenter-panel">
+        <div class="presenter-toolbar">
+          <div>
+            <div class="presenter-panel-header">Current Slide</div>
+            <div class="presenter-panel-title" id="presenter-current-label"></div>
           </div>
-          <div class="presenter-meta-card">
-            <div class="presenter-panel-header">Timer</div>
+          <div class="presenter-toolbar-meta">
+            <div class="presenter-page" id="presenter-page">1 / ${slides.length}</div>
             <button class="presenter-timer" id="presenter-timer" type="button">00:00:00</button>
           </div>
         </div>
-        <div class="presenter-notes">
-          <div class="presenter-panel-header">Speaker Notes</div>
-          <div class="presenter-notes-body" id="presenter-notes"></div>
-        </div>
-      </aside>
+        <div class="presenter-slide-host" id="presenter-current"></div>
+      </div>
+      <div class="presenter-notes">
+        <div class="presenter-panel-header">Speaker Notes</div>
+        <div class="presenter-notes-body" id="presenter-notes"></div>
+      </div>
     </div>
   `;
 
@@ -198,13 +224,14 @@ function setupPresenter() {
 
   presenterRefs = {
     currentHost: document.getElementById("presenter-current"),
-    nextHost: document.getElementById("presenter-next"),
     currentLabel: document.getElementById("presenter-current-label"),
-    nextLabel: document.getElementById("presenter-next-label"),
     notes: document.getElementById("presenter-notes"),
     page: document.getElementById("presenter-page"),
     timer: document.getElementById("presenter-timer")
   };
+
+  window.addEventListener("resize", updatePresenterScale);
+  new ResizeObserver(updatePresenterScale).observe(presenterRefs.currentHost);
 
   presenterRefs.timer.addEventListener("click", () => {
     timerStartedAt = Date.now();
@@ -228,6 +255,8 @@ document.addEventListener("keydown", (event) => {
       if (currentStep < forwardFragments.length) {
         currentStep++;
         renderFragments(currentIndex, currentStep);
+        updatePresenter(currentIndex);
+        writeStoredState();
       } else {
         currentStep = 0;
         render(currentIndex + 1);
@@ -241,6 +270,8 @@ document.addEventListener("keydown", (event) => {
       if (currentStep > 0) {
         currentStep--;
         renderFragments(currentIndex, currentStep);
+        updatePresenter(currentIndex);
+        writeStoredState();
       } else {
         const prevIndex = clamp(currentIndex - 1, 0, slides.length - 1);
         currentStep = getFragments(prevIndex).length;
@@ -316,13 +347,14 @@ document.querySelectorAll("[data-click-play]").forEach((media) => {
 window.addEventListener("storage", (event) => {
   if (event.key !== STORAGE_KEY || !event.newValue) return;
   try {
-    const state = JSON.parse(event.newValue);
-    if (typeof state.index === "number" && state.index !== currentIndex) {
-      render(state.index, { skipHash: isPresenter, skipStorage: true });
-    }
+    applyRemoteState(JSON.parse(event.newValue));
   } catch {
     // ignore malformed state
   }
+});
+
+syncChannel?.addEventListener("message", (event) => {
+  applyRemoteState(event.data);
 });
 
 if (isPresenter) setupPresenter();
