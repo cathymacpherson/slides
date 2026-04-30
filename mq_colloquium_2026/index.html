@@ -49,6 +49,7 @@
               <div class="aberdeen-weather-box fragment">
                 <img src="assets/aberdeen-1.png" alt="Aberdeen news headline about sunshine" />
                 <img src="assets/aberdeen-2.png" alt="Aberdeen weather news headline" />
+                <img class="aberdeen-weather-photo" src="assets/aberdeen-3.jpg" alt="Aberdeen weather photo" />
               </div>
             </div>
           </div>
@@ -242,10 +243,7 @@
             <div class="eyebrow">New Analysis Pipeline</div>
             <h1>Pose Estimation Challenges</h1>
             <div class="guide-layout">
-              <a class="guide-preview" href="https://mind-laboratory.github.io/Pose-Dynamics/guide.html" target="_blank" rel="noreferrer" aria-label="Open Pose Analysis Quick Guide">
-                <img src="assets/pose-dynamics-guide.png" alt="Screenshot of the Pose Analysis Quick Guide" />
-              </a>
-              <div class="guide-copy">
+              <div class="guide-copy fragment">
                 <ul class="bullet-list roomy">
                   <li><strong>Challenge:</strong> Hundreds of samples, biased by camera angle/position.</li>
                   <li><strong>Best practice guidelines:</strong> Didn't really exist.</li>
@@ -256,6 +254,9 @@
                   <p>Sale, C., Macpherson, M. C., Patil, G., Miles, K., Kallen, R., Wallot, S., &amp; Richardson, M. J. (2026). Nonlinear methods for analyzing pose in behavioral research.</p>
                 </div>
               </div>
+              <a class="guide-preview fragment" href="https://mind-laboratory.github.io/Pose-Dynamics/guide.html" target="_blank" rel="noreferrer" aria-label="Open Pose Analysis Quick Guide">
+                <img src="assets/pose-dynamics-guide.png" alt="Screenshot of the Pose Analysis Quick Guide" />
+              </a>
             </div>
           </div>
           <aside class="notes"><ul><li>These advances seemed like a great option for moving my work towards capturing real-time interaction.</li><li>But as we began to collect and analyse this data, we realised that things were more complicated than we first thought.</li><li>These algorithms capture hundreds of samples worth of positional data.</li><li>Quantifying coordination relies on being able to compare people and their movements without bias associated with camera angles or the occlusion of keypoints.</li><li>Given how new these tools were, there weren’t really any best practice guidelines for effectively post-processing pose data.</li><li>Over the past couple of years, led by one of the wonderful PhD students in the MiND Lab, we wrote some.</li></ul></aside>
@@ -275,10 +276,7 @@
             </div>
             <div class="noise-visual">
               <div class="figure-frame fragment"><img src="assets/background-noise-method.svg" alt="Background noise conversation method" /></div>
-              <div class="result-callout noise-takeaway fragment">
-                <div class="result-kicker">Key implication</div>
-                <p>Coordination may serve to facilitate communication under difficult environmental constraints.</p>
-              </div>
+              <div class="figure-frame noise-results-frame fragment"><img src="assets/mosaic-results.png" alt="MOSAIC background noise coordination results" /></div>
             </div>
           </div>
           <aside class="notes"><ul><li>In developing these guidelines, we used data from a number of studies.</li><li>Today I want to talk about one in particular that I’ve been involved in over the past couple of years.</li><li>This study was run by wonderful colleagues in linguistics, including Kelly Miles and Jorg Buchholz.</li><li>It aimed to examine the influence of background noise on conversation, and in particular on communication breakdowns.</li><li>People came to the lab in pairs and had conversations while wearing acoustically open headphones.</li><li>These headphones allow people to converse normally while being exposed to increasing background noise.</li><li>The study used noises from an office environment, café, food court, and party.</li><li>Participants were filmed throughout the trials.</li><li>Given that coordination is such a fundamental part of interaction, I was interested in whether interpersonal coordination fluctuates as a function of background noise.</li><li>We used pose estimation to extract positional data from the cameras.</li><li>We converted this data into velocity vectors so that we could look at the dynamics of the interaction.</li><li>We then ran recurrence analysis to determine the degree to which coordination between interactants emerged.</li><li>Individuals exhibited a higher degree of coordination across both facial and upper body movements as background noise rose.</li><li>This suggests that coordination may serve to facilitate communication under difficult environmental constraints.</li></ul></aside>
@@ -288,8 +286,8 @@
           <div class="slide-inner">
             <div class="eyebrow">Macquarie University Lighthouse Fellowship</div>
             <h1>Coordination In Psychotherapy</h1>
-            <div class="psychotherapy-layout">
-              <div class="psychotherapy-copy psychotherapy-text-box fragment">
+            <div class="psychotherapy-layout fragment">
+              <div class="psychotherapy-copy psychotherapy-text-box">
                 <ul class="bullet-list roomy">
                   <li><strong>Goal:</strong> Use pose estimation to capture coordination in therapy — to predict and improve outcomes.</li>
                   <li><strong>Idea:</strong> Coordination indexes interaction quality, and therapeutic alliance is a strong predictor of therapy outcomes.</li>
@@ -298,7 +296,7 @@
                 </ul>
               </div>
               <div class="psychotherapy-visual">
-                <figure class="psychotherapy-figure fragment">
+                <figure class="psychotherapy-figure">
                   <img src="assets/therapy.svg" alt="Therapy session illustration" />
                 </figure>
                 <div class="result-callout fragment">
@@ -324,15 +322,15 @@
                 <div class="acknowledgements-groups">
                   <div>
                     <h3>Macquarie University</h3>
-                    <p>Michael Richardson, Rachel Kallen, Carter Sale, Gaurav Patil, Sebastian Wallot, Kelly Miles, and more...</p>
-                  </div>
-                  <div>
-                    <h3>Florida State</h3>
-                    <p>Paul Peluso, Yunzhi Zheng</p>
+                    <p>Michael Richardson, Rachel Kallen, Carter Sale, Gaurav Patil, Sebastian Wallot, Kelly Miles, Lauren McLellan, and more...</p>
                   </div>
                   <div>
                     <h3>University of Western Australia</h3>
                     <p>Lynden Miles, Amber Brown</p>
+                  </div>
+                  <div>
+                    <h3>Florida State University</h3>
+                    <p>Paul Peluso, Yunzhi Zheng</p>
                   </div>
                   <div>
                     <h3>University College London</h3>
@@ -346,6 +344,7 @@
                   <li>Macquarie University Lighthouse Fellowship</li>
                   <li>James S. McDonnell Foundation</li>
                   <li>Google Research</li>
+                  <li>The Raine Medical Research Foundation</li>
                   <li>The Carnegie Trust</li>
                 </ul>
               </section>

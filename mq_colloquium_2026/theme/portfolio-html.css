@@ -286,8 +286,8 @@ body {
 .slide-fact .slide-inner {
   align-items: stretch;
   display: grid;
-  gap: 34px;
-  grid-template-columns: minmax(0, 1.32fr) minmax(380px, 0.68fr);
+  gap: 30px;
+  grid-template-columns: minmax(0, 1.24fr) minmax(420px, 0.76fr);
   grid-template-rows: auto 1fr;
   justify-content: stretch;
 }
@@ -352,6 +352,7 @@ body {
 .aberdeen-weather-box {
   display: grid;
   gap: 14px;
+  grid-template-columns: minmax(0, 1fr) minmax(88px, 0.38fr);
   padding: 16px;
 }
 
@@ -359,6 +360,14 @@ body {
   border-radius: 6px;
   display: block;
   width: 100%;
+}
+
+.aberdeen-weather-photo {
+  align-self: stretch;
+  grid-column: 2;
+  grid-row: 1 / 3;
+  height: 100%;
+  object-fit: cover;
 }
 
 .callout-layout,
@@ -1106,7 +1115,7 @@ body {
   display: grid;
   grid-column: 2;
   grid-row: 3;
-  grid-template-rows: minmax(0, 1fr) auto;
+  grid-template-rows: repeat(2, minmax(0, 1fr));
   gap: 18px;
   min-height: 0;
 }
@@ -1132,7 +1141,35 @@ body {
 
 .noise-slide .figure-frame {
   height: 100%;
+  margin: 0;
   min-height: 0;
+}
+
+.noise-asset {
+  padding-left: 54px;
+  position: relative;
+}
+
+.noise-asset figcaption {
+  color: var(--mq-red);
+  font-size: 16px;
+  font-weight: 800;
+  left: 10px;
+  letter-spacing: 0.08em;
+  line-height: 1;
+  position: absolute;
+  text-transform: uppercase;
+  top: 50%;
+  transform: translateY(-50%) rotate(-90deg);
+  transform-origin: center;
+}
+
+.noise-results-frame {
+  height: 100%;
+}
+
+.noise-results-frame img {
+  width: 100%;
 }
 
 .method-comparison-slide .slide-inner {
@@ -1227,7 +1264,7 @@ body {
 
 .guide-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1.12fr) minmax(390px, 0.88fr);
+  grid-template-columns: minmax(390px, 0.88fr) minmax(0, 1.12fr);
   gap: 34px;
   min-height: 0;
   align-items: stretch;
@@ -1437,9 +1474,9 @@ body {
   margin-bottom: 4px;
 }
 
-.acknowledgements-groups p {
+.acknowledgements-slide .acknowledgements-groups p {
   color: rgba(17, 17, 17, 0.68);
-  font-size: 17px;
+  font-size: 20px !important;
   line-height: 1.28;
 }
 
@@ -1448,8 +1485,8 @@ body {
   gap: 8px;
 }
 
-.acknowledgements-panel li {
-  font-size: 21px;
+.acknowledgements-slide .acknowledgements-panel li {
+  font-size: 20px !important;
   line-height: 1.28;
 }
 
