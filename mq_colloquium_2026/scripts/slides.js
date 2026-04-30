@@ -7,6 +7,7 @@ const params = new URLSearchParams(window.location.search);
 const isPresenter = params.get("view") === "presenter";
 const STORAGE_KEY = "mq_colloquium_slide_state";
 const CHANNEL_KEY = "mq_colloquium_slide_channel";
+const MEDIA_STORAGE_KEY = "mq_colloquium_media_state";
 const CLIENT_ID = `${Date.now()}-${Math.random().toString(16).slice(2)}`;
 const syncChannel = "BroadcastChannel" in window ? new BroadcastChannel(CHANNEL_KEY) : null;
 
@@ -50,7 +51,57 @@ function writeStoredState() {
   syncChannel?.postMessage(payload);
 }
 
+function mediaKey(media) {
+  return media.currentSrc || media.getAttribute("src") || media.dataset.mediaId || "";
+}
+
+function mediaPayload(media, paused) {
+  return {
+    type: "media",
+    key: mediaKey(media),
+    paused,
+    currentTime: media.currentTime,
+    source: CLIENT_ID,
+    updatedAt: Date.now()
+  };
+}
+
+function applyRemoteMediaState(state) {
+  if (!state || state.type !== "media" || state.source === CLIENT_ID || !state.key) return;
+
+  document.querySelectorAll("[data-click-play]").forEach((media) => {
+    if (mediaKey(media) !== state.key) return;
+
+    if (typeof state.currentTime === "number" && Math.abs(media.currentTime - state.currentTime) > 0.5) {
+      media.currentTime = state.currentTime;
+    }
+
+    if (state.paused) {
+      media.pause();
+    } else {
+      media.play().catch(() => {});
+    }
+  });
+}
+
+function writeMediaState(media, paused) {
+  const payload = mediaPayload(media, paused);
+  localStorage.setItem(MEDIA_STORAGE_KEY, JSON.stringify(payload));
+  syncChannel?.postMessage(payload);
+}
+
+function pauseInactiveMedia() {
+  document.querySelectorAll(".slide:not(.active) [data-click-play]").forEach((media) => {
+    media.pause();
+  });
+}
+
 function applyRemoteState(state) {
+  if (state?.type === "media") {
+    applyRemoteMediaState(state);
+    return;
+  }
+
   if (!state || state.source === CLIENT_ID || typeof state.index !== "number") return;
 
   const nextIndex = clamp(state.index, 0, slides.length - 1);
@@ -125,6 +176,7 @@ function render(index, options = {}) {
 
     if (counter) counter.textContent = `${currentIndex + 1} / ${slides.length}`;
     updateNotes(currentIndex);
+    pauseInactiveMedia();
 
     if (!options.skipHash) {
       window.location.hash = `slide-${currentIndex + 1}`;
@@ -333,19 +385,22 @@ slides.forEach((slide, index) => {
   });
 });
 
-document.querySelectorAll("[data-click-play]").forEach((media) => {
-  media.addEventListener("click", (event) => {
-    event.stopPropagation();
-    if (media.paused) {
-      media.play();
-    } else {
-      media.pause();
-    }
-  });
+document.addEventListener("click", (event) => {
+  const media = event.target.closest?.("[data-click-play]");
+  if (!media) return;
+
+  event.stopPropagation();
+  if (media.paused) {
+    media.play().catch(() => {});
+    writeMediaState(media, false);
+  } else {
+    media.pause();
+    writeMediaState(media, true);
+  }
 });
 
 window.addEventListener("storage", (event) => {
-  if (event.key !== STORAGE_KEY || !event.newValue) return;
+  if (![STORAGE_KEY, MEDIA_STORAGE_KEY].includes(event.key) || !event.newValue) return;
   try {
     applyRemoteState(JSON.parse(event.newValue));
   } catch {
