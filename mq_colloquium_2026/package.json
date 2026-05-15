@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "description": "Custom HTML slide deck for a research portfolio colloquium.",
   "scripts": {
-    "serve": "python -m http.server 8000"
+    "serve": "python -m http.server 8000",
+    "export:pdf": "python scripts/export_pdf.py"
   }
 }

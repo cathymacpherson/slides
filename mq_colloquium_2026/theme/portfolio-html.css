@@ -43,6 +43,42 @@ body {
   overflow: hidden;
 }
 
+body.export-mode {
+  width: var(--slide-width);
+  height: var(--slide-height);
+  min-height: var(--slide-height);
+  background: var(--mq-white);
+}
+
+body.export-mode .deck-shell {
+  display: block;
+  width: var(--slide-width);
+  height: var(--slide-height);
+  min-height: var(--slide-height);
+  padding: 0;
+}
+
+body.export-mode .deck-chrome,
+body.export-mode .notes-panel {
+  display: none;
+}
+
+body.export-mode .deck-viewport {
+  width: var(--slide-width);
+  height: var(--slide-height);
+  overflow: hidden;
+}
+
+body.export-mode .deck {
+  left: 0;
+  top: 0;
+  transform: none;
+}
+
+body.export-mode .slide {
+  box-shadow: none;
+}
+
 .deck-shell {
   min-height: 100vh;
   display: grid;

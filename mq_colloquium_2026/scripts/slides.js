@@ -5,6 +5,8 @@ const deck = document.getElementById("deck");
 const deckViewport = document.querySelector(".deck-viewport");
 const params = new URLSearchParams(window.location.search);
 const isPresenter = params.get("view") === "presenter";
+const isExport = params.get("export") === "1";
+const exportStep = Number.parseInt(params.get("step") || "", 10);
 const STORAGE_KEY = "mq_colloquium_slide_state";
 const CHANNEL_KEY = "mq_colloquium_slide_channel";
 const MEDIA_STORAGE_KEY = "mq_colloquium_media_state";
@@ -31,6 +33,11 @@ function applyFragmentState(fragments, step) {
 
 function renderFragments(slideIndex, step) {
   applyFragmentState(getFragments(slideIndex), step);
+}
+
+function exportFragmentStep(slideIndex) {
+  if (!isExport || Number.isNaN(exportStep)) return currentStep;
+  return clamp(exportStep, 0, getFragments(slideIndex).length);
 }
 
 function readStoredState() {
@@ -185,8 +192,8 @@ function render(index, options = {}) {
     updatePresenter(currentIndex);
   }
 
-  if (!options.skipStorage) writeStoredState();
-  renderFragments(currentIndex, currentStep);
+  if (!options.skipStorage && !isExport) writeStoredState();
+  renderFragments(currentIndex, exportFragmentStep(currentIndex));
 }
 
 function fromHash() {
@@ -194,7 +201,9 @@ function fromHash() {
   const stored = readStoredState();
 
   if (match) {
-    render(Number.parseInt(match[1], 10) - 1, { skipHash: true, skipStorage: true });
+    const index = Number.parseInt(match[1], 10) - 1;
+    if (isExport) currentStep = exportFragmentStep(index);
+    render(index, { skipHash: true, skipStorage: true });
   } else if (typeof stored.index === "number") {
     currentStep = clamp(typeof stored.step === "number" ? stored.step : 0, 0, getFragments(stored.index).length);
     render(stored.index, { skipHash: true, skipStorage: true });
@@ -208,7 +217,7 @@ function toggleNotes() {
 }
 
 function updateDeckScale() {
-  if (isPresenter || !deck || !deckViewport || document.body.classList.contains("overview")) return;
+  if (isPresenter || isExport || !deck || !deckViewport || document.body.classList.contains("overview")) return;
 
   const viewportRect = deckViewport.getBoundingClientRect();
   const baseWidth = 1600;
@@ -412,6 +421,7 @@ syncChannel?.addEventListener("message", (event) => {
   applyRemoteState(event.data);
 });
 
+if (isExport) document.body.classList.add("export-mode");
 if (isPresenter) setupPresenter();
 
 window.addEventListener("hashchange", () => {

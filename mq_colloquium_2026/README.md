@@ -22,6 +22,14 @@ npm.cmd run serve
 
 `serve` starts a local browser server at `http://localhost:8000`, so you can open the deck in your browser without any extra build step.
 
+Export a PDF version:
+
+```powershell
+npm.cmd run export:pdf
+```
+
+The exporter uses local Chrome or Edge to capture the HTML deck and writes `exports/mq_colloquium_2026.pdf`. Slides with fragment animations are expanded into multiple PDF pages, so each build step is preserved for presenting or sharing.
+
 ## Slide controls
 
 - `Arrow keys`, `Page Up`, `Page Down`, or `Space` navigate
