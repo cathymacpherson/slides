@@ -1,6 +1,6 @@
-# mq_colloquium_2026
+# epc_2026
 
-Custom HTML slide deck for a research portfolio colloquium.
+Custom HTML slide deck for EPC 2026.
 
 ## Files
 
@@ -20,7 +20,7 @@ Use `npm.cmd` on this machine because PowerShell script execution blocks `npm.ps
 npm.cmd run serve
 ```
 
-`serve` starts a local browser server at `http://localhost:8000`. Open `http://localhost:8000/mq_colloquium_2026/` to view this deck with the shared assets available.
+`serve` starts a local browser server at `http://localhost:8000`. Open `http://localhost:8000/epc_2026/` to view this deck with the shared assets available.
 
 Export a PDF version:
 
@@ -28,7 +28,7 @@ Export a PDF version:
 npm.cmd run export:pdf
 ```
 
-The exporter uses local Chrome or Edge to capture the HTML deck and writes `exports/mq_colloquium_2026.pdf`. Slides with fragment animations are expanded into multiple PDF pages, so each build step is preserved for presenting or sharing.
+The exporter uses local Chrome or Edge to capture the HTML deck and writes `exports/epc_2026.pdf`. Slides with fragment animations are expanded into multiple PDF pages, so each build step is preserved for presenting or sharing.
 
 ## Slide controls
 

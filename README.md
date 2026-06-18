@@ -5,11 +5,11 @@ Repository for browser-based HTML slide decks.
 ## How this repo is organized
 
 - Each talk can live in its own folder.
+- Shared images, figures, diagrams, and media live in the root `assets/` folder.
 - A talk folder contains:
   - `index.html` for slide content
   - `theme/` for CSS
   - `scripts/` for navigation, notes, and presenter logic
-  - `assets/` for images, figures, and diagrams
   - an optional local `README.md` for talk-specific notes
 
 ## Create a new presentation
@@ -17,7 +17,7 @@ Repository for browser-based HTML slide decks.
 1. Duplicate an existing talk folder such as `mq_colloquium_2026`.
 2. Rename the copied folder for the new talk.
 3. Replace the slide content in that folder's `index.html`.
-4. Add any new figures or images to that folder's `assets/`.
+4. Add any new figures, images, or media to the root `assets/`.
 5. Update the local `README.md` if the talk needs specific notes.
 
 ## Edit a presentation
@@ -38,6 +38,8 @@ npm.cmd run serve
 
 Then open `http://localhost:8000` in your browser.
 
+For a talk inside a subfolder, open that folder path, for example `http://localhost:8000/mq_colloquium_2026/`.
+
 Use `npm.cmd` on this machine because PowerShell script execution blocks `npm.ps1`.
 
 ## Presenter controls
@@ -52,3 +54,4 @@ Use `npm.cmd` on this machine because PowerShell script execution blocks `npm.ps
 ## Current talks
 
 - [mq_colloquium_2026](./mq_colloquium_2026/README.md)
+- [epc_2026](./epc_2026/README.md)
