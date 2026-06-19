@@ -21,13 +21,40 @@ let timerStartedAt = Date.now();
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 function getFragments(index) {
-  return Array.from(slides[index]?.querySelectorAll('.fragment') || []);
+  return groupFragments(Array.from(slides[index]?.querySelectorAll(".fragment") || []));
+}
+
+function groupFragments(fragments) {
+  const grouped = [];
+  const seenGroups = new Set();
+
+  fragments.forEach((fragment) => {
+    const group = fragment.dataset.fragmentGroup;
+    if (!group) {
+      grouped.push(fragment);
+      return;
+    }
+
+    if (seenGroups.has(group)) return;
+    seenGroups.add(group);
+    grouped.push(fragment);
+  });
+
+  return grouped;
 }
 
 function applyFragmentState(fragments, step) {
   fragments.forEach((frag, i) => {
     const revealClass = frag.dataset.revealClass || 'visible';
-    frag.classList.toggle(revealClass, i < step);
+    const isVisible = i < step;
+    frag.classList.toggle(revealClass, isVisible);
+
+    const group = frag.dataset.fragmentGroup;
+    if (group) {
+      frag.closest(".slide")?.querySelectorAll(`.fragment[data-fragment-group="${CSS.escape(group)}"]`).forEach((groupedFrag) => {
+        groupedFrag.classList.toggle(groupedFrag.dataset.revealClass || "visible", isVisible);
+      });
+    }
   });
 }
 
@@ -134,7 +161,7 @@ function cloneSlide(index) {
   const clone = slides[index].cloneNode(true);
   clone.classList.add("active");
   clone.removeAttribute("aria-hidden");
-  applyFragmentState(Array.from(clone.querySelectorAll(".fragment")), index === currentIndex ? currentStep : 0);
+  applyFragmentState(groupFragments(Array.from(clone.querySelectorAll(".fragment"))), index === currentIndex ? currentStep : 0);
   return clone;
 }
 
