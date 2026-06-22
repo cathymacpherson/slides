@@ -25,10 +25,10 @@
             <p class="lead-affiliations">University of Western Australia<br />Macquarie University</p>
             <div class="lead-figure-row" aria-hidden="true">
               <figure class="lead-figure lead-figure-left">
-                <img src="../assets/woman-standing.png" alt="Woman standing illustration" />
+                <img src="../assets/vr-man.png" alt="Man wearing a virtual reality headset" />
               </figure>
               <figure class="lead-figure lead-figure-right">
-                <img src="../assets/vr-man.png" alt="Man wearing a virtual reality headset" />
+                <img src="../assets/group-walkers.svg" alt="Group of walkers" />
               </figure>
             </div>
           </div>
@@ -72,7 +72,10 @@
                 </li>
                 </ul>
                 <div class="hkb-equation" aria-label="HKB model equation">
-                  <span class="equation-term frequency-term fragment">&phi;&#775; = &Delta;&omega;<span class="equation-label">frequency differences parameter</span></span><span class="equation-term coupling-term fragment"> &minus; a sin(&phi;) &minus; 2b sin(2&phi;)<span class="equation-label">coupling parameter</span></span>
+                  <span class="equation-operator">&phi;&#775; =</span>
+                  <span class="equation-box frequency-term fragment"><span class="equation-label">Frequency differences</span><span class="equation-value">&Delta;&omega;</span></span>
+                  <span class="equation-operator">&minus;</span>
+                  <span class="equation-box coupling-term fragment"><span class="equation-label">Coupling</span><span class="equation-value">a sin(&phi;) &minus; 2b sin(2&phi;)</span></span>
                 </div>
                 <div class="hkb-placeholder-assets fragment" data-fragment-group="hkb-examples" aria-label="Placeholder figures for HKB model">
                   <figure class="asset-placeholder">
@@ -110,12 +113,24 @@
             <h1>The Dual Function of Gaze</h1>
             <div class="split-layout pendulums-body">
               <div class="pendulum-text-box fragment">
-                <ul>
+                <ul class="gaze-arrow-list">
                   <li><strong>Gathering information:</strong>  coupling or decoupling from an interaction partner.</li>
                   <li><strong>A social signal:</strong>  communicating behaviours such as affiliative intent.</li>
-                  <li><strong>Research Question 2:</strong> Does partner gaze influence the emergence of coordination?</li>
                 </ul>
+                <article class="info-card gaze-question-card">
+                  <h3>Research Question 2</h3>
+                  <p>Does partner gaze influence the emergence of coordination?</p>
+                </article>
               </div>
+              <figure class="gaze-placeholder-figure gaze-tour-figure fragment">
+                <div class="tour-group-stage">
+                  <img class="tour-group-base" src="../assets/tour-group.png" alt="A group of people on a tour" />
+                  <div class="tour-group-highlight fragment" aria-hidden="true">
+                    <img class="tour-group-focus tour-group-focus-left" src="../assets/tour-group.png" alt="" />
+                    <img class="tour-group-focus tour-group-focus-right" src="../assets/tour-group.png" alt="" />
+                  </div>
+                </div>
+              </figure>
             </div>
           </div>
           <aside class="notes"><ul><li>We planned to capture this in part by using eye tracking while participants engaged in a coordination task, that we'll get to later.</li><li>But of course gaze is not just designed to gather information and aid coupling between individuals.</li><li>It's also used as a social signal - one that can communicate behaviours such as affiliative intent or withdrawal.</li><li>And so we didn't just want to look at the gaze behaviours of our participants in terms of tracking, but also how they responded to the gaze behaviours of an interaction partner.</li><li>So this became our second research question.</li><li>Across a series of studies, we examined this.</li></ul></aside>
@@ -130,7 +145,7 @@
                 <div class="result-kicker">Procedure</div>
                 <div class="vr-study-figure-row">
                 <ul>
-                  <li><strong>Participants:</strong> Undergraduate students.</li>
+                  <li><strong>Participants:</strong> 133 (study 1) and 150 (study 2) undergraduate students.</li>
                   <li><strong>Task:</strong> Performed a coordination task with 'another participant' - actually a pre-programmed avatar.</li>
                   <li><strong>Manipulations:</strong> The avatar displayed either direct or averted gaze (study 1 & 2) and participant focused on self or other (study 2).</li>
                 </ul>
@@ -154,8 +169,17 @@
               <article class="vr-study-card fragment">
                 <div class="result-kicker">Measurements</div>
                 <ul>
-                  <li><strong>Motion capture:</strong> From the controllers (Study 1 & 2) and headset (Study 2).</li>
-                  <li><strong>Gaze tracking:</strong> Eye tracking via HTC Vive headset.</li>
+                  <li><strong>Motion capture:</strong> From the HTC Vive controllers (Study 1 & 2) and headset (Study 2).
+                    <div class="measurement-asset-row" aria-label="Motion capture hardware">
+                      <img src="../assets/vr-headset.png" alt="HTC Vive headset" />
+                      <img src="../assets/vr-controller.png" alt="HTC Vive controller" />
+                    </div>
+                  </li>
+                  <li><strong>Gaze tracking:</strong> Eye tracking via headset.
+                    <div class="measurement-asset-row measurement-asset-row-single" aria-label="Gaze tracking hardware">
+                      <img src="../assets/vr-headset.png" alt="HTC Vive headset" />
+                    </div>
+                  </li>
                   <li><strong>Coordination:</strong> Relative phase (arms) and cross-recurrence (head) calculated.</li>
                 </ul>
               </article>
@@ -193,10 +217,20 @@
                 <h2>Results</h2>
                 <div class="results-asset-grid">
                   <figure class="results-asset">
-                    <object data="../assets/vr1-gaze.pdf" type="application/pdf" aria-label="Study 1 gaze result"></object>
+                    <img src="../assets/vr2-part-gaze-cropped.png" alt="Study 2 participant gaze result" />
+                    <figcaption class="plot-legend" aria-label="Focus instruction legend">
+                      <span class="plot-legend-title">Focus instruction</span>
+                      <span class="plot-legend-item"><span class="legend-swatch legend-swatch-self"></span>Self</span>
+                      <span class="plot-legend-item"><span class="legend-swatch legend-swatch-other"></span>Other</span>
+                    </figcaption>
                   </figure>
                   <figure class="results-asset">
-                    <img src="../assets/vr2-head.png" alt="Study 2 head coordination result" />
+                    <img src="../assets/vr1-gaze-cropped.png" alt="Study 1 gaze result" />
+                    <figcaption class="plot-legend" aria-label="Avatar gaze legend">
+                      <span class="plot-legend-title">Avatar gaze</span>
+                      <span class="plot-legend-item"><span class="legend-line legend-direct"></span>Direct</span>
+                      <span class="plot-legend-item"><span class="legend-line legend-averted"></span>Averted</span>
+                    </figcaption>
                   </figure>
                 </div>
               </article>
@@ -208,30 +242,45 @@
         <section class="slide standard-slide result-slide slide-vr study-3-methods-slide" data-title="Study 3 Methods">
           <div class="slide-inner">
             <div class="eyebrow">Study 3</div>
-            <h1>Does Gaze Reliability Shape Coordination?</h1>
+            <h1>Study 3: Method</h1>
             <div class="vr-study-grid">
               <article class="vr-study-card fragment">
                 <div class="result-kicker">Procedure</div>
                 <ul>
-                  <li><strong>Task:</strong> slide a controller towards the same target as a partner.</li>
-                  <li><strong>Context:</strong> a functional VR task with a performance-related outcome.</li>
-                  <li><strong>Partner:</strong> a virtual interaction partner acted before each trial.</li>
+                  <li><strong>Participants:</strong> 134 undergraduate students.</li>
+                  <li><strong>Task:</strong> Performed a coordination task with 'another participant' - actually a pre-programmed avatar.</li>
+                  <li><strong>Manipulation:</strong> Avatar performed either congruent or incongruent gaze.</li>
                 </ul>
               </article>
               <article class="vr-study-card fragment">
-                <div class="result-kicker">Cue Reliability</div>
-                <ul>
-                  <li><strong>Congruent cue:</strong> partner looked towards the target.</li>
-                  <li><strong>Incongruent cue:</strong> partner looked away from the target.</li>
-                  <li><strong>Question:</strong> does gaze reliability alter movement alignment?</li>
-                </ul>
+                <div class="result-kicker">Manipulations</div>
+                <div class="vr-study-figure-row">
+                  <div class="vr-method-placeholder vr-method-stack">
+                    <div class="condition-asset">
+                      <span class="condition-label"><span>Congruent</span></span>
+                      <img src="../assets/vr-cong.png" alt="Congruent gaze manipulation" />
+                    </div>
+                    <div class="condition-asset">
+                      <span class="condition-label"><span>Incongruent</span></span>
+                      <img src="../assets/vr-incong.png" alt="Incongruent gaze manipulation" />
+                    </div>
+                  </div>
+                </div>
               </article>
               <article class="vr-study-card fragment">
                 <div class="result-kicker">Measurement</div>
                 <ul>
-                  <li><strong>Movement:</strong> controller trajectories during each trial.</li>
-                  <li><strong>Coordination:</strong> captured as cross-correlation between participant and partner movement.</li>
-                  <li><strong>Individual differences:</strong> social anxiety as a moderator.</li>
+                  <li><strong>Motion capture:</strong> From the HTC Vive controllers.
+                    <div class="measurement-asset-row measurement-asset-row-single" aria-label="Motion capture hardware">
+                      <img src="../assets/vr-controller.png" alt="HTC Vive controller" />
+                    </div>
+                  </li>
+                  <li><strong>Gaze tracking:</strong> Eye tracking from the HTC Vive headset.
+                    <div class="measurement-asset-row measurement-asset-row-single" aria-label="Gaze tracking hardware">
+                      <img src="../assets/vr-headset.png" alt="HTC Vive headset" />
+                    </div>
+                  </li>
+                  <li><strong>Coordination:</strong> Cross-correlation of arm movements between the avatar and participant.</li>
                 </ul>
               </article>
             </div>
@@ -266,7 +315,24 @@
               </article>
               <article class="method-card results-visual-card fragment">
                 <h2>Results</h2>
-                <div class="results-placeholder-plot">Study 3 results plot placeholder</div>
+                <div class="study-3-results-assets">
+                  <figure class="results-asset single-results-asset">
+                    <img src="../assets/vr-cong-result-cropped.png" alt="Study 3 congruent versus incongruent gaze result" />
+                    <figcaption class="plot-legend" aria-label="Gaze congruency legend">
+                      <span class="plot-legend-title">Gaze Congruency</span>
+                      <span class="plot-legend-item"><span class="legend-line legend-direct"></span>Congruent</span>
+                      <span class="plot-legend-item"><span class="legend-line legend-averted"></span>Incongruent</span>
+                    </figcaption>
+                  </figure>
+                  <figure class="results-asset single-results-asset">
+                    <img src="../assets/vr-cong-result-lsas-cropped.png" alt="Study 3 gaze congruency result by social anxiety" />
+                    <figcaption class="plot-legend" aria-label="Gaze congruency legend">
+                      <span class="plot-legend-title">Gaze Congruency</span>
+                      <span class="plot-legend-item"><span class="legend-line legend-direct"></span>Congruent</span>
+                      <span class="plot-legend-item"><span class="legend-line legend-averted"></span>Incongruent</span>
+                    </figcaption>
+                  </figure>
+                </div>
               </article>
             </div>
           </div>
