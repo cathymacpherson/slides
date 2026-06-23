@@ -1,57 +1,47 @@
-# slides
+# Slides
 
-Repository for browser-based HTML slide decks.
+Welcome. This repository collects browser-based slide decks from talks, workshops, colloquia, and conference presentations.
 
-## How this repo is organized
+Each talk is available as an HTML presentation that can be opened directly in a browser.
 
-- Each talk can live in its own folder.
-- Shared images, figures, diagrams, and media live in the root `assets/` folder.
-- A talk folder contains:
-  - `index.html` for slide content
-  - `theme/` for CSS
-  - `scripts/` for navigation, notes, and presenter logic
-  - an optional local `README.md` for talk-specific notes
+## Available Talks
 
-## Create a new presentation
+- [Experimental Psychology Conference 2026](https://cathymacpherson.github.io/slides/epc_2026/)  
+  Does gaze perception influence the emergence of interpersonal coordination?
 
-1. Duplicate an existing talk folder such as `mq_colloquium_2026`.
-2. Rename the copied folder for the new talk.
-3. Replace the slide content in that folder's `index.html`.
-4. Add any new figures, images, or media to the root `assets/`.
-5. Update the local `README.md` if the talk needs specific notes.
+- [Macquarie Colloquium 2026](https://cathymacpherson.github.io/slides/mq_colloquium_2026/)  
+  Interpersonal coordination: Capturing alignment in social and clinical settings
 
-## Edit a presentation
+## Viewing The Slides
 
-- Add or edit slides in `index.html`.
-- Use one `<section class="slide">...</section>` block per slide.
-- Add speaker notes inside `<aside class="notes">...</aside>` within a slide.
-- Put reusable layout and visual styles in the talk's CSS file under `theme/`.
-- Put presentation behaviour in the talk's JS file under `scripts/`.
+Use the links above to open each talk in your browser. Once a talk is open:
 
-## Run a presentation locally
+- Use the arrow keys or spacebar to move through the slides.
+- Press `F` for fullscreen.
+- Press `O` for overview mode.
+- Press `N` to show speaker notes, where available.
 
-From inside a talk folder:
+## GitHub Pages
 
-```powershell
-npm.cmd run serve
+These browser links work when GitHub Pages is enabled for this repository.
+
+To enable it:
+
+1. Go to the repository on GitHub.
+2. Open **Settings**.
+3. Go to **Pages**.
+4. Under **Build and deployment**, set the source to **Deploy from a branch**.
+5. Select the main branch and the root folder.
+6. Save.
+
+After GitHub finishes publishing the site, the talks should be available at:
+
+```text
+https://cathymacpherson.github.io/slides/
 ```
 
-Then open `http://localhost:8000` in your browser.
+## Repository Structure
 
-For a talk inside a subfolder, open that folder path, for example `http://localhost:8000/mq_colloquium_2026/`.
-
-Use `npm.cmd` on this machine because PowerShell script execution blocks `npm.ps1`.
-
-## Presenter controls
-
-- `Arrow keys`, `Page Up`, `Page Down`, or `Space` navigate
-- `Home` and `End` jump to the start or end
-- `N` toggles speaker notes
-- `O` toggles overview mode
-- `F` toggles fullscreen
-- `P` opens presenter view
-
-## Current talks
-
-- [mq_colloquium_2026](./mq_colloquium_2026/README.md)
-- [epc_2026](./epc_2026/README.md)
+- `epc_2026/` - Experimental Psychology Conference 2026 talk.
+- `mq_colloquium_2026/` - Macquarie Colloquium 2026 talk.
+- `assets/` - shared images, figures, and media used across talks.
