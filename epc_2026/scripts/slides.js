@@ -422,6 +422,17 @@ slides.forEach((slide, index) => {
 });
 
 document.addEventListener("click", (event) => {
+  const onLastSlide = currentIndex === slides.length - 1;
+  const clickedActiveSlide = isPresenter
+    ? Boolean(event.target.closest?.("#presenter-current .slide"))
+    : Boolean(event.target.closest?.(".deck .slide.active"));
+
+  if (!document.body.classList.contains("overview") && onLastSlide && clickedActiveSlide) {
+    currentStep = 0;
+    render(0);
+    return;
+  }
+
   const media = event.target.closest?.("[data-click-play]");
   if (!media) return;
 

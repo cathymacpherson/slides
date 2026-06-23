@@ -886,6 +886,14 @@ body.export-mode .slide {
   line-height: 1.34;
 }
 
+.slide-vr:not(.study-3-methods-slide) .vr-study-card:nth-child(3) > ul {
+  gap: 24px;
+}
+
+.slide-vr:not(.study-3-methods-slide) .vr-study-card:nth-child(3) > ul > li {
+  font-size: 24px;
+}
+
 .slide-vr .vr-study-card:nth-child(3) > ul > li:has(.measurement-asset-row) {
   margin-bottom: -14px;
 }
@@ -988,6 +996,77 @@ body.export-mode .slide {
   grid-column: 2;
   height: 100%;
   min-width: 0;
+}
+
+.study-3-methods-slide .vr-method-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-rows: auto repeat(2, minmax(0, 1fr));
+  column-gap: 3px;
+  row-gap: 7px;
+  align-items: stretch;
+  justify-items: stretch;
+  width: 100%;
+  height: auto;
+  min-height: 0;
+  margin: auto;
+  padding: 2px 3px 3px;
+}
+
+.study-3-methods-slide .condition-column-label {
+  display: grid;
+  place-items: center;
+  color: var(--mq-red);
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  line-height: 1;
+}
+
+.study-3-methods-slide .vr-study-grid {
+  grid-template-columns: 0.92fr 1.16fr 0.92fr;
+}
+
+.study-3-methods-slide .vr-study-card:nth-child(2) {
+  padding: 16px 14px 14px;
+  justify-content: center;
+}
+
+.study-3-methods-slide .vr-study-card:nth-child(2) .vr-study-figure-row {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.study-3-methods-slide .condition-grid-asset {
+  min-height: 0;
+  display: grid;
+  overflow: hidden;
+  border-radius: 10px;
+}
+
+.study-3-methods-slide .condition-grid-asset img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  min-height: 0;
+  object-fit: cover;
+  object-position: center 15%;
+  border-radius: 0;
+}
+
+.study-3-methods-slide .condition-grid-asset:nth-child(3) img,
+.study-3-methods-slide .condition-grid-asset:nth-child(5) img {
+  object-position: 72% 15%;
+  transform: scale(1.1);
+}
+
+.study-3-methods-slide .condition-grid-asset:nth-child(4) img,
+.study-3-methods-slide .condition-grid-asset:nth-child(6) img {
+  object-position: 28% 15%;
+  transform: scale(1.1);
 }
 
 
