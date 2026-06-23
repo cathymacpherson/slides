@@ -1,4 +1,4 @@
-# Slides
+# Research Presentations
 
 Hello! This repository contains various presentations from colloquia and conferences that I've spoken at over the past year.
 
