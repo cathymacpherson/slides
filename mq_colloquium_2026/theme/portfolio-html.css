@@ -406,27 +406,18 @@ body.export-mode .slide {
   object-fit: cover;
 }
 
-.callout-layout,
 .split-layout {
   display: grid;
   gap: 28px;
   align-items: stretch;
 }
 
-.callout-layout {
-  grid-template-columns: 1.05fr 0.95fr;
-  flex: 1;
-}
 
 .split-layout {
   grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.08fr);
 }
 
-.split-copy li {
-  line-height: 1.8;
-}
 
-.callout-layout blockquote,
 .info-card,
 .figure-frame,
 .split-figure {
@@ -434,11 +425,7 @@ body.export-mode .slide {
   background: rgba(255, 255, 255, 0.86);
 }
 
-.callout-layout blockquote {
-  padding: 28px 30px;
-}
 
-.callout-layout blockquote,
 .split-figure,
 .figure-frame {
   display: flex;
@@ -456,16 +443,7 @@ body.export-mode .slide {
   padding: 0;
 }
 
-.callout-layout blockquote {
-  border-left: 6px solid var(--mq-red);
-  padding-left: 20px;
-}
 
-.card-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
 
 .card-slide .slide-inner,
 .slide-intro .slide-inner {
@@ -513,7 +491,7 @@ body.export-mode .slide {
 
 .card-slide .definition-lead::before,
 .slide-intro .definition-lead::before {
-  content: "→";
+  content: "\2192";
   position: absolute;
   left: 0;
   top: 10px;
@@ -552,34 +530,21 @@ body.export-mode .slide {
   box-shadow: 0 10px 24px rgba(17, 17, 17, 0.05);
 }
 
-.info-card-individual-differences.is-selected {
-  border-top-color: #1f3a5f;
-}
-
-.info-card-individual-differences.is-selected h3 {
-  color: #1f3a5f;
-}
-
 .info-card p {
   font-size: var(--fs-card-body);
 }
 
-.card-grid .info-card:nth-child(2),
-.card-grid .info-card:nth-child(5) {
-  transform: translateY(18px);
-}
-
-.slide-question .slide-inner {
+.mental-health-slide .slide-inner {
   gap: 24px;
 }
 
-.slide-question h1 {
+.mental-health-slide h1 {
   max-width: none;
 }
 
-.slide-question p,
-.slide-question li,
-.slide-question blockquote,
+.mental-health-slide p,
+.mental-health-slide li,
+.mental-health-slide blockquote,
 .slide-pendulums p,
 .slide-pendulums li,
 .slide-pendulums blockquote,
@@ -599,7 +564,6 @@ body.export-mode .slide {
 }
 
 .mental-health-lead,
-.slide-pendulums .split-copy li,
 .result-subheading,
 .slide-vr .bullet-list li,
 .slide-transition p,
@@ -678,7 +642,6 @@ body.export-mode .slide {
   padding-top: 20px;
 }
 
-.split-copy,
 .figure-copy {
   display: flex;
   flex-direction: column;
@@ -830,12 +793,6 @@ body.export-mode .slide {
   font-weight: 700;
 }
 
-.vr-intro-copy {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr);
-  gap: 16px;
-  align-items: stretch;
-}
 
 .result-callout {
   border: 1px solid rgba(166, 25, 46, 0.14);
@@ -907,7 +864,7 @@ body.export-mode .slide {
   padding: 4px;
 }
 
-.vr-method-placeholder,
+.vr-method-asset-panel,
 .vr-study-figure {
   border: 1px solid rgba(17, 17, 17, 0.08);
   background: #ffffff;
@@ -915,7 +872,7 @@ body.export-mode .slide {
   border-radius: 20px;
 }
 
-.vr-method-placeholder {
+.vr-method-asset-panel {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1013,9 +970,6 @@ body.export-mode .slide {
   border-radius: 12px;
 }
 
-.vr-condition-figure img {
-  max-height: 110px;
-}
 
 .vr-results-figure img {
   max-height: 95%;
@@ -1032,7 +986,7 @@ body.export-mode .slide {
   opacity: 1;
   pointer-events: auto;
 }
-/* Fragments that toggle a custom class stay visible — only the class changes */
+/* Fragments that toggle a custom class stay visible; only the class changes */
 .fragment[data-reveal-class] {
   opacity: 1;
   pointer-events: auto;
@@ -1095,10 +1049,6 @@ body.export-mode .slide {
   display: grid;
   grid-template-rows: auto 1fr;
   gap: 20px;
-}
-
-.pose-slide .figure-frame {
-  height: 370px;
 }
 
 .figure-slide .figure-frame {
@@ -1165,15 +1115,6 @@ body.export-mode .slide {
   line-height: 1.34;
 }
 
-.noise-takeaway {
-  border-left-width: 8px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0.96), rgba(248, 246, 244, 0.92));
-  box-shadow: 0 18px 38px rgba(17, 17, 17, 0.08);
-}
-
-.noise-takeaway .result-kicker {
-  margin-bottom: 10px;
-}
 
 .noise-slide .figure-frame {
   height: 100%;
@@ -1181,24 +1122,7 @@ body.export-mode .slide {
   min-height: 0;
 }
 
-.noise-asset {
-  padding-left: 54px;
-  position: relative;
-}
 
-.noise-asset figcaption {
-  color: var(--mq-red);
-  font-size: 16px;
-  font-weight: 800;
-  left: 10px;
-  letter-spacing: 0.08em;
-  line-height: 1;
-  position: absolute;
-  text-transform: uppercase;
-  top: 50%;
-  transform: translateY(-50%) rotate(-90deg);
-  transform-origin: center;
-}
 
 .noise-results-frame {
   height: 100%;
@@ -1341,17 +1265,7 @@ body.export-mode .slide {
   line-height: 1.36;
 }
 
-.guide-link {
-  color: var(--mq-red);
-  font-size: 22px;
-  font-weight: 700;
-  line-height: 1.25;
-}
 
-.guide-link {
-  text-decoration: none;
-  word-break: break-word;
-}
 
 .psychotherapy-slide h1 {
   max-width: none;
@@ -1418,54 +1332,12 @@ body.export-mode .slide {
   object-fit: contain;
 }
 
-.pathway-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 18px;
-}
-
-.pathway-step {
-  border: 1px solid var(--mq-line);
-  background: rgba(255, 255, 255, 0.9);
-  padding: 20px 22px 22px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  min-height: 220px;
-}
-
-.pathway-index {
-  font-size: 42px;
-  line-height: 1;
-  font-weight: 700;
-  letter-spacing: -0.04em;
-  color: rgba(166, 25, 46, 0.26);
-}
-
-.closing::before {
-  background: linear-gradient(90deg, var(--mq-magenta) 0 14%, transparent 14% 100%);
-}
-
-.closing .slide-inner {
-  justify-content: center;
-  gap: 18px;
-}
-
-.closing-copy {
-  font-size: 28px;
-  line-height: 1.42;
-}
 
 .closing-meta {
   font-size: 22px;
   color: rgba(17, 17, 17, 0.74);
 }
 
-.closing-collab {
-  font-size: 18px;
-  color: rgba(17, 17, 17, 0.55);
-  max-width: 38em;
-}
 
 .acknowledgements-copy {
   max-width: 680px;
@@ -1641,7 +1513,6 @@ body.presenter-mode .deck-shell {
 }
 
 .presenter-panel,
-.presenter-meta-card,
 .presenter-notes {
   border: 1px solid var(--mq-line);
   background: rgba(255, 255, 255, 0.9);
