@@ -431,7 +431,7 @@ body.export-mode .slide {
   justify-content: flex-end;
 }
 
-.definition-figure img {
+.definition-figure img:not(.take-home-asset) {
   display: block;
   max-width: 100%;
   max-height: 280px;
@@ -575,10 +575,13 @@ body.export-mode .slide {
 }
 
 .hkb-equation .fragment.visible {
+  opacity: 1;
+}
+
+.hkb-equation .equation-box.fragment.visible {
   border-color: #1f6fb2;
   background: rgba(31, 111, 178, 0.08);
   color: var(--ink);
-  opacity: 1;
 }
 
 .hkb-equation:has(.coupling-term.visible) .frequency-term.visible {
@@ -1003,7 +1006,7 @@ body.export-mode .slide {
   grid-template-columns: repeat(2, minmax(0, 1fr));
   grid-template-rows: auto repeat(2, minmax(0, 1fr));
   column-gap: 3px;
-  row-gap: 7px;
+  row-gap: 25px;
   align-items: stretch;
   justify-items: stretch;
   width: 100%;
@@ -1038,13 +1041,14 @@ body.export-mode .slide {
   display: flex;
   align-items: center;
   justify-content: center;
+  transform: translateY(-40px);
 }
 
 .study-3-methods-slide .condition-grid-asset {
   min-height: 0;
   display: grid;
-  overflow: hidden;
-  border-radius: 10px;
+  overflow: visible;
+  border-radius: 0;
 }
 
 .study-3-methods-slide .condition-grid-asset img {
@@ -1363,6 +1367,20 @@ body.export-mode .slide {
   height: 100%;
 }
 
+.study-3-results-assets .results-asset img {
+  border-radius: 12px;
+  object-position: center;
+}
+
+.study-3-results-asset-left img {
+  object-fit: contain;
+  padding: 8px;
+}
+
+.study-3-results-assets .single-results-asset:nth-child(2) img {
+  object-position: 50% center;
+}
+
 
 
 
@@ -1404,20 +1422,31 @@ body.export-mode .slide {
 }
 
 .take-home-asset-panel {
-  display: grid;
-  place-items: center;
+  display: flex;
+  gap: 12px;
+  justify-content: center;
+  align-items: center;
   width: 100%;
-  min-height: 250px;
-  border: 2px dashed rgba(17, 17, 17, 0.2);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.72);
-  color: rgba(17, 17, 17, 0.52);
-  font-size: 28px;
-  font-weight: 700;
+  padding: 12px;
+  border: 1px solid rgba(17, 17, 17, 0.14);
+  border-radius: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  overflow: hidden;
 }
 
+.take-home-asset-wrapper {
+  flex: 1;
+  min-width: 0;
+  border-radius: 10px;
+  overflow: hidden;
+}
 
-
+.take-home-asset-panel .take-home-asset {
+  display: block;
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
 
 .closing::before {
   background: linear-gradient(90deg, var(--mq-magenta) 0 14%, transparent 14% 100%);
@@ -1427,16 +1456,6 @@ body.export-mode .slide {
   justify-content: center;
   gap: 18px;
 }
-
-
-
-
-
-
-
-
-
-
 
 .notes {
   display: none;
