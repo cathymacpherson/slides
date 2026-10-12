@@ -421,9 +421,66 @@ syncChannel?.addEventListener("message", (event) => {
   applyRemoteState(event.data);
 });
 
-// Measure each animated trace so the draw-on animation works in every browser.
-document.querySelectorAll(".trace-reveal .trace").forEach((path) => {
-  path.style.setProperty("--trace-length", Math.ceil(path.getTotalLength()) + 1);
+// Draw-on animation for the time series: a clip rectangle widens from left to right
+// whenever its figure is revealed. (Animating stroke dashes breaks lines into pieces in Safari.)
+document.querySelectorAll(".trace-reveal").forEach((figure, n) => {
+  const svgEl = figure.querySelector("svg");
+  const traces = figure.querySelectorAll(".trace");
+  if (!svgEl || !traces.length) return;
+
+  // Clip to the horizontal extent of the traces so the highlight timings line up.
+  // Measured on reveal, because hidden slides report zero-size boxes.
+  const vb = svgEl.viewBox.baseVal;
+  const box = { x: vb.x, y: vb.y, width: vb.width, height: vb.height };
+  const measure = () => {
+    const boxes = Array.from(traces, (path) => path.getBBox()).filter((b) => b.width > 0);
+    if (!boxes.length) return;
+    const left = Math.min(...boxes.map((b) => b.x));
+    const right = Math.max(...boxes.map((b) => b.x + b.width));
+    box.x = left - 2;
+    box.width = right - left + 4;
+    rect.setAttribute("x", box.x);
+  };
+  const ns = "http://www.w3.org/2000/svg";
+  const clip = document.createElementNS(ns, "clipPath");
+  clip.id = `trace-clip-${n}`;
+  const rect = document.createElementNS(ns, "rect");
+  rect.setAttribute("x", box.x);
+  rect.setAttribute("y", box.y);
+  rect.setAttribute("height", box.height);
+  rect.setAttribute("width", 0);
+  clip.appendChild(rect);
+  svgEl.prepend(clip);
+  traces.forEach((path) => path.setAttribute("clip-path", `url(#${clip.id})`));
+
+  let frame = null;
+  const draw = () => {
+    cancelAnimationFrame(frame);
+    measure();
+    const duration = (parseFloat(getComputedStyle(figure).getPropertyValue("--trace-duration")) || 5) * 1000;
+    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const start = performance.now();
+    const step = (now) => {
+      const t = reduced ? 1 : Math.min((now - start) / duration, 1);
+      rect.setAttribute("width", box.width * t);
+      if (t < 1) frame = requestAnimationFrame(step);
+    };
+    frame = requestAnimationFrame(step);
+  };
+  const reset = () => {
+    cancelAnimationFrame(frame);
+    rect.setAttribute("width", 0);
+  };
+
+  let shown = figure.classList.contains("visible");
+  if (shown) draw();
+  new MutationObserver(() => {
+    const now = figure.classList.contains("visible");
+    if (now === shown) return;
+    shown = now;
+    if (now) draw();
+    else reset();
+  }).observe(figure, { attributes: true, attributeFilter: ["class"] });
 });
 
 if (isExport) document.body.classList.add("export-mode");

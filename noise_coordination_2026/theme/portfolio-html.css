@@ -1844,29 +1844,13 @@ body.presenter-mode .deck-shell {
   font-family: inherit;
 }
 
-/* Dash length is set per path from its measured length in scripts/slides.js */
-.trace-reveal .trace {
-  stroke-dasharray: var(--trace-length, 0);
-  stroke-dashoffset: var(--trace-length, 0);
-}
-
 .trace-reveal .trace-highlight {
   opacity: 0;
-}
-
-.trace-reveal.visible .trace {
-  animation: trace-draw var(--trace-duration, 5s) linear forwards;
 }
 
 .trace-reveal.visible .trace-highlight {
   animation: trace-fade 0.5s ease-out forwards;
   animation-delay: calc(var(--delay) * var(--trace-duration, 5s));
-}
-
-@keyframes trace-draw {
-  to {
-    stroke-dashoffset: 0;
-  }
 }
 
 @keyframes trace-fade {
@@ -1876,7 +1860,6 @@ body.presenter-mode .deck-shell {
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .trace-reveal.visible .trace,
   .trace-reveal.visible .trace-highlight {
     animation-duration: 0.01s;
     animation-delay: 0s;
@@ -1909,11 +1892,6 @@ body.presenter-mode .deck-shell {
   height: 100%;
   object-fit: contain;
   width: 100%;
-}
-
-/* The method diagram has wide margins in its file; zoom it to fill the frame */
-.study-slide .method-figure img {
-  transform: translateX(-9%) scale(1.4);
 }
 
 .summary-refs a {
