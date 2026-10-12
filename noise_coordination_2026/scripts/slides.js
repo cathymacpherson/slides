@@ -421,6 +421,11 @@ syncChannel?.addEventListener("message", (event) => {
   applyRemoteState(event.data);
 });
 
+// Measure each animated trace so the draw-on animation works in every browser.
+document.querySelectorAll(".trace-reveal .trace").forEach((path) => {
+  path.style.setProperty("--trace-length", Math.ceil(path.getTotalLength()) + 1);
+});
+
 if (isExport) document.body.classList.add("export-mode");
 if (isPresenter) setupPresenter();
 

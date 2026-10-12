@@ -1844,9 +1844,10 @@ body.presenter-mode .deck-shell {
   font-family: inherit;
 }
 
+/* Dash length is set per path from its measured length in scripts/slides.js */
 .trace-reveal .trace {
-  stroke-dasharray: 1;
-  stroke-dashoffset: 1;
+  stroke-dasharray: var(--trace-length, 0);
+  stroke-dashoffset: var(--trace-length, 0);
 }
 
 .trace-reveal .trace-highlight {
