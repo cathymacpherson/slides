@@ -1,0 +1,10 @@
+{
+  "name": "noise-coordination-2026",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Custom HTML slide deck for a talk on indexing communication difficulty in background noise.",
+  "scripts": {
+    "serve": "python3 -m http.server 8000 --directory ..",
+    "export:pdf": "python3 scripts/export_pdf.py"
+  }
+}

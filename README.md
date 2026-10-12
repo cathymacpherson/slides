@@ -23,6 +23,16 @@ Each talk is available as an HTML presentation that can be opened directly in a 
       <p><a href="https://cathymacpherson.github.io/slides/mq_colloquium_2026/"><strong>Open slides</strong></a></p>
     </td>
   </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://cathymacpherson.github.io/slides/noise_coordination_2026/">
+        <img src="previews/noise_coordination_2026.png" alt="Preview of the Communication Difficulties Workshop 2026 slides" width="100%">
+      </a>
+      <h3>Communication Difficulties Workshop 2026</h3>
+      <p><a href="https://cathymacpherson.github.io/slides/noise_coordination_2026/"><strong>Open slides</strong></a></p>
+    </td>
+    <td width="50%" valign="top"></td>
+  </tr>
 </table>
 
 ## Viewing The Slides

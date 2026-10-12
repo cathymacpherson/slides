@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Marker Editor</title>
+    <style>
+      :root {
+        --red: #a6192e;
+        --ink: #111111;
+        --charcoal: #373a36;
+        --line: rgba(17, 17, 17, 0.14);
+        --paper: #fbfbfa;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        height: 100%;
+        background: #ece8e1;
+        color: var(--ink);
+        font-family: "Work Sans", Aptos, "Segoe UI", sans-serif;
+      }
+
+      .app {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) 300px;
+        gap: 16px;
+        height: 100%;
+        padding: 16px;
+      }
+
+      .stage {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        box-shadow: 0 12px 30px rgba(17, 17, 17, 0.08);
+        min-height: 0;
+        overflow: hidden;
+        position: relative;
+      }
+
+      .stage svg {
+        display: block;
+        height: 100%;
+        touch-action: none;
+        user-select: none;
+        width: 100%;
+      }
+
+      .stage.adding svg {
+        cursor: crosshair;
+      }
+
+      .panel {
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-top: 6px solid var(--red);
+        display: flex;
+        flex-direction: column;
+        gap: 18px;
+        overflow: auto;
+        padding: 18px;
+      }
+
+      h1 {
+        font-size: 20px;
+        margin: 0;
+      }
+
+      h2 {
+        color: var(--red);
+        font-size: 12px;
+        letter-spacing: 0.12em;
+        margin: 0 0 8px;
+        text-transform: uppercase;
+      }
+
+      p,
+      li {
+        color: var(--charcoal);
+        font-size: 14px;
+        line-height: 1.45;
+        margin: 0;
+      }
+
+      ul {
+        margin: 0;
+        padding-left: 1.1em;
+      }
+
+      .tabs {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 6px;
+      }
+
+      button {
+        background: #ffffff;
+        border: 1px solid rgba(17, 17, 17, 0.2);
+        border-radius: 6px;
+        color: var(--ink);
+        cursor: pointer;
+        font: inherit;
+        font-size: 14px;
+        padding: 8px 10px;
+      }
+
+      button:hover {
+        border-color: var(--red);
+      }
+
+      button.on {
+        background: var(--red);
+        border-color: var(--red);
+        color: #ffffff;
+      }
+
+      button:disabled {
+        cursor: default;
+        opacity: 0.45;
+      }
+
+      .stack {
+        display: grid;
+        gap: 6px;
+      }
+
+      label {
+        align-items: center;
+        display: flex;
+        font-size: 14px;
+        gap: 8px;
+      }
+
+      input[type="range"] {
+        flex: 1;
+      }
+
+      .selection {
+        background: #ffffff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        display: grid;
+        gap: 8px;
+        min-height: 64px;
+        padding: 10px 12px;
+      }
+
+      .selection strong {
+        font-size: 14px;
+      }
+
+      .status {
+        color: var(--red);
+        font-size: 13px;
+        min-height: 1.2em;
+      }
+
+      .drop-hint {
+        align-items: center;
+        background: rgba(166, 25, 46, 0.08);
+        border: 3px dashed var(--red);
+        color: var(--red);
+        display: none;
+        font-size: 22px;
+        font-weight: 700;
+        inset: 0;
+        justify-content: center;
+        position: absolute;
+      }
+
+      .stage.dragover .drop-hint {
+        display: flex;
+      }
+
+      .handle {
+        cursor: grab;
+      }
+
+      .handle:hover > .hit,
+      .handle.selected > .hit {
+        stroke: #ffb000;
+        stroke-width: 6;
+      }
+
+      .ghost {
+        opacity: 0.25;
+        pointer-events: none;
+      }
+
+      .label {
+        fill: #111111;
+        font-size: 26px;
+        font-weight: 700;
+        paint-order: stroke;
+        pointer-events: none;
+        stroke: #ffffff;
+        stroke-width: 6px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="app">
+      <div class="stage" id="stage">
+        <svg id="canvas" viewBox="-40 -40 1966 1635" aria-label="Marker editing canvas">
+          <defs>
+            <radialGradient id="vm" cx="0.36" cy="0.32" r="0.72">
+              <stop offset="0" stop-color="#ffffff" />
+              <stop offset="0.4" stop-color="#e3e6ea" />
+              <stop offset="1" stop-color="#8d949c" />
+            </radialGradient>
+          </defs>
+          <image href="../../assets/people-conversation.png" width="1886" height="1555" />
+          <g id="ghost" class="ghost"></g>
+          <g id="overlay"></g>
+        </svg>
+        <div class="drop-hint">Drop markers JSON to load</div>
+      </div>
+
+      <aside class="panel">
+        <div>
+          <h1>Marker Editor</h1>
+          <p>Slide 4 mock-ups: sensors vs pose estimation.</p>
+        </div>
+
+        <div>
+          <h2>Layer</h2>
+          <div class="tabs">
+            <button id="tab-sensors" class="on" type="button">Sensors</button>
+            <button id="tab-pose" type="button">Pose</button>
+          </div>
+        </div>
+
+        <div class="stack">
+          <label><input id="ghost-toggle" type="checkbox" checked /> Show other layer faintly</label>
+          <label><input id="labels-toggle" type="checkbox" /> Show pose joint names</label>
+        </div>
+
+        <div>
+          <h2>Selected</h2>
+          <div class="selection" id="selection"><p>Click or drag a marker.</p></div>
+        </div>
+
+        <div class="stack" id="sensor-tools">
+          <h2>Vicon markers</h2>
+          <button id="add-marker" type="button">Add marker (then click image)</button>
+        </div>
+
+        <div class="stack">
+          <h2>History</h2>
+          <button id="undo" type="button" disabled>Undo (Ctrl/Cmd+Z)</button>
+          <button id="reset" type="button">Reload saved positions</button>
+        </div>
+
+        <div class="stack">
+          <h2>Export</h2>
+          <button id="download" type="button">Download mockup_markers.json</button>
+          <button id="copy" type="button">Copy JSON</button>
+          <div class="status" id="status"></div>
+        </div>
+
+        <div>
+          <h2>Tips</h2>
+          <ul>
+            <li>Arrow keys nudge the selected marker (Shift = 10px).</li>
+            <li>Delete removes a selected Vicon marker.</li>
+            <li>[ and ] rotate the watch; drag the strap's three handles to fit the head.</li>
+          </ul>
+        </div>
+      </aside>
+    </div>
+
+    <script>
+      const DATA_URL = "../scripts/mockup_markers.json";
+      const POSE_EDGES = [
+        ["ear", "eye1"], ["eye1", "nose"], ["eye2", "nose"], ["nose", "neck"],
+        ["neck", "shoulder1"], ["neck", "shoulder2"], ["neck", "hip"],
+        ["shoulder1", "elbow1"], ["elbow1", "wrist1"], ["shoulder2", "elbow2"], ["elbow2", "wrist2"],
+        ["hip", "hip1"], ["hip", "hip2"],
+        ["hip1", "knee1"], ["knee1", "ankle1"], ["ankle1", "toe1"],
+        ["hip2", "knee2"], ["knee2", "ankle2"], ["ankle2", "toe2"]
+      ];
+
+      const svg = document.getElementById("canvas");
+      const overlay = document.getElementById("overlay");
+      const ghost = document.getElementById("ghost");
+      const stage = document.getElementById("stage");
+      const selectionBox = document.getElementById("selection");
+      const statusEl = document.getElementById("status");
+      const undoBtn = document.getElementById("undo");
+      const addBtn = document.getElementById("add-marker");
+
+      let data = null;
+      let layer = "sensors";
+      let selected = null;
+      let drag = null;
+      let adding = false;
+      const history = [];
+
+      // ---------- data access ----------
+      // A key looks like "A|pose|ear", "A|vicon|3", "A|headStrap|left" or "A|watch".
+      function getPoint(key) {
+        const [who, kind, name] = key.split("|");
+        const p = data.people[who];
+        if (kind === "pose") return p.pose[name];
+        if (kind === "vicon") return p.vicon[Number(name)];
+        if (kind === "headStrap") return p.headStrap[name];
+        return [p.watch.x, p.watch.y];
+      }
+
+      function setPoint(key, x, y) {
+        const [who, kind, name] = key.split("|");
+        const p = data.people[who];
+        x = Math.round(x);
+        y = Math.round(y);
+        if (kind === "pose") p.pose[name] = [x, y];
+        else if (kind === "vicon") { p.vicon[Number(name)][0] = x; p.vicon[Number(name)][1] = y; }
+        else if (kind === "headStrap") p.headStrap[name] = [x, y];
+        else { p.watch.x = x; p.watch.y = y; }
+      }
+
+      function snapshot() {
+        history.push(JSON.stringify(data));
+        if (history.length > 200) history.shift();
+        undoBtn.disabled = false;
+      }
+
+      function undo() {
+        if (!history.length) return;
+        data = JSON.parse(history.pop());
+        undoBtn.disabled = !history.length;
+        if (selected && !keyExists(selected)) selected = null;
+        render();
+      }
+
+      function keyExists(key) {
+        const [who, kind, name] = key.split("|");
+        if (kind === "vicon") return Number(name) < data.people[who].vicon.length;
+        return true;
+      }
+
+      // ---------- drawing ----------
+      const el = (tag, attrs, parent) => {
+        const node = document.createElementNS("http://www.w3.org/2000/svg", tag);
+        for (const [k, v] of Object.entries(attrs)) node.setAttribute(k, v);
+        if (parent) parent.appendChild(node);
+        return node;
+      };
+
+      function drawPose(group, editable) {
+        for (const [who, p] of Object.entries(data.people)) {
+          const lines = el("g", { stroke: "#232323", "stroke-width": 9, "stroke-linecap": "round" }, group);
+          for (const [a, b] of POSE_EDGES) {
+            el("line", { x1: p.pose[a][0], y1: p.pose[a][1], x2: p.pose[b][0], y2: p.pose[b][1] }, lines);
+          }
+          for (const [name, [x, y]] of Object.entries(p.pose)) {
+            const key = `${who}|pose|${name}`;
+            const g = handle(group, key, editable);
+            el("circle", { class: "hit", cx: x, cy: y, r: 17, fill: "#c00000", stroke: "none" }, g);
+            if (editable) el("circle", { cx: x, cy: y, r: 30, fill: "transparent" }, g);
+            if (editable && document.getElementById("labels-toggle").checked) {
+              el("text", { class: "label", x: x + 22, y: y - 14 }, group).textContent = name;
+            }
+          }
+        }
+      }
+
+      function drawStrap(group, who, s, editable) {
+        const [lx, ly] = s.left, [rx_, ry_] = s.right, [tx, ty] = s.top;
+        const cx = (lx + rx_) / 2, cy = (ly + ry_) / 2;
+        const rx = Math.hypot(rx_ - lx, ry_ - ly) / 2;
+        const tilt = (Math.atan2(ry_ - ly, rx_ - lx) * 180) / Math.PI;
+        const g = el("g", { transform: `rotate(${tilt} ${cx} ${cy})` }, group);
+        el("path", { d: `M${cx - rx},${cy} A${rx},${s.depth} 0 0 0 ${cx + rx},${cy}`, fill: "none", stroke: "#26292d", "stroke-width": 30, "stroke-linecap": "round" }, g);
+        el("rect", { x: cx - 38, y: cy + s.depth - 30, width: 76, height: 44, rx: 10, fill: "#33373c", stroke: "#15171a", "stroke-width": 4 }, g);
+        el("circle", { cx: cx + 22, cy: cy + s.depth - 16, r: 6, fill: "#ff3b30" }, g);
+        el("path", { d: `M${cx},${cy - 4} L${tx},${ty}`, stroke: "#26292d", "stroke-width": 20, "stroke-linecap": "round" }, group);
+        if (!editable) return;
+        for (const name of ["left", "right", "top"]) {
+          const [x, y] = s[name];
+          const h = handle(group, `${who}|headStrap|${name}`, true);
+          el("rect", { class: "hit", x: x - 11, y: y - 11, width: 22, height: 22, fill: "#ffb000", stroke: "#111", "stroke-width": 3, transform: `rotate(45 ${x} ${y})` }, h);
+          el("circle", { cx: x, cy: y, r: 28, fill: "transparent" }, h);
+        }
+      }
+
+      function drawWatch(group, who, w, editable) {
+        const { x, y, angle } = w;
+        const h = handle(group, `${who}|watch`, editable);
+        const g = el("g", { transform: `rotate(${angle} ${x} ${y})` }, h);
+        el("rect", { x: x - 62, y: y - 21, width: 124, height: 42, rx: 16, fill: "#3b4148", stroke: "#1d2024", "stroke-width": 3 }, g);
+        el("rect", { x: x - 56, y: y - 25, width: 14, height: 50, rx: 4, fill: "none", stroke: "#b9c0c7", "stroke-width": 5 }, g);
+        for (const d of [38, 48]) el("circle", { cx: x + d, cy: y, r: 4, fill: "#1d2024" }, g);
+        el("rect", { class: "hit", x: x - 30, y: y - 27, width: 60, height: 54, rx: 14, fill: "#1a1c1f", stroke: "#55606b", "stroke-width": 4 }, g);
+        el("rect", { x: x - 20, y: y - 17, width: 40, height: 34, rx: 8, fill: "#2f6f8f" }, g);
+        el("path", { d: `M${x - 11},${y + 3} l7,-9 l7,6 l8,-10`, fill: "none", stroke: "#9fe3ff", "stroke-width": 4, "stroke-linecap": "round", "stroke-linejoin": "round" }, g);
+      }
+
+      function drawSensors(group, editable) {
+        for (const [who, p] of Object.entries(data.people)) {
+          drawStrap(group, who, p.headStrap, editable);
+          drawWatch(group, who, p.watch, editable);
+          p.vicon.forEach(([x, y, r], i) => {
+            const h = handle(group, `${who}|vicon|${i}`, editable);
+            el("ellipse", { cx: x, cy: y + r * 0.55, rx: r * 0.95, ry: r * 0.42, fill: "#1d1f22" }, h);
+            el("circle", { class: "hit", cx: x, cy: y, r, fill: "url(#vm)", stroke: "#5f666e", "stroke-width": 2.5 }, h);
+            if (editable) el("circle", { cx: x, cy: y, r: 30, fill: "transparent" }, h);
+          });
+        }
+      }
+
+      function handle(parent, key, editable) {
+        const g = el("g", editable ? { class: "handle" + (key === selected ? " selected" : ""), "data-key": key } : {}, parent);
+        return g;
+      }
+
+      function render() {
+        if (!data) return;
+        overlay.replaceChildren();
+        ghost.replaceChildren();
+        const showGhost = document.getElementById("ghost-toggle").checked;
+        if (layer === "pose") {
+          if (showGhost) drawSensors(ghost, false);
+          drawPose(overlay, true);
+        } else {
+          if (showGhost) drawPose(ghost, false);
+          drawSensors(overlay, true);
+        }
+        renderSelection();
+      }
+
+      function renderSelection() {
+        selectionBox.replaceChildren();
+        if (!selected) {
+          selectionBox.innerHTML = "<p>Click or drag a marker.</p>";
+          return;
+        }
+        const [who, kind, name] = selected.split("|");
+        const [x, y] = getPoint(selected);
+        const person = who === "A" ? "Left person" : "Right person";
+        const titles = { pose: `Pose joint: ${name}`, vicon: `Vicon marker ${Number(name) + 1}`, headStrap: `Head strap: ${name} handle`, watch: "Watch" };
+        const title = document.createElement("strong");
+        title.textContent = `${person} · ${titles[kind]}`;
+        const pos = document.createElement("p");
+        pos.textContent = `x ${x}, y ${y}`;
+        selectionBox.append(title, pos);
+
+        if (kind === "watch") {
+          selectionBox.append(slider("Angle", data.people[who].watch.angle, -180, 180, (v) => (data.people[who].watch.angle = v)));
+        }
+        if (kind === "headStrap") {
+          selectionBox.append(slider("Curve", data.people[who].headStrap.depth, 10, 120, (v) => (data.people[who].headStrap.depth = v)));
+        }
+        if (kind === "vicon") {
+          const marker = data.people[who].vicon[Number(name)];
+          selectionBox.append(slider("Size", marker[2], 8, 26, (v) => (marker[2] = v)));
+          const del = document.createElement("button");
+          del.type = "button";
+          del.textContent = "Delete marker";
+          del.addEventListener("click", deleteSelected);
+          selectionBox.append(del);
+        }
+      }
+
+      function slider(label, value, min, max, onInput) {
+        const wrap = document.createElement("label");
+        const input = document.createElement("input");
+        Object.assign(input, { type: "range", min, max, value });
+        const out = document.createElement("span");
+        out.textContent = value;
+        input.addEventListener("pointerdown", snapshot);
+        input.addEventListener("keydown", snapshot);
+        input.addEventListener("input", () => {
+          onInput(Number(input.value));
+          out.textContent = input.value;
+          redrawOnly();
+        });
+        wrap.append(label, input, out);
+        return wrap;
+      }
+
+      // Redraw the canvas without rebuilding the side panel (keeps sliders focused).
+      function redrawOnly() {
+        overlay.replaceChildren();
+        ghost.replaceChildren();
+        const showGhost = document.getElementById("ghost-toggle").checked;
+        if (layer === "pose") { if (showGhost) drawSensors(ghost, false); drawPose(overlay, true); }
+        else { if (showGhost) drawPose(ghost, false); drawSensors(overlay, true); }
+        if (selected) {
+          const coords = selectionBox.querySelector("p");
+          const [x, y] = getPoint(selected);
+          if (coords) coords.textContent = `x ${x}, y ${y}`;
+        }
+      }
+
+      // ---------- interaction ----------
+      function toSvg(evt) {
+        const pt = svg.createSVGPoint();
+        pt.x = evt.clientX;
+        pt.y = evt.clientY;
+        return pt.matrixTransform(svg.getScreenCTM().inverse());
+      }
+
+      svg.addEventListener("pointerdown", (evt) => {
+        const p = toSvg(evt);
+        if (adding) {
+          addMarkerAt(p.x, p.y);
+          return;
+        }
+        const target = evt.target.closest("[data-key]");
+        if (!target) {
+          selected = null;
+          render();
+          return;
+        }
+        selected = target.dataset.key;
+        const [x, y] = getPoint(selected);
+        snapshot();
+        drag = { dx: x - p.x, dy: y - p.y, moved: false };
+        svg.setPointerCapture(evt.pointerId);
+        render();
+      });
+
+      svg.addEventListener("pointermove", (evt) => {
+        if (!drag || !selected) return;
+        const p = toSvg(evt);
+        setPoint(selected, p.x + drag.dx, p.y + drag.dy);
+        drag.moved = true;
+        redrawOnly();
+      });
+
+      const endDrag = () => {
+        if (drag && !drag.moved) {
+          history.pop();
+          undoBtn.disabled = !history.length;
+        }
+        drag = null;
+      };
+      svg.addEventListener("pointerup", endDrag);
+      svg.addEventListener("pointercancel", endDrag);
+
+      function addMarkerAt(x, y) {
+        // Assign the new marker to whichever person's neck is closer.
+        const who = Object.entries(data.people)
+          .map(([k, p]) => [k, Math.hypot(p.pose.neck[0] - x, p.pose.neck[1] - y)])
+          .sort((a, b) => a[1] - b[1])[0][0];
+        snapshot();
+        data.people[who].vicon.push([Math.round(x), Math.round(y), 16]);
+        selected = `${who}|vicon|${data.people[who].vicon.length - 1}`;
+        setAdding(false);
+        render();
+      }
+
+      function deleteSelected() {
+        if (!selected || selected.split("|")[1] !== "vicon") return;
+        const [who, , i] = selected.split("|");
+        snapshot();
+        data.people[who].vicon.splice(Number(i), 1);
+        selected = null;
+        render();
+      }
+
+      function setAdding(on) {
+        adding = on;
+        addBtn.classList.toggle("on", on);
+        stage.classList.toggle("adding", on);
+      }
+
+      document.addEventListener("keydown", (evt) => {
+        if (evt.target instanceof HTMLInputElement) return;
+        if ((evt.metaKey || evt.ctrlKey) && evt.key.toLowerCase() === "z") {
+          evt.preventDefault();
+          undo();
+          return;
+        }
+        if (evt.key === "Escape") setAdding(false);
+        if (!selected) return;
+        const step = evt.shiftKey ? 10 : 1;
+        const moves = { ArrowLeft: [-step, 0], ArrowRight: [step, 0], ArrowUp: [0, -step], ArrowDown: [0, step] };
+        if (moves[evt.key]) {
+          evt.preventDefault();
+          snapshot();
+          const [x, y] = getPoint(selected);
+          setPoint(selected, x + moves[evt.key][0], y + moves[evt.key][1]);
+          render();
+        } else if (evt.key === "Delete" || evt.key === "Backspace") {
+          evt.preventDefault();
+          deleteSelected();
+        } else if ((evt.key === "[" || evt.key === "]") && selected.endsWith("|watch")) {
+          const w = data.people[selected.split("|")[0]].watch;
+          snapshot();
+          w.angle = Math.round((w.angle + (evt.key === "]" ? 5 : -5)) * 10) / 10;
+          render();
+        }
+      });
+
+      function setLayer(next) {
+        layer = next;
+        selected = null;
+        setAdding(false);
+        document.getElementById("tab-sensors").classList.toggle("on", next === "sensors");
+        document.getElementById("tab-pose").classList.toggle("on", next === "pose");
+        document.getElementById("sensor-tools").style.display = next === "sensors" ? "" : "none";
+        render();
+      }
+
+      document.getElementById("tab-sensors").addEventListener("click", () => setLayer("sensors"));
+      document.getElementById("tab-pose").addEventListener("click", () => setLayer("pose"));
+      document.getElementById("ghost-toggle").addEventListener("change", render);
+      document.getElementById("labels-toggle").addEventListener("change", render);
+      addBtn.addEventListener("click", () => setAdding(!adding));
+      undoBtn.addEventListener("click", undo);
+      document.getElementById("reset").addEventListener("click", () => load(true));
+
+      // ---------- export / import ----------
+      function serialise() {
+        // Keep each [x, y] pair on one line so the file stays readable.
+        return JSON.stringify(data, null, 1).replace(/\[\s+(-?\d+(?:\.\d+)?),\s+(-?\d+(?:\.\d+)?)(?:,\s+(-?\d+(?:\.\d+)?))?\s+\]/g,
+          (_, a, b, c) => (c === undefined ? `[${a}, ${b}]` : `[${a}, ${b}, ${c}]`)) + "\n";
+      }
+
+      function flash(msg) {
+        statusEl.textContent = msg;
+        clearTimeout(flash.t);
+        flash.t = setTimeout(() => (statusEl.textContent = ""), 4000);
+      }
+
+      document.getElementById("download").addEventListener("click", () => {
+        const url = URL.createObjectURL(new Blob([serialise()], { type: "application/json" }));
+        const a = Object.assign(document.createElement("a"), { href: url, download: "mockup_markers.json" });
+        a.click();
+        URL.revokeObjectURL(url);
+        flash("Downloaded mockup_markers.json");
+      });
+
+      document.getElementById("copy").addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(serialise());
+          flash("Copied to clipboard");
+        } catch {
+          flash("Copy failed — use Download instead");
+        }
+      });
+
+      stage.addEventListener("dragover", (evt) => {
+        evt.preventDefault();
+        stage.classList.add("dragover");
+      });
+      stage.addEventListener("dragleave", () => stage.classList.remove("dragover"));
+      stage.addEventListener("drop", async (evt) => {
+        evt.preventDefault();
+        stage.classList.remove("dragover");
+        const file = evt.dataTransfer.files[0];
+        if (!file) return;
+        try {
+          snapshot();
+          data = JSON.parse(await file.text());
+          selected = null;
+          render();
+          flash(`Loaded ${file.name}`);
+        } catch {
+          flash("That file isn't valid markers JSON");
+        }
+      });
+
+      async function load(confirmFirst) {
+        if (confirmFirst && history.length && !confirm("Discard your changes and reload the saved positions?")) return;
+        try {
+          const res = await fetch(DATA_URL, { cache: "no-store" });
+          if (!res.ok) throw new Error(res.status);
+          data = await res.json();
+          history.length = 0;
+          undoBtn.disabled = true;
+          selected = null;
+          render();
+        } catch {
+          selectionBox.innerHTML = "<p>Couldn't load the saved positions. Open this page through the local server (npm run serve), or drop a markers JSON file onto the image.</p>";
+        }
+      }
+
+      setLayer("sensors");
+      load(false);
+    </script>
+  </body>
+</html>

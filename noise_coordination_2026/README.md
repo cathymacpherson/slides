@@ -1,0 +1,62 @@
+# noise_coordination_2026
+
+Custom HTML slide deck for the Communication Difficulties Workshop 2026, a 10-minute talk: Indexing communication difficulty in background noise via interpersonal coordination.
+
+## Files
+
+- Edit slides in `index.html`.
+- Edit styling in `theme/portfolio-html.css`.
+- Edit keyboard navigation and notes behaviour in `scripts/slides.js`.
+
+This deck is a static HTML page with local CSS and JS. Shared media assets live in the root `../assets/` folder.
+
+For repo-wide instructions on creating future talks, see the [root README](../README.md).
+
+## Commands
+
+From this folder:
+
+```sh
+npm run serve
+```
+
+`serve` starts a local browser server at `http://localhost:8000`. Open `http://localhost:8000/noise_coordination_2026/` to view this deck with the shared assets available.
+
+Export a PDF version:
+
+```sh
+npm run export:pdf
+```
+
+The exporter uses local Chrome or Edge to capture the HTML deck and writes `exports/noise_coordination_2026.pdf`. Slides with fragment animations are expanded into multiple PDF pages, so each build step is preserved for presenting or sharing.
+
+## Figures
+
+- **Slides 8 and 9 plots:** `scripts/make_plots.R` rebuilds them from the Study 2 data in the fractal paper's OSF project (https://osf.io/3a59k). Requires R with `ggplot2` and `glmmTMB`.
+- **Slide 4 mock-ups:** marker positions live in `scripts/mockup_markers.json`. Edit them by dragging in `tools/marker-editor.html` (open it through `npm run serve`), download the JSON, then run `python3 scripts/make_mockups.py <path to json>`.
+
+## Slide controls
+
+- `Arrow keys`, `Page Up`, `Page Down`, or `Space` navigate
+- `Home` and `End` jump to the start or end
+- `N` toggles speaker notes
+- `O` toggles overview mode
+- `F` toggles fullscreen
+- `P` opens a separate presenter view
+
+## Notes
+
+Speaker notes live in `<aside class="notes">` blocks inside each slide in `index.html`.
+
+## Presenter view
+
+- Open the main deck in the browser
+- Press `P`
+- A separate presenter window will open showing:
+  - current slide
+  - next slide
+  - speaker notes
+  - timer
+  - slide count
+
+The main deck and presenter window stay in sync through local browser storage.
