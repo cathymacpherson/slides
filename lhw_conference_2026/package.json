@@ -1,0 +1,10 @@
+{
+  "name": "lhw-conference-2026",
+  "private": true,
+  "version": "0.1.0",
+  "description": "Custom HTML slide deck for a rapid-fire talk at the Lifespan, Health and Wellbeing Research Centre Conference 2026.",
+  "scripts": {
+    "serve": "python3 -m http.server 8000 --directory ..",
+    "export:pdf": "python3 scripts/export_pdf.py"
+  }
+}
