@@ -2675,3 +2675,53 @@ body.presenter-mode .deck-shell {
   color: var(--lhw-red);
   text-decoration: none;
 }
+
+/* Slide 3: use the full height down to the tagline; cards sit above the corner icon */
+.lhw-body.results-layout {
+  height: 566px;
+  z-index: 2;
+}
+
+.lhw-body.results-layout .results-main {
+  align-content: stretch;
+  grid-template-rows: auto 1fr;
+  gap: 30px;
+}
+
+.lhw-body.results-layout .finding-row {
+  align-items: stretch;
+}
+
+.lhw-body.results-layout .finding-card {
+  padding: 30px 30px;
+}
+
+.lhw .lhw-body.results-layout .finding-card p {
+  font-size: 22px;
+  margin-top: 12px;
+}
+
+.lhw-body.results-layout .sample-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.lhw .lhw-body.results-layout .method-list {
+  gap: 20px;
+  margin-top: 28px !important;
+}
+
+.lhw .lhw-body.results-layout .method-list li {
+  font-size: 22px;
+}
+
+.lhw-body.results-layout {
+  height: 556px;
+}
+
+.lhw-body.results-layout .finding-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
