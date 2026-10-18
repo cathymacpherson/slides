@@ -2725,3 +2725,21 @@ body.presenter-mode .deck-shell {
   flex-direction: column;
   justify-content: center;
 }
+
+/* Slide 2: "The Gap" card matches the height of the two screenshots */
+.lhw-body.why-layout {
+  align-items: stretch;
+  height: auto;
+}
+
+.why-layout .why-gap {
+  display: flex;
+  flex-direction: column;
+}
+
+.why-layout .why-gap .gap-card {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: center;
+}
