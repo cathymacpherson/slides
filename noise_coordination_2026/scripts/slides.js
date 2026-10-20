@@ -320,7 +320,8 @@ document.addEventListener("keydown", (event) => {
         writeStoredState();
       } else {
         currentStep = 0;
-        render(currentIndex + 1);
+        // Past the last slide, loop back to the start.
+        render(currentIndex === slides.length - 1 ? 0 : currentIndex + 1);
       }
       break;
     }

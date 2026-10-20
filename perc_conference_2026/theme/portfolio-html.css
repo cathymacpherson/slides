@@ -2025,3 +2025,346 @@ body.presenter-mode .deck-shell {
 .slide .student-callout p {
   font-size: 28px;
 }
+
+/* ===== PERC introduction slides ===== */
+.perc-burden .slide-inner,
+.perc-gap .slide-inner {
+  gap: 22px;
+}
+
+.perc-burden h1,
+.perc-gap h1 {
+  max-width: none;
+}
+
+.perc-two-col {
+  display: grid;
+  flex: 1;
+  gap: 34px;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  min-height: 0;
+}
+
+.perc-text {
+  align-self: start;
+  display: grid;
+  gap: 22px;
+}
+
+.slide .perc-text .bullet-list li {
+  font-size: 28px;
+  line-height: 1.38;
+}
+
+.slide .perc-source {
+  color: rgba(55, 58, 54, 0.7);
+  font-size: 16px;
+}
+
+.perc-side {
+  display: grid;
+  gap: 16px;
+  align-content: start;
+}
+
+.perc-stat-row {
+  display: grid;
+  gap: 18px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.perc-stat {
+  min-height: 0;
+}
+
+.perc-stat-num {
+  color: var(--mq-red);
+  font-size: 64px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.slide .perc-stat p {
+  font-size: 20px;
+  margin-top: 10px;
+}
+
+.perc-barriers {
+  display: grid;
+  gap: 12px;
+  margin-top: 14px;
+}
+
+.perc-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0 !important;
+}
+
+.slide .perc-chips li {
+  background: var(--mq-burgundy);
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 20px;
+  margin: 0;
+  padding: 7px 16px;
+}
+
+.perc-digital .method-card {
+  grid-template-rows: auto auto 1fr;
+}
+
+.slide.perc-digital .method-card .bullet-list li {
+  font-size: 28px;
+}
+
+.perc-digital .method-card .perc-source {
+  align-self: end;
+}
+
+.perc-gap-left {
+  display: grid;
+  gap: 22px;
+  align-content: start;
+}
+
+.perc-sublist {
+  display: grid;
+  gap: 6px;
+  margin-top: 8px !important;
+  padding-left: 1.1em;
+}
+
+.slide .perc-text .perc-sublist li {
+  font-size: 24px;
+  list-style: circle;
+}
+
+.perc-aim {
+  border-radius: 18px;
+  padding: 20px 26px;
+}
+
+.slide .perc-aim p {
+  font-size: 26px;
+}
+
+.perc-comments {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+  min-height: 0;
+}
+
+.perc-comments img {
+  display: block;
+  height: 100%;
+  max-height: 600px;
+  object-fit: contain;
+  width: auto;
+}
+
+/* Centre intro content vertically instead of leaving the bottom empty */
+.perc-burden .perc-two-col,
+.perc-gap .perc-two-col {
+  align-content: center;
+  align-items: center;
+}
+
+.perc-digital .slide-inner {
+  grid-template-rows: auto auto 1fr;
+}
+
+.perc-digital .method-comparison-grid {
+  align-content: center;
+  align-items: stretch;
+}
+
+.perc-digital .method-card {
+  gap: 22px;
+  grid-template-rows: auto 1fr auto;
+  min-height: 420px;
+  padding: 34px 36px 30px;
+}
+
+.perc-digital .method-card .bullet-list {
+  align-content: start;
+  gap: 18px;
+}
+
+/* Burden slide: text | illustration | statistics */
+.perc-two-col.perc-three-col {
+  gap: 28px;
+  grid-template-columns: minmax(0, 1fr) 300px minmax(0, 1fr);
+}
+
+.perc-three-col .perc-text .bullet-list li {
+  font-size: 26px;
+}
+
+.perc-figure {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.perc-figure img {
+  display: block;
+  max-height: 540px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+.perc-three-col .perc-stat-num {
+  font-size: 56px;
+}
+
+.slide .perc-three-col .perc-stat p {
+  font-size: 18px;
+}
+
+.slide .perc-three-col .perc-chips li {
+  font-size: 18px;
+}
+
+.perc-stats {
+  display: grid;
+  gap: 16px;
+}
+
+.slide .perc-chips li {
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+  color: #111111;
+}
+
+/* Barriers grouped by type */
+.perc-barriers {
+  gap: 14px;
+}
+
+.perc-barrier-row {
+  align-items: start;
+  display: grid;
+  gap: 12px;
+  grid-template-columns: 112px minmax(0, 1fr);
+}
+
+.perc-barrier-label {
+  color: var(--mq-red);
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  padding-top: 10px;
+  text-transform: uppercase;
+}
+
+.perc-barrier-row .perc-chips {
+  gap: 8px;
+}
+
+.slide .perc-three-col .perc-barrier-row .perc-chips li {
+  font-size: 17px;
+  padding: 6px 13px;
+}
+
+.perc-barrier-row {
+  grid-template-columns: 128px minmax(0, 1fr);
+}
+
+.slide .perc-barrier-source {
+  grid-column: 1 / -1;
+  margin-top: 4px;
+}
+
+.perc-barrier-first {
+  display: grid;
+  gap: 14px;
+}
+
+/* Burden slide: children's statistics sit under the bullets */
+.perc-left {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+}
+
+.perc-left .perc-text {
+  gap: 14px;
+  padding: 22px 28px;
+}
+
+.slide .perc-three-col .perc-left .perc-text .bullet-list li {
+  font-size: 23px;
+}
+
+.perc-left .perc-stats {
+  gap: 10px;
+}
+
+.perc-left .perc-stat {
+  padding: 16px 18px;
+}
+
+.perc-left .perc-stat-num {
+  font-size: 46px;
+}
+
+.slide .perc-three-col .perc-left .perc-stat p {
+  font-size: 17px;
+  margin-top: 6px;
+}
+
+.perc-three-col .perc-side {
+  align-content: center;
+}
+
+/* Larger barrier text now the right column has room */
+.perc-barriers h3 {
+  font-size: 24px;
+}
+
+.perc-barrier-row {
+  gap: 14px;
+  grid-template-columns: 150px minmax(0, 1fr);
+}
+
+.perc-barrier-label {
+  font-size: 18px;
+  padding-top: 11px;
+}
+
+.perc-barrier-row .perc-chips {
+  gap: 10px;
+}
+
+.slide .perc-three-col .perc-barrier-row .perc-chips li {
+  font-size: 21px;
+  padding: 7px 15px;
+}
+
+.perc-barriers,
+.perc-barrier-first {
+  gap: 18px;
+}
+
+/* Burden slide: left and right columns start at the same height */
+.perc-burden .perc-two-col.perc-three-col {
+  align-items: start;
+}
+
+.perc-three-col .perc-left,
+.perc-three-col .perc-side {
+  align-content: start;
+}
+
+.perc-three-col .perc-figure {
+  align-self: center;
+}
+
+.perc-three-col .perc-side {
+  margin-top: -14px;
+}
