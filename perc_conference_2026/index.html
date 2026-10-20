@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>User Acceptance of AI</title>
-    <link rel="stylesheet" href="theme/portfolio-html.css?v=14" />
+    <link rel="stylesheet" href="theme/portfolio-html.css?v=34" />
   </head>
   <body>
     <div class="deck-shell">
@@ -97,19 +97,30 @@
             <div class="method-comparison-grid">
               <article class="method-card fragment">
                 <h2>Digital Tools</h2>
+                <div class="perc-card-body">
                 <ul class="bullet-list">
                   <li>Emerged in response to these barriers.</li>
                   <li>A promising alternative to traditional assessment and treatment.</li>
-                  <li>But often <strong>fixed-format</strong>: limited room for personalisation, clarification or multimodal input.</li>
+                  <li>But often fixed-format: limited room for personalisation, clarification or multimodal input.</li>
                 </ul>
+                </div>
+                <div class="perc-logos">
+                  <div class="perc-logo"><img src="../assets/mindspot-logo.png" alt="MindSpot" /></div>
+                  <div class="perc-logo"><img src="../assets/MyMindCheck.png" alt="My Mind Check" /></div>
+                </div>
               </article>
               <article class="method-card fragment">
                 <h2>Generative AI</h2>
+                <div class="perc-card-body">
                 <ul class="bullet-list">
                   <li>Recently proposed as a solution to these barriers.</li>
-                  <li>A <strong>flexible and responsive</strong> option for care.</li>
+                  <li>A flexible and responsive option for care.</li>
                 </ul>
-                <p class="perc-source">Cross et al. (2024)</p>
+                </div>
+                <div class="perc-logos">
+                  <div class="perc-logo perc-logo-dark"><img src="../assets/therabot-dartmouth.png" alt="Therabot (Dartmouth)" /></div>
+                  <div class="perc-logo"><img src="../assets/Wysa.jpeg" alt="Wysa" /></div>
+                </div>
               </article>
             </div>
           </div>
@@ -121,24 +132,22 @@
             <div class="eyebrow">Introduction</div>
             <h1>But Will People Use It?</h1>
             <div class="perc-two-col">
-              <div class="perc-gap-left">
-                <div class="noise-text-box perc-text fragment">
-                  <ul class="bullet-list roomy">
-                    <li>Little is known about how <strong>potential end users</strong> perceive and evaluate these tools:
-                      <ul class="perc-sublist">
-                        <li>adults considering AI for their <strong>own</strong> mental health</li>
-                        <li>parents and carers considering it <strong>for a child</strong></li>
-                      </ul>
-                    </li>
-                    <li>And social media suggests those evaluations <strong>may be poor</strong>.</li>
-                  </ul>
-                </div>
-                <div class="result-callout perc-aim fragment">
+              <div class="noise-text-box perc-text perc-gap-box fragment" data-order="0">
+                <ul class="bullet-list roomy">
+                  <li>Little is known about how potential end users perceive and evaluate these tools:
+                    <ul class="perc-sublist">
+                      <li>adults considering AI for their own mental health</li>
+                      <li>parents and carers considering it for a child</li>
+                    </ul>
+                  </li>
+                  <li>And social media suggests those evaluations may be poor.</li>
+                </ul>
+                <div class="perc-aim-inline fragment" data-order="2">
                   <div class="result-kicker">This study</div>
-                  <p>Examined <strong>attitudes</strong> and <strong>behavioural intentions</strong> toward generative AI tools for mental health care.</p>
+                  <p>Examined attitudes and behavioural intentions toward generative AI tools for mental health care.</p>
                 </div>
               </div>
-              <figure class="perc-comments fragment">
+              <figure class="perc-comments fragment" data-order="1">
                 <img src="../assets/ai_comments_anonymised.png" alt="Anonymised social media comments: 'Or just stop using AI all together.', 'Remember brains? Humans come with one!', 'Why do we need AI? To replace humans and leave us obsolete.', 'These data centres will literally destroy humanity', 'Here is THE solution: BAN IT.'" />
               </figure>
             </div>
@@ -146,9 +155,84 @@
           <aside class="notes"><ul><li>Yet little is known about how potential end users actually perceive and evaluate these tools — including people considering them for their own mental health, and parents and carers considering them on behalf of a child.</li><li>And if social media is anything to go by, those evaluations may be poor.</li><li>So the present study set out to address this gap, by examining attitudes and behavioural intentions toward generative AI tools for mental health care.</li></ul></aside>
         </section>
 
+        <section class="slide perc-predictors" data-title="Predictors">
+          <div class="slide-inner">
+            <div class="eyebrow">Introduction</div>
+            <h1>What Might Predict Acceptance?</h1>
+            <div class="pred2">
+              <svg class="pred2-flow" viewBox="0 0 1456 560" aria-hidden="true">
+                <path class="pred2-link pred2-link-tam" d="M720 75 C 900 75, 900 204, 1050 204" />
+                <path class="pred2-link pred2-link-ai" d="M720 262 C 900 262, 900 214, 1050 214" />
+                <path class="pred2-link pred2-link-exp" d="M720 472 C 920 472, 900 224, 1050 224" />
+                
+                <path class="pred2-down" d="M1225 256 V 302" />
+                <path class="pred2-head" d="M1213 290 L1225 304 L1237 290" />
+              </svg>
+              <div class="pred2-outcomes fragment" data-order="0">
+                <div class="pred2-node">Attitudes</div>
+                <div class="pred2-node pred2-node-dark">Behavioural intentions</div>
+              </div>
+              <div class="pred2-group pred2-tam fragment">
+                <div class="pred2-label"><span class="pred2-dot"></span>Technology Acceptance Model</div>
+                <ul class="pred2-items"><li>Perceived usefulness</li><li>Perceived ease of use</li><li>Trust</li></ul>
+                <p class="perc-source">Davis (1989)</p>
+              </div>
+              <div class="pred2-group pred2-ai fragment">
+                <div class="pred2-label"><span class="pred2-dot"></span>AI-specific considerations</div>
+                <ul class="pred2-items"><li>Privacy concerns</li><li>Human oversight preferences</li><li>Environmental concerns</li></ul>
+              </div>
+              <div class="pred2-group pred2-exp fragment">
+                <div class="pred2-label"><span class="pred2-dot"></span>Experience</div>
+                <ul class="pred2-items"><li>Prior use of generative AI</li><li>Prior use for mental health</li></ul>
+              </div>
+            </div>
+          </div>
+          <aside class="notes"><ul><li>So what might shape whether people accept these tools?</li><li>Our outcomes were attitudes towards AI tools for mental health care, and behavioural intentions to use them.</li><li>A natural starting point is the Technology Acceptance Model, which proposes that people adopt technology when they see it as useful and easy to use. Trust has often been added as an extension to these models.</li><li>But AI raises considerations that these models don't capture: worries about privacy, how much human oversight people want, and concerns about its environmental cost.</li><li>And finally, experience: whether people had used generative AI before, and whether they'd already used it for their mental health.</li></ul></aside>
+        </section>
+
+        <section class="slide perc-method" data-title="Method">
+          <div class="slide-inner">
+            <div class="eyebrow">Method</div>
+            <h1>Who We Asked, and How</h1>
+            <div class="meth-layout">
+              <div class="meth-col fragment">
+                <div class="meth-label">Participants</div>
+                <div class="meth-big">186</div>
+                <p class="meth-sub">Australians, online survey</p>
+                <div class="meth-split">
+                  <div><span class="meth-num">95</span><span class="meth-what">adults reporting on their own mental health (16+)</span></div>
+                  <div><span class="meth-num">91</span><span class="meth-what">parents and carers reporting on a child aged 4–17</span></div>
+                </div>
+                <p class="meth-note">Recruited via Prolific, social media, noticeboards and email lists</p>
+              </div>
+              <div class="meth-col fragment">
+                <div class="meth-label">Design</div>
+                <p class="meth-lead">Everyone rated two types of tool:</p>
+                <div class="meth-tools">
+                  <div class="meth-tool"><span class="meth-tool-name">General-purpose</span><span class="meth-tool-eg">e.g. ChatGPT</span></div>
+                  <div class="meth-vs">vs</div>
+                  <div class="meth-tool meth-tool-b"><span class="meth-tool-name">Bespoke</span><span class="meth-tool-eg">clinician-approved, built for mental health</span></div>
+                </div>
+                <p class="meth-note">Cross-sectional survey, within-person comparison of tool types</p>
+              </div>
+              <div class="meth-col fragment">
+                <div class="meth-label">Measures</div>
+                <ul class="meth-list">
+                  <li>Usefulness, ease of use and trust</li>
+                  <li>Privacy, oversight and environmental concerns</li>
+                  <li>Attitudes and behavioural intentions</li>
+                  <li>Prior use of generative AI</li>
+                </ul>
+                <p class="meth-note">All rated on 1–7 scales, analysed with linear mixed-effects models</p>
+              </div>
+            </div>
+          </div>
+          <aside class="notes"><ul><li>We ran a cross-sectional online survey of 186 Australians.</li><li>Ninety-five were adults aged 16 and over reporting on their own mental health, and 91 were parents and carers reporting on a child aged 4 to 17.</li><li>We recruited through Prolific, social media, public noticeboards and email lists.</li><li>Everyone rated two types of tool: general-purpose AI like ChatGPT, and bespoke, clinician-approved tools built specifically for mental health. So each person gave us a within-person comparison.</li><li>For each tool, they rated usefulness, ease of use and trust; privacy, oversight and environmental concerns; and their attitudes and intentions to use it. We also asked about their prior use of generative AI.</li><li>Everything was on 1 to 7 scales, and we used linear mixed-effects models to separate differences between people from differences within the same person.</li></ul></aside>
+        </section>
+
         <section class="slide students-slide" data-title="Student Sample">
           <div class="slide-inner">
-            <div class="eyebrow">University students</div>
+            <div class="eyebrow">Results</div>
             <h1>Our Students Didn't Feel the Same Way</h1>
             <div class="scale-block fragment">
               <div class="scale-title">Attitudes and intentions <span>(1–7 scale)</span></div>
@@ -173,9 +257,9 @@
                 <span><i class="legend-dot legend-ghost"></i>Community sample (n = 186)</span>
               </div>
             </div>
-            <div class="result-callout student-callout fragment">
+            <div class="noise-text-box student-callout fragment">
               <div class="result-kicker">Who held the negative views?</div>
-              <p>Students who had <strong>never used AI</strong> for their mental health. Those who had sat around neutral.</p>
+              <p>Students who had never used AI for their mental health. Those who had sat around neutral.</p>
             </div>
           </div>
           <aside class="notes"><ul><li>Turns out, our student sample didn't exactly feel the same way.</li><li>When we asked 320 university students the same questions, attitudes and intentions both fell below neutral.</li><li>And that negativity sat with students who had never used AI for their mental health. Those who had were right around neutral.</li></ul></aside>
@@ -189,6 +273,6 @@
       </aside>
     </div>
 
-    <script src="scripts/slides.js?v=1"></script>
+    <script src="scripts/slides.js?v=3"></script>
   </body>
 </html>

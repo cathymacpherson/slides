@@ -2368,3 +2368,635 @@ body.presenter-mode .deck-shell {
 .perc-three-col .perc-side {
   margin-top: -14px;
 }
+
+/* Example tool logos: identical boxes so each logo reads at the same size */
+.perc-logos {
+  align-self: end;
+  display: flex;
+  gap: 20px;
+}
+
+.perc-logo {
+  align-items: center;
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.12);
+  border-radius: 10px;
+  display: flex;
+  height: 110px;
+  justify-content: center;
+  padding: 16px 22px;
+  width: 220px;
+}
+
+.perc-logo img {
+  display: block;
+  height: 100%;
+  max-width: 100%;
+  object-fit: contain;
+  width: 100%;
+}
+
+/* Logos centred along the bottom of each Digital Tools card */
+.perc-digital .method-card {
+  grid-template-rows: auto 1fr auto auto;
+}
+
+.perc-digital .perc-logos {
+  justify-content: center;
+  justify-self: stretch;
+}
+
+.perc-digital .method-card {
+  grid-template-rows: auto 1fr auto;
+}
+
+.perc-card-body {
+  display: grid;
+  gap: 18px;
+  align-content: start;
+}
+
+/* Dartmouth Therabot artwork has a dark green background; match the tile to it */
+.perc-logo-dark {
+  background: #13302b;
+  border-color: #13302b;
+  padding: 8px 22px;
+}
+
+/* Burden slide: statistic cards without the red top bar */
+.perc-left .perc-stat {
+  border-top: 1px solid var(--mq-line);
+}
+
+/* Gap slide: "This study" sits inside the bullet box */
+.perc-gap-box {
+  gap: 24px;
+}
+
+.perc-aim-inline {
+  border-top: 1px solid var(--mq-line);
+  display: grid;
+  gap: 8px;
+  padding-top: 20px;
+}
+
+.slide .perc-aim-inline p {
+  color: var(--mq-black);
+  font-size: 26px;
+}
+
+/* Gap slide: text box and screenshot share one size (matching the screenshot's proportions) */
+.perc-gap .perc-two-col {
+  grid-template-columns: repeat(2, 540px);
+  justify-content: center;
+  gap: 48px;
+}
+
+.perc-gap .perc-gap-box,
+.perc-gap .perc-comments {
+  height: 568px;
+  width: 540px;
+}
+
+.perc-gap .perc-gap-box {
+  align-content: center;
+  align-self: center;
+  padding: 30px 34px;
+}
+
+.slide.perc-gap .perc-gap-box .bullet-list li {
+  font-size: 24px;
+}
+
+.slide.perc-gap .perc-gap-box .perc-sublist li {
+  font-size: 22px;
+}
+
+.slide.perc-gap .perc-aim-inline p {
+  font-size: 24px;
+}
+
+.perc-gap .perc-comments img {
+  height: 100%;
+  max-height: none;
+  width: 100%;
+}
+
+.slide.perc-gap .perc-gap-box .bullet-list li {
+  font-size: 22px;
+}
+
+.slide.perc-gap .perc-gap-box .perc-sublist li {
+  font-size: 20px;
+}
+
+.slide.perc-gap .perc-aim-inline p {
+  font-size: 22px;
+}
+
+.perc-gap .perc-gap-box {
+  gap: 20px;
+  padding: 34px 34px;
+}
+
+.slide.perc-gap .perc-gap-box .bullet-list li {
+  font-size: 25px;
+}
+
+.slide.perc-gap .perc-gap-box .perc-sublist li {
+  font-size: 23px;
+}
+
+.slide.perc-gap .perc-aim-inline p {
+  font-size: 25px;
+}
+
+/* ===== Predictors slide ===== */
+.perc-predictors .slide-inner {
+  gap: 22px;
+}
+
+.pred-layout {
+  align-items: center;
+  display: grid;
+  flex: 1;
+  gap: 30px;
+  grid-template-columns: minmax(0, 1fr) 90px 360px;
+}
+
+.pred-groups {
+  display: grid;
+  gap: 22px;
+}
+
+.pred-group {
+  background: #ffffff;
+  border: 1px solid var(--mq-line);
+  border-radius: 12px;
+  box-shadow: 0 12px 28px rgba(17, 17, 17, 0.06);
+  display: grid;
+  gap: 14px;
+  padding: 22px 26px;
+}
+
+.pred-label {
+  color: var(--mq-red);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pred-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0 !important;
+}
+
+.slide .pred-chips li {
+  background: #ffffff;
+  border: 1px solid rgba(17, 17, 17, 0.22);
+  border-radius: 999px;
+  color: #111111;
+  font-size: 23px;
+  margin: 0;
+  padding: 8px 18px;
+}
+
+.pred-arrow {
+  color: var(--mq-red);
+}
+
+.pred-arrow svg {
+  display: block;
+  width: 100%;
+}
+
+.pred-outcomes {
+  align-items: center;
+  display: grid;
+  gap: 10px;
+  justify-items: center;
+}
+
+.pred-outcome {
+  background: var(--mq-red);
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 600;
+  padding: 26px 20px;
+  text-align: center;
+  width: 100%;
+}
+
+.pred-down {
+  color: var(--mq-red);
+  display: block;
+  width: 34px;
+}
+
+.perc-predictors h1 {
+  max-width: none;
+}
+
+.pred-groups {
+  gap: 18px;
+}
+
+.pred-group {
+  gap: 12px;
+  padding: 20px 26px;
+}
+
+.pred-outcome {
+  font-weight: 500;
+}
+
+/* ===== Predictors diagram (no cards) ===== */
+.pred2 {
+  --tam: #a6192e;
+  --ai: #80225f;
+  --exp: #2f6f86;
+  flex: 1;
+  height: 560px;
+  margin-top: 18px;
+  position: relative;
+  width: 1456px;
+}
+
+.pred2-flow,
+.pred2-link {
+  height: 560px;
+  left: 0;
+  overflow: visible;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  width: 1456px;
+}
+
+.pred2-link path {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.pred2-tam .pred2-link path { stroke: var(--tam); }
+.pred2-ai .pred2-link path { stroke: var(--ai); }
+.pred2-exp .pred2-link path { stroke: var(--exp); }
+
+.pred2-down,
+.pred2-head {
+  fill: none;
+  stroke: #76232f;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 4;
+}
+
+.pred2-group {
+  display: grid;
+  gap: 12px;
+  height: 180px;
+  align-content: center;
+  left: 0;
+  position: absolute;
+  width: 740px;
+}
+
+.pred2-tam { top: 0; }
+.pred2-ai { top: 190px; }
+.pred2-exp { top: 380px; }
+
+.pred2-label {
+  align-items: center;
+  display: flex;
+  font-size: 18px;
+  font-weight: 700;
+  gap: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.pred2-dot {
+  border-radius: 50%;
+  height: 14px;
+  width: 14px;
+}
+
+.pred2-tam .pred2-label { color: var(--tam); }
+.pred2-ai .pred2-label { color: var(--ai); }
+.pred2-exp .pred2-label { color: var(--exp); }
+.pred2-tam .pred2-dot { background: var(--tam); }
+.pred2-ai .pred2-dot { background: var(--ai); }
+.pred2-exp .pred2-dot { background: var(--exp); }
+
+.pred2-items {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  list-style: none;
+  padding: 0 0 0 26px !important;
+}
+
+.slide .pred2-items li {
+  border-radius: 999px;
+  color: #1c1c1c;
+  font-size: 23px;
+  margin: 0;
+  padding: 8px 18px;
+}
+
+.slide .pred2-tam .pred2-items li { background: rgba(166, 25, 46, 0.1); }
+.slide .pred2-ai .pred2-items li { background: rgba(128, 34, 95, 0.1); }
+.slide .pred2-exp .pred2-items li { background: rgba(47, 111, 134, 0.12); }
+
+.pred2-group .perc-source {
+  padding-left: 26px;
+}
+
+.pred2-outcomes {
+  display: grid;
+  gap: 60px;
+  left: 1055px;
+  position: absolute;
+  top: 178px;
+  width: 340px;
+}
+
+.pred2-node {
+  background: #a6192e;
+  border-radius: 999px;
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 500;
+  padding: 20px 24px;
+  text-align: center;
+}
+
+.pred2-node-dark {
+  background: #76232f;
+}
+
+.pred2-flow .pred2-link {
+  fill: none;
+  stroke-linecap: round;
+  stroke-width: 4;
+}
+
+.pred2-link-tam { stroke: var(--tam); }
+.pred2-link-ai { stroke: var(--ai); }
+.pred2-link-exp { stroke: var(--exp); }
+
+.pred2-end {
+  fill: #a6192e;
+}
+
+.pred2-group {
+  height: 150px;
+}
+
+.pred2-tam { top: 0; }
+.pred2-ai { top: 190px; }
+.pred2-exp { top: 380px; }
+
+.pred2-outcomes {
+  top: 178px;
+}
+
+/* Outcomes in blue */
+.pred2-node {
+  background: #2a4e6e;
+}
+
+.pred2-node-dark {
+  background: #1f3a52;
+}
+
+.pred2-down,
+.pred2-head {
+  stroke: #1f3a52;
+}
+
+/* Predictors diagram: each line appears with its group, the down arrow with the outcomes */
+.pred2-flow .pred2-link,
+.pred2-down,
+.pred2-head {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.pred2:has(.pred2-outcomes.visible) .pred2-down,
+.pred2:has(.pred2-outcomes.visible) .pred2-head,
+.pred2:has(.pred2-tam.visible) .pred2-link-tam,
+.pred2:has(.pred2-ai.visible) .pred2-link-ai,
+.pred2:has(.pred2-exp.visible) .pred2-link-exp {
+  opacity: 1;
+}
+
+/* ===== Method slide (no cards) ===== */
+.perc-method .slide-inner {
+  gap: 22px;
+}
+
+.perc-method h1 {
+  max-width: none;
+}
+
+.meth-layout {
+  display: grid;
+  flex: 1;
+  gap: 0;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 16px;
+}
+
+.meth-col {
+  align-content: start;
+  border-left: 1px solid var(--mq-line);
+  display: grid;
+  gap: 14px;
+  padding: 6px 36px 0;
+}
+
+.meth-col:first-child {
+  border-left: none;
+  padding-left: 0;
+}
+
+.meth-label {
+  color: var(--mq-red);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.meth-big {
+  color: #2a4e6e;
+  font-size: 96px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.slide .meth-sub {
+  font-size: 24px;
+  margin-top: -6px;
+}
+
+.meth-split {
+  display: grid;
+  gap: 14px;
+  margin-top: 6px;
+}
+
+.meth-split > div {
+  align-items: baseline;
+  display: grid;
+  gap: 14px;
+  grid-template-columns: 56px minmax(0, 1fr);
+}
+
+.meth-num {
+  color: #2a4e6e;
+  font-size: 34px;
+  font-weight: 700;
+}
+
+.meth-what {
+  color: var(--mq-charcoal);
+  font-size: 22px;
+  line-height: 1.3;
+}
+
+.slide .meth-note {
+  color: rgba(55, 58, 54, 0.75);
+  font-size: 18px;
+  line-height: 1.4;
+  margin-top: 10px;
+}
+
+.slide .meth-lead {
+  font-size: 24px;
+}
+
+.meth-tools {
+  display: grid;
+  gap: 10px;
+  justify-items: stretch;
+}
+
+.meth-tool {
+  background: rgba(42, 78, 110, 0.1);
+  border-radius: 18px;
+  display: grid;
+  gap: 4px;
+  padding: 18px 22px;
+}
+
+.meth-tool-b {
+  background: rgba(166, 25, 46, 0.09);
+}
+
+.meth-tool-name {
+  color: #111111;
+  font-size: 26px;
+  font-weight: 600;
+}
+
+.meth-tool-eg {
+  color: var(--mq-charcoal);
+  font-size: 19px;
+}
+
+.meth-vs {
+  color: rgba(55, 58, 54, 0.6);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.meth-list {
+  display: grid;
+  gap: 14px;
+  padding-left: 1.1em;
+}
+
+.slide .meth-list li {
+  font-size: 23px;
+  line-height: 1.32;
+  margin: 0;
+}
+
+.meth-layout {
+  align-content: center;
+  align-items: stretch;
+  flex: 0 0 auto;
+  margin: auto 0;
+}
+
+.meth-tool-name {
+  font-weight: 500;
+}
+
+/* ===== Match slides 6 onward to slides 1–5 ===== */
+/* Method: content starts just under the title, as on the intro slides */
+.perc-method .meth-layout {
+  margin: 34px 0 0;
+}
+
+.perc-method .meth-big,
+.perc-method .meth-num {
+  color: var(--mq-red);
+}
+
+.perc-method .meth-big {
+  font-size: 64px;
+}
+
+.perc-method .meth-tool {
+  background: rgba(166, 25, 46, 0.1);
+  border-radius: 999px;
+  padding: 14px 26px;
+}
+
+.perc-method .meth-tool-b {
+  background: rgba(128, 34, 95, 0.1);
+}
+
+.perc-method .meth-tool-name {
+  font-size: 24px;
+}
+
+/* Students: same spacing, box style and scale size as the earlier slides */
+.students-slide .slide-inner {
+  gap: 22px;
+}
+
+.students-slide .scale-block {
+  margin-top: 40px;
+}
+
+.students-slide .scale-svg {
+  max-width: 1150px;
+}
+
+.students-slide .student-callout {
+  border-radius: 8px;
+  display: grid;
+  gap: 10px;
+  margin-top: 16px;
+  max-width: 1000px;
+}
+
+/* Method slide: centre text inside the tool bubbles */
+.perc-method .meth-tool {
+  justify-items: center;
+  text-align: center;
+}

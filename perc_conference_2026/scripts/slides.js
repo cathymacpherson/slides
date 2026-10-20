@@ -21,7 +21,10 @@ let timerStartedAt = Date.now();
 const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
 
 function getFragments(index) {
-  return Array.from(slides[index]?.querySelectorAll('.fragment') || []);
+  // Fragments reveal in page order, unless one sets data-order to move it in the sequence.
+  const frags = Array.from(slides[index]?.querySelectorAll('.fragment') || []);
+  const rank = (frag, i) => (frag.dataset.order !== undefined ? Number(frag.dataset.order) : i);
+  return frags.map((frag, i) => [rank(frag, i), i, frag]).sort((a, b) => a[0] - b[0] || a[1] - b[1]).map((x) => x[2]);
 }
 
 function applyFragmentState(fragments, step) {
@@ -134,7 +137,9 @@ function cloneSlide(index) {
   const clone = slides[index].cloneNode(true);
   clone.classList.add("active");
   clone.removeAttribute("aria-hidden");
-  applyFragmentState(Array.from(clone.querySelectorAll(".fragment")), index === currentIndex ? currentStep : 0);
+  const cloneFrags = Array.from(clone.querySelectorAll(".fragment"));
+  const order = getFragments(index).map((frag) => Array.from(slides[index].querySelectorAll(".fragment")).indexOf(frag));
+  applyFragmentState(order.map((i) => cloneFrags[i]), index === currentIndex ? currentStep : 0);
   return clone;
 }
 
@@ -318,7 +323,7 @@ document.addEventListener("keydown", (event) => {
         renderFragments(currentIndex, currentStep);
         updatePresenter(currentIndex);
         writeStoredState();
-      } else {
+      } else if (currentIndex < slides.length - 1) {
         currentStep = 0;
         render(currentIndex + 1);
       }
