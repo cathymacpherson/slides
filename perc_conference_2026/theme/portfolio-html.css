@@ -3000,3 +3000,780 @@ body.presenter-mode .deck-shell {
   justify-items: center;
   text-align: center;
 }
+
+/* Digital tools slide: cards without the red top bar */
+.perc-digital .method-card {
+  border-top: 1px solid rgba(17, 17, 17, 0.12);
+}
+
+/* ===== Results slides (no cards) ===== */
+.perc-results .slide-inner {
+  gap: 22px;
+}
+
+.perc-results h1 {
+  max-width: none;
+}
+
+.res-block {
+  display: grid;
+  gap: 14px;
+  align-content: start;
+}
+
+.res-label {
+  color: var(--mq-red);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.res-label span {
+  color: rgba(55, 58, 54, 0.7);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.res-scale {
+  display: block;
+  max-width: 1150px;
+  width: 100%;
+}
+
+.rs-track,
+.db-track {
+  stroke: #e6e4dc;
+  stroke-linecap: round;
+  stroke-width: 8;
+}
+
+.rs-mid {
+  stroke: rgba(55, 58, 54, 0.45);
+  stroke-dasharray: 6 6;
+  stroke-width: 2;
+}
+
+.rs-axis {
+  fill: rgba(55, 58, 54, 0.75);
+  font-size: 18px;
+  text-anchor: middle;
+}
+
+.rs-row {
+  fill: var(--mq-charcoal);
+  font-size: 21px;
+  font-weight: 500;
+}
+
+.rs-dot {
+  fill: #2a4e6e;
+  stroke: #ffffff;
+  stroke-width: 3;
+}
+
+.rs-val {
+  fill: #2a4e6e;
+  font-size: 24px;
+  font-weight: 600;
+}
+
+.res-points {
+  border-top: 1px solid var(--mq-line);
+  display: grid;
+  gap: 26px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin-top: 26px;
+  padding-top: 30px;
+}
+
+.slide .res-point {
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.res-key {
+  color: #2a4e6e;
+  display: block;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  margin-bottom: 6px;
+}
+
+.res-legend {
+  display: flex;
+  gap: 28px;
+  margin-top: -6px;
+}
+
+.res-legend span,
+.cf-key span {
+  align-items: center;
+  color: var(--mq-charcoal);
+  display: inline-flex;
+  font-size: 19px;
+  gap: 9px;
+}
+
+.lg-dot {
+  border-radius: 50%;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+
+.lg-gen { background: #2a4e6e; }
+.lg-bes { background: #80225f; }
+
+.res-two {
+  display: grid;
+  gap: 70px;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr);
+  margin-top: 12px;
+}
+
+.res-dumbbell {
+  display: block;
+  width: 100%;
+}
+
+.db-link {
+  stroke: rgba(128, 34, 95, 0.35);
+  stroke-width: 8;
+}
+
+.db-gen { fill: #2a4e6e; }
+.db-bes { fill: #80225f; }
+
+.db-val {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.db-val-gen { fill: #2a4e6e; }
+.db-val-bes { fill: #80225f; }
+
+.slide .res-small {
+  color: rgba(55, 58, 54, 0.75);
+  font-size: 19px;
+}
+
+.cf {
+  display: grid;
+  gap: 22px;
+  margin-top: 16px;
+}
+
+.cf-row {
+  display: grid;
+  gap: 8px;
+}
+
+.cf-name {
+  color: var(--mq-charcoal);
+  font-size: 21px;
+}
+
+.cf-bar {
+  border-radius: 999px;
+  display: flex;
+  height: 52px;
+  overflow: hidden;
+}
+
+.cf-bar span {
+  align-items: center;
+  color: #ffffff;
+  display: flex;
+  font-size: 19px;
+  justify-content: center;
+}
+
+.cf-more { background: #80225f; }
+.cf-same { background: #b9b4a6; }
+.cf-less { background: #2a4e6e; }
+
+.cf-key {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+  margin-top: 8px;
+}
+
+.cf-sw {
+  border-radius: 4px;
+  display: inline-block;
+  height: 14px;
+  width: 22px;
+}
+
+.res-two-wide {
+  grid-template-columns: minmax(0, 1fr) minmax(0, 0.9fr);
+}
+
+.ve {
+  display: grid;
+  gap: 26px;
+  margin-top: 18px;
+}
+
+.ve-row {
+  align-items: center;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 120px minmax(0, 1fr) 70px;
+}
+
+.ve-name {
+  color: var(--mq-charcoal);
+  font-size: 21px;
+}
+
+.ve-track {
+  background: #f1efe9;
+  border-radius: 999px;
+  display: flex;
+  height: 46px;
+  overflow: hidden;
+}
+
+.ve-base { background: #b9b4a6; }
+.ve-add { background: #2a4e6e; }
+
+.ve-val {
+  color: #2a4e6e;
+  font-size: 28px;
+  font-weight: 600;
+}
+
+.res-points-side {
+  align-content: start;
+  border-left: 1px solid var(--mq-line);
+  border-top: none;
+  grid-template-columns: 1fr;
+  margin-top: 0;
+  padding: 4px 0 0 44px;
+}
+
+.pu-stats {
+  display: grid;
+  gap: 30px;
+  margin-top: 14px;
+}
+
+.pu-stats > div {
+  display: grid;
+  gap: 4px;
+}
+
+.pu-num {
+  color: #80225f;
+  font-size: 96px;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  line-height: 1;
+}
+
+.pu-what {
+  color: var(--mq-charcoal);
+  font-size: 24px;
+}
+
+/* Results: larger charts to use the slide height */
+.res-two {
+  margin-top: 30px;
+}
+
+.res-dumbbell .rs-row {
+  font-size: 26px;
+}
+
+.res-dumbbell .db-val {
+  font-size: 25px;
+}
+
+.res-dumbbell .rs-axis {
+  font-size: 21px;
+}
+
+.cf {
+  gap: 34px;
+}
+
+.cf-bar {
+  height: 64px;
+}
+
+.cf-bar span {
+  font-size: 22px;
+}
+
+.cf-name,
+.ve-name {
+  font-size: 24px;
+}
+
+.ve {
+  gap: 40px;
+  margin-top: 30px;
+}
+
+.ve-row {
+  grid-template-columns: 140px minmax(0, 1fr) 80px;
+}
+
+.ve-track {
+  height: 72px;
+}
+
+.ve-val {
+  font-size: 34px;
+}
+
+.slide .res-small {
+  font-size: 21px;
+  margin-top: 10px;
+}
+
+/* ===== Research-style results figures ===== */
+.perc-results .slide-inner {
+  gap: 18px;
+}
+
+.fig {
+  display: block;
+  font-family: "Work Sans", Aptos, "Segoe UI", sans-serif;
+  height: auto;
+  width: 100%;
+}
+
+.fig-row {
+  fill: #373a36;
+  font-size: 22px;
+}
+
+.fig-tick {
+  fill: #5a5d58;
+  font-size: 19px;
+  text-anchor: middle;
+}
+
+.fig-axis-title {
+  fill: #373a36;
+  font-size: 20px;
+  text-anchor: middle;
+}
+
+.fig-panel {
+  fill: #111111;
+  font-size: 22px;
+  font-weight: 600;
+  text-anchor: middle;
+}
+
+.fig-axis {
+  stroke: #373a36;
+  stroke-width: 2;
+}
+
+.fig-zero {
+  stroke: #8d8a82;
+  stroke-dasharray: 6 6;
+  stroke-width: 2;
+}
+
+.fig-note {
+  fill: #8d8a82;
+  font-size: 17px;
+}
+
+.fig-val {
+  fill: #2a4e6e;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.fig-bar-val {
+  fill: #ffffff;
+  font-size: 18px;
+  text-anchor: middle;
+}
+
+.fig-key {
+  fill: #373a36;
+  font-size: 15px;
+}
+
+.fig-wrap-overall {
+  margin-top: 30px;
+  max-width: 1220px;
+}
+
+.fig-wrap-wide {
+  max-width: 1200px;
+}
+
+.fig-caption {
+  border-top: 1px solid var(--mq-line);
+  display: grid;
+  gap: 8px;
+  margin-top: 24px;
+  padding-top: 22px;
+}
+
+.slide .fig-caption p,
+.slide .fig-caption-line {
+  color: #373a36;
+  font-size: 21px;
+  line-height: 1.45;
+}
+
+.fig-two {
+  display: grid;
+  gap: 56px;
+  grid-template-columns: minmax(0, 1.2fr) minmax(0, 1fr);
+  margin-top: 14px;
+}
+
+.fig-col {
+  display: grid;
+  gap: 12px;
+  align-content: start;
+}
+
+.fig-title {
+  color: var(--mq-red);
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.slide .fig-small {
+  color: #5a5d58;
+  font-size: 18px;
+}
+
+.fig-legend {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+
+.fig-legend span {
+  align-items: center;
+  color: #373a36;
+  display: inline-flex;
+  font-size: 18px;
+  gap: 8px;
+}
+
+.fig-legend .fig-legend-note {
+  color: #5a5d58;
+}
+
+.fl-dot {
+  border: 3px solid #2a4e6e;
+  border-radius: 50%;
+  display: inline-block;
+  height: 16px;
+  width: 16px;
+}
+
+.fl-fill { background: #2a4e6e; }
+.fl-open { background: #ffffff; border-color: #5a5d58; }
+.fl-btw { background: #2a4e6e; }
+.fl-wth { background: #a6192e; border-color: #a6192e; }
+.fl-fill-grey { background: #5a5d58; border-color: #5a5d58; }
+
+.perc-results .fig-wrap-wide {
+  max-width: 1150px;
+}
+
+.fig-val-small {
+  fill: #373a36;
+  font-size: 18px;
+}
+
+.fl-grey { background: #b9b4a6; border-color: #b9b4a6; }
+.fl-mag { background: #80225f; border-color: #80225f; }
+
+/* Overall slide: figure fills the space left by the removed stats */
+.perc-results .fig-wrap-overall {
+  margin-top: 80px;
+  max-width: 1400px;
+}
+
+/* Three-column results slide */
+.fig-three {
+  display: grid;
+  gap: 44px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 18px;
+}
+
+.fig-three .fig-col {
+  gap: 14px;
+}
+
+.fig-key-lg {
+  fill: #373a36;
+  font-size: 20px;
+}
+
+/* Centre the wide figures (and their legends) on the slide */
+.perc-results .fig-wrap-wide {
+  margin-left: auto;
+  margin-right: auto;
+  width: 100%;
+}
+
+.perc-results .slide-inner > .fig-legend {
+  justify-content: center;
+}
+
+/* Between- vs within-person definitions under the predictors figure */
+.bw-defs {
+  border-top: 1px solid var(--mq-line);
+  display: grid;
+  gap: 40px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  margin: 6px auto 0;
+  max-width: 1150px;
+  padding-top: 18px;
+  width: 100%;
+}
+
+.slide .bw-defs p {
+  color: #373a36;
+  font-size: 21px;
+  line-height: 1.4;
+}
+
+.bw-key {
+  display: block;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.bw-btw { color: #2a4e6e; }
+.bw-wth { color: #a6192e; }
+
+/* Slide 9: group bubbles drawn around demographic and prior-experience rows */
+.grp-bubble rect {
+  stroke-width: 3;
+}
+
+.grp-demo rect { fill: rgba(185, 180, 166, 0.16); stroke: #8d8a82; }
+.grp-exp rect { fill: rgba(128, 34, 95, 0.07); stroke: #80225f; }
+
+.grp-label {
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.grp-demo .grp-label { fill: #5a5d58; }
+.grp-exp .grp-label { fill: #80225f; }
+
+.perc-results .fig-wrap-wide:has(.grp-bubble) {
+  max-width: 1300px;
+}
+
+/* ===== Discussion slides (typographic, no cards) ===== */
+.disc-points {
+  display: grid;
+  gap: 56px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  margin-top: 60px;
+}
+
+.disc-point {
+  border-top: 3px solid #2a4e6e;
+  display: grid;
+  gap: 14px;
+  align-content: start;
+  padding-top: 24px;
+}
+
+.slide .disc-key {
+  color: #2a4e6e;
+  font-size: 30px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.2;
+  text-transform: none;
+}
+
+.slide .disc-point p {
+  color: #373a36;
+  font-size: 25px;
+  line-height: 1.45;
+}
+
+/* Discussion: sit the three points in the vertical middle of the slide */
+.perc-disc .disc-points {
+  margin: auto 0;
+  padding-bottom: 40px;
+}
+
+/* Discussion: numbered circles and bulleted points */
+.perc-disc .disc-point {
+  border-top: none;
+  padding-top: 0;
+}
+
+.disc-num {
+  align-items: center;
+  background: #2a4e6e;
+  border-radius: 50%;
+  color: #ffffff;
+  display: flex;
+  font-size: 30px;
+  font-weight: 600;
+  height: 60px;
+  justify-content: center;
+  margin-bottom: 6px;
+  width: 60px;
+}
+
+.disc-list {
+  display: grid;
+  gap: 12px;
+  padding-left: 1.1em;
+}
+
+.slide .disc-list li {
+  color: #373a36;
+  font-size: 24px;
+  line-height: 1.4;
+  margin: 0;
+}
+
+/* Discussion take-home box */
+.perc-disc .disc-points {
+  margin: 34px 0 0;
+  padding-bottom: 0;
+}
+
+.disc-takehome {
+  align-items: center;
+  border: 2px solid #2a4e6e;
+  border-radius: 14px;
+  display: flex;
+  gap: 28px;
+  margin-top: auto;
+  padding: 24px 32px;
+}
+
+.disc-takehome-label {
+  color: #2a4e6e;
+  flex-shrink: 0;
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.slide .disc-takehome p {
+  color: #111111;
+  font-size: 30px;
+  line-height: 1.3;
+}
+
+.slide .disc-takehome strong {
+  color: #2a4e6e;
+}
+
+/* Slide 11: two-step student figure. Step 1 shows two rows; step 2 slides the
+   axis down, lengthens the midpoint line and reveals the prior-use breakdown. */
+.st-fig .st-axis {
+  transform: translateY(calc(-1 * var(--st-shift)));
+  transition: transform 0.7s ease;
+}
+
+.st-fig .st-mids line {
+  transform: scaleY(var(--st-collapsed));
+  transform-box: fill-box;
+  transform-origin: top;
+  transition: transform 0.7s ease;
+}
+
+.st-fig .st-mids {
+  --st-collapsed: 0.5;
+}
+
+.st-fig .st-extra {
+  opacity: 0;
+  transition: opacity 0.4s ease 0.45s;
+}
+
+.st-fig:has(.st-step.visible) .st-axis {
+  transform: translateY(0);
+}
+
+.st-fig:has(.st-step.visible) .st-mids line {
+  transform: scaleY(1);
+}
+
+.st-fig:has(.st-step.visible) .st-extra {
+  opacity: 1;
+}
+
+.st-step {
+  display: none;
+}
+
+/* Predictors diagram: fourth group (demographics) */
+.pred2 {
+  --demo: #7a776f;
+  height: 600px;
+}
+
+.pred2-flow {
+  height: 600px;
+}
+
+.pred2-group {
+  height: 136px;
+}
+
+.pred2-tam { top: 0; }
+.pred2-ai { top: 148px; }
+.pred2-exp { top: 312px; }
+.pred2-demo { top: 456px; }
+
+.pred2-demo .pred2-label { color: var(--demo); }
+.pred2-demo .pred2-dot { background: var(--demo); }
+.slide .pred2-demo .pred2-items li { background: rgba(122, 119, 111, 0.14); }
+.pred2-link-demo { stroke: var(--demo); }
+
+.pred2:has(.pred2-demo.visible) .pred2-link-demo {
+  opacity: 1;
+}
+
+.pred2-outcomes {
+  top: 196px;
+}
+
+.perc-predictors .slide-inner {
+  gap: 10px;
+}
+
+.slide .pred2-items li {
+  font-size: 22px;
+  padding: 7px 17px;
+}
+
+.pred2-ai { top: 164px; }
+.pred2-exp { top: 316px; }
+.pred2-demo { top: 446px; }
+
+.fig-legend .fl-text {
+  display: inline;
+}

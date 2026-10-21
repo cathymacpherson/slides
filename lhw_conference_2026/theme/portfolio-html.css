@@ -2743,3 +2743,16 @@ body.presenter-mode .deck-shell {
   flex-direction: column;
   justify-content: center;
 }
+
+/* Slide 3: academic-style dot and CI plot */
+.ac-fig {
+  font-family: Arial, "Helvetica Neue", sans-serif;
+}
+
+.ac-axis { stroke: #373a36; stroke-width: 2; }
+.ac-mid { stroke: #8d8a82; stroke-dasharray: 6 6; stroke-width: 2; }
+.ac-tick { fill: #5a5d58; font-size: 18px; text-anchor: middle; }
+.ac-title { fill: #373a36; font-size: 18px; text-anchor: middle; }
+.ac-note { fill: #8d8a82; font-size: 16px; }
+.ac-row { fill: #373a36; font-size: 21px; }
+.ac-val { fill: #2a4e6e; font-size: 21px; font-weight: 700; }
