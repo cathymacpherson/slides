@@ -3777,3 +3777,69 @@ body.presenter-mode .deck-shell {
 .fig-legend .fl-text {
   display: inline;
 }
+
+/* Slide 11: open-question box */
+.st-question {
+  margin-top: auto;
+}
+
+/* Closing slide */
+.perc-close .slide-inner {
+  gap: 64px;
+}
+
+.slide .close-name {
+  color: #111111;
+  font-size: 32px !important;
+  font-weight: 600;
+}
+
+.perc-close .closing-meta {
+  line-height: 1.5;
+}
+
+.slide .close-email a {
+  color: var(--mq-red);
+  font-size: 26px;
+  text-decoration: none;
+}
+
+.perc-close .summary-refs li {
+  color: rgba(17, 17, 17, 0.75);
+  font-size: 19px !important;
+  line-height: 1.45;
+}
+
+.perc-close .summary-refs ul {
+  gap: 22px;
+}
+
+.perc-close .summary-refs a {
+  color: var(--mq-red);
+  text-decoration: none;
+}
+
+/* Closing slide: contributors and funder */
+.perc-close .close-panel {
+  border-left: 1px solid rgba(17, 17, 17, 0.12);
+}
+
+.perc-close .close-names {
+  display: grid;
+  gap: 8px 28px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  list-style: none;
+  padding: 0;
+}
+
+.slide.perc-close .close-names li {
+  color: #373a36;
+  font-size: 22px !important;
+  margin: 0;
+}
+
+.slide.perc-close .close-funder {
+  color: #373a36;
+  font-size: 22px !important;
+  line-height: 1.4;
+}

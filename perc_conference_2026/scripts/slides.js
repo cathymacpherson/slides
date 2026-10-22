@@ -323,9 +323,10 @@ document.addEventListener("keydown", (event) => {
         renderFragments(currentIndex, currentStep);
         updatePresenter(currentIndex);
         writeStoredState();
-      } else if (currentIndex < slides.length - 1) {
+      } else {
         currentStep = 0;
-        render(currentIndex + 1);
+        // Past the last slide, loop back to the start.
+        render(currentIndex === slides.length - 1 ? 0 : currentIndex + 1);
       }
       break;
     }
