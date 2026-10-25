@@ -2756,3 +2756,400 @@ body.presenter-mode .deck-shell {
 .ac-note { fill: #8d8a82; font-size: 16px; }
 .ac-row { fill: #373a36; font-size: 21px; }
 .ac-val { fill: #2a4e6e; font-size: 21px; font-weight: 700; }
+
+/* ===== Slide 2: conversation scene + the gap ===== */
+.lhw-body.conv-layout {
+  display: grid;
+  gap: 40px;
+  grid-template-columns: 760px minmax(0, 1fr);
+  height: 560px;
+}
+
+.conv {
+  height: 560px;
+  position: relative;
+  width: 760px;
+}
+
+.conv-group {
+  bottom: 0;
+  left: 80px;
+  position: absolute;
+  width: 600px;
+}
+
+.lhw .lhw-body .bubble {
+  border-radius: 20px;
+  box-shadow: 0 8px 20px rgba(17, 17, 17, 0.08);
+  font-size: 20px;
+  font-style: italic;
+  line-height: 1.3;
+  margin: 0;
+  padding: 14px 18px;
+  position: absolute;
+  width: 200px;
+}
+
+.lhw .lhw-body .bubble::after {
+  bottom: -11px;
+  content: "";
+  height: 20px;
+  left: var(--tx, 40px);
+  position: absolute;
+  transform: rotate(45deg);
+  width: 20px;
+}
+
+.lhw .lhw-body .bubble-neg {
+  background: #ecebe6;
+  color: #2b2d2a;
+}
+
+.lhw .lhw-body .bubble-neg::after {
+  background: #ecebe6;
+}
+
+.lhw .lhw-body .bubble-pos {
+  background: #f6e6e9;
+  color: #76232f;
+}
+
+.lhw .lhw-body .bubble-pos::after {
+  background: #f6e6e9;
+}
+
+.gap-panel {
+  display: grid;
+  gap: 18px;
+  align-content: center;
+}
+
+.gap-child {
+  align-items: center;
+  display: grid;
+  gap: 18px;
+  grid-template-columns: 250px minmax(0, 1fr);
+}
+
+.gap-kid {
+  display: block;
+  width: 100%;
+}
+
+.gap-stats2 {
+  display: grid;
+  gap: 12px;
+}
+
+.gap-box {
+  border: 1px solid var(--lhw-sand);
+  border-radius: 14px;
+  display: grid;
+  gap: 4px;
+  padding: 12px 18px;
+}
+
+.gap-box span {
+  color: var(--lhw-charcoal);
+  font-size: 19px;
+  line-height: 1.3;
+}
+
+.lhw .gap-box .gap-big {
+  color: var(--lhw-red);
+  font-size: 42px;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.lhw .lhw-body .gap-cite {
+  color: rgba(55, 58, 54, 0.7);
+  font-size: 15px;
+}
+
+.lhw .lhw-body .gap-tools {
+  font-size: 22px;
+}
+
+.gap-question {
+  background: var(--lhw-red);
+  border-radius: 14px;
+  color: #ffffff;
+  font-size: 25px;
+  font-weight: 600;
+  line-height: 1.3;
+  padding: 16px 22px;
+}
+
+.gap-question span {
+  display: block;
+  font-size: 15px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  margin-bottom: 4px;
+  opacity: 0.85;
+  text-transform: uppercase;
+}
+
+.lhw .lhw-body .bubble {
+  width: 230px;
+}
+
+.lhw .lhw-body .gap-tools {
+  font-size: 21px;
+}
+
+/* Slide 2: question as an outlined box rather than solid red */
+.gap-question {
+  background: #ffffff;
+  border: 2px solid var(--lhw-red);
+  color: #111111;
+}
+
+.gap-question span {
+  color: var(--lhw-red);
+  opacity: 1;
+}
+
+.lhw-body.conv-layout {
+  z-index: 2;
+}
+
+/* ===== Slide 3, version 3: sample | vertical chart | stacked findings ===== */
+.lhw-body.results-layout.results-v3 {
+  grid-template-columns: 360px 440px minmax(0, 1fr);
+  gap: 34px;
+}
+
+.results-v3 .v3-chart {
+  align-content: start;
+  display: grid;
+  gap: 8px;
+}
+
+.results-v3 .ac-vert {
+  display: block;
+  margin-top: 0;
+  width: 100%;
+}
+
+.results-v3 .v3-cards {
+  display: grid;
+  gap: 16px;
+  grid-template-rows: repeat(3, minmax(0, 1fr));
+}
+
+.results-v3 .finding-card {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px 26px;
+}
+
+.lhw .lhw-body.results-v3 .finding-card p {
+  font-size: 20px;
+  margin-top: 6px;
+}
+
+/* Slide 3: three equal-width columns with wider gaps */
+.lhw-body.results-layout.results-v3 {
+  gap: 50px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+}
+
+.lhw-body.results-layout.results-v3 {
+  height: 556px;
+}
+
+.results-v3 .v3-cards {
+  gap: 14px;
+  min-height: 0;
+}
+
+.results-v3 .finding-card {
+  min-height: 0;
+  padding: 16px 22px;
+}
+
+.lhw .lhw-body.results-v3 .finding-card p {
+  font-size: 18px;
+  line-height: 1.32;
+}
+
+.lhw .results-v3 .finding-label {
+  font-size: 16px;
+}
+
+.results-v3 .sample-card {
+  min-height: 0;
+}
+
+.lhw .lhw-body.results-v3 .method-list li {
+  font-size: 20px;
+}
+
+/* ===== Slide 4: journey from distress to support ===== */
+.lhw-body.takehome-journey {
+  display: flex;
+  flex-direction: column;
+  height: 556px;
+  z-index: 2;
+}
+
+.lhw .lhw-body.takehome-journey .takehome-statement {
+  font-size: 40px;
+}
+
+.journey {
+  align-items: start;
+  display: grid;
+  gap: 28px;
+  grid-template-columns: 240px minmax(0, 1fr) 240px;
+  margin: auto 0;
+  position: relative;
+}
+
+/* the path: runs from the distressed brain, through the numbered steps, to the happy brain */
+.journey::before {
+  background: var(--lhw-sand);
+  content: "";
+  height: 4px;
+  left: 240px;
+  position: absolute;
+  right: 252px;
+  top: 108px;
+}
+
+.journey::after {
+  border-bottom: 10px solid transparent;
+  border-left: 16px solid var(--lhw-sand);
+  border-top: 10px solid transparent;
+  content: "";
+  position: absolute;
+  right: 240px;
+  top: 100px;
+}
+
+.journey-brain {
+  display: grid;
+  gap: 4px;
+  justify-items: center;
+  margin: 0;
+}
+
+.journey-brain img {
+  display: block;
+  width: 100%;
+}
+
+.journey-brain figcaption {
+  color: var(--lhw-charcoal);
+  font-size: 18px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.journey-happy figcaption {
+  color: var(--lhw-red);
+}
+
+.journey-steps {
+  display: grid;
+  gap: 24px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  list-style: none;
+  margin: 0 !important;
+  padding: 80px 0 0;
+  position: relative;
+  z-index: 1;
+}
+
+.lhw .lhw-body .journey-steps li {
+  display: grid;
+  gap: 8px;
+  justify-items: center;
+  margin: 0;
+  text-align: center;
+}
+
+.journey-num {
+  align-items: center;
+  background: var(--lhw-red);
+  border: 4px solid #ffffff;
+  border-radius: 50%;
+  box-sizing: content-box;
+  color: #ffffff;
+  display: flex;
+  font-size: 26px;
+  font-weight: 700;
+  height: 48px;
+  justify-content: center;
+  width: 48px;
+}
+
+.lhw .journey-steps h3 {
+  color: #000000;
+  font-size: 22px;
+  letter-spacing: 0;
+  margin-top: 6px;
+  text-transform: none;
+}
+
+.lhw .lhw-body .journey-steps p {
+  font-size: 19px;
+  line-height: 1.35;
+}
+
+.lhw .lhw-body.takehome-journey .takehome-contact {
+  margin-top: 0;
+}
+
+.lhw .lhw-body .journey-steps li {
+  align-content: start;
+}
+
+/* Slide 4: match the two brains' body size */
+.journey-happy img {
+  margin: 0 auto;
+  width: 88%;
+}
+
+.journey-happy {
+  align-content: end;
+  align-self: stretch;
+}
+
+/* Slide 4: headline in a centred bubble */
+.lhw .lhw-body.takehome-journey .takehome-statement {
+  align-self: center;
+  background: #f6e6e9;
+  border-radius: 999px;
+  font-size: 34px;
+  line-height: 1.3;
+  max-width: none;
+  padding: 22px 48px;
+  text-align: center;
+}
+
+.journey-happy img {
+  width: 94%;
+}
+
+/* Slide 4: the path appears with the sad brain */
+.journey::before,
+.journey::after {
+  opacity: 0;
+  transition: opacity 0.35s ease;
+}
+
+.journey:has(.journey-brain.visible)::before,
+.journey:has(.journey-brain.visible)::after {
+  opacity: 1;
+}
+
+/* Slide 4: centred contact line */
+.lhw .lhw-body.takehome-journey .takehome-contact {
+  align-self: center;
+  text-align: center;
+}

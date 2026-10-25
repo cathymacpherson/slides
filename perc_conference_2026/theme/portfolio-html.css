@@ -3843,3 +3843,131 @@ body.presenter-mode .deck-shell {
   font-size: 22px !important;
   line-height: 1.4;
 }
+
+/* Slides 9 and 11: centre legend + figure vertically in the space below the title */
+.slide[data-title="Prior Use"] .slide-inner > .fig-legend,
+.slide[data-title="Student Sample"] .slide-inner > .fig-legend {
+  margin-top: auto;
+}
+
+.slide[data-title="Prior Use"] .slide-inner > .fig-wrap,
+.slide[data-title="Student Sample"] .slide-inner > .fig-wrap {
+  margin-bottom: auto;
+}
+
+.slide[data-title="Student Sample"] .st-question {
+  margin-top: 0;
+}
+
+/* Slide 6: centre the method columns vertically below the title */
+.perc-method .slide-inner > .meth-layout {
+  margin: auto 0;
+}
+
+/* Slide 4: gap, two numbered aims and the comments screenshot */
+.slide .gap2-lead {
+  color: #373a36;
+  font-size: 28px;
+  line-height: 1.4;
+  margin-top: 10px;
+  max-width: 1300px;
+}
+
+.gap2-body {
+  align-items: center;
+  display: grid;
+  flex: 1;
+  gap: 60px;
+  grid-template-columns: minmax(0, 1fr) 470px;
+  margin-top: 16px;
+  min-height: 0;
+}
+
+.gap2-aims {
+  display: grid;
+  gap: 34px 48px;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  align-content: center;
+}
+
+.gap2-label {
+  color: #2a4e6e;
+  font-size: 18px;
+  font-weight: 700;
+  grid-column: 1 / -1;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.slide.perc-gap2 .disc-key {
+  font-size: 28px;
+}
+
+.slide.perc-gap2 .disc-point p {
+  color: #373a36;
+  font-size: 24px;
+  line-height: 1.4;
+}
+
+.gap2-comments {
+  display: flex;
+  justify-content: center;
+  margin: 0;
+}
+
+.gap2-comments img {
+  display: block;
+  max-height: 520px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Slide 4: screenshot on the left, aims stacked on the right */
+.gap2-body {
+  grid-template-columns: 470px minmax(0, 1fr);
+  gap: 80px;
+}
+
+.gap2-aims {
+  grid-template-columns: 1fr;
+  gap: 30px;
+}
+
+/* Slide 7: overall points split into general-purpose and bespoke */
+.ov-fig .ov-base {
+  transition: opacity 0.4s ease;
+}
+
+.ov-fig .ov-split {
+  opacity: 0;
+  transform: translateX(var(--ov-dx));
+  transition: opacity 0.5s ease, transform 0.6s ease;
+}
+
+.ov-fig:has(.ov-step.visible) .ov-base {
+  opacity: 0;
+}
+
+.ov-fig:has(.ov-step.visible) .ov-split {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.ov-step {
+  display: none;
+}
+
+.fig-val-split {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.ov-legend {
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.fig-col:has(.ov-step.visible) .ov-legend {
+  opacity: 1;
+}

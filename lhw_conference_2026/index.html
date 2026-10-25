@@ -4,7 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>User Acceptance of AI</title>
-    <link rel="stylesheet" href="theme/portfolio-html.css?v=17" />
+    <link rel="stylesheet" href="theme/portfolio-html.css?v=30" />
   </head>
   <body class="lhw">
     <div class="deck-shell">
@@ -32,30 +32,35 @@
             <h1>AI Has a PR Problem</h1>
             <p class="lhw-sub">Why this research matters</p>
           </div>
-          <div class="lhw-body why-layout">
-            <figure class="comments-figure fragment">
-              <img src="../assets/ai_comments_anonymised.png" alt="Anonymised social media comments: 'Or just stop using AI all together.', 'Remember brains? Humans come with one!', 'Why do we need AI? To replace humans and leave us obsolete.', 'These data centres will literally destroy humanity', 'Here is THE solution: BAN IT.'" />
-            </figure>
-            <figure class="comments-figure fragment">
-              <img src="../assets/ai_positive_headlines.png" alt="Positive news headlines about AI: 'How AI could dramatically improve cancer patients' prognosis' (The Conversation), 'AI often leaves out minority languages – but some communities are turning it into a lifeline' (The Conversation), 'AI-powered personalised medicine could revolutionise healthcare' (The Guardian), 'First therapy chatbot trial shows AI can provide gold-standard care' (Dartmouth)" />
-            </figure>
-            <div class="why-gap">
-              <div class="gap-card fragment">
-                <div class="aim-label">The Gap</div>
-                <ul class="gap-list">
-                  <li>Only <strong>1 in 2</strong> Australian children with a mental health problem seek help.</li>
-                  <li>Fewer than <strong>1 in 3</strong> receive evidence-based treatment.</li>
-                  <li>Digital tools, including generative AI, show promise in closing the gap.</li>
-                  <li class="gap-question fragment"><strong>Our question:</strong> if we build these tools, will people actually use them?</li>
-                </ul>
-                <p class="gap-source">Johnson et al., 2016</p>
+          <div class="lhw-body conv-layout">
+            <div class="conv">
+              <img class="conv-group" src="../assets/group-conversation.png" alt="A group of people sitting in a circle, talking" />
+              <div class="conv-neg fragment">
+                <p class="bubble bubble-neg" style="left: 0; top: 160px; --tx: 175px">&ldquo;Remember brains? Humans come with one!&rdquo;</p>
+                <p class="bubble bubble-neg" style="left: 180px; top: 40px; --tx: 135px">&ldquo;These data centres will literally destroy humanity.&rdquo;</p>
               </div>
+              <div class="conv-pos fragment">
+                <p class="bubble bubble-pos" style="left: 420px; top: 40px; --tx: 40px">&ldquo;AI can reduce the administrative burden for therapists.&rdquo;</p>
+                <p class="bubble bubble-pos" style="left: 530px; top: 170px; --tx: 30px">&ldquo;It can provide personalised, around&#8209;the&#8209;clock support!&rdquo;</p>
+              </div>
+            </div>
+            <div class="gap-panel">
+              <div class="gap-child fragment">
+                <img class="gap-kid" src="../assets/kid-crop.png" alt="Illustration of a distressed child holding their head" />
+                <div class="gap-stats2">
+                  <div class="gap-box"><span class="gap-big">1 in 2</span><span>Australian children with a mental health problem seek help</span></div>
+                  <div class="gap-box"><span class="gap-big">&lt;1 in 3</span><span>receive evidence-based treatment</span></div>
+                  <p class="gap-cite">Johnson et al. (2016)</p>
+                </div>
+              </div>
+              <p class="gap-tools fragment">Digital tools, including generative AI, show promise in closing the gap.</p>
+              <div class="gap-question fragment"><span>Our question</span>If we build these tools, will people actually use them?</div>
             </div>
           </div>
           <img class="lhw-logo" src="../assets/lhw-logo.png" alt="Macquarie University Lifespan Health and Wellbeing Research Centre" />
           <img class="lhw-icon" src="../assets/lhw-icon.png" alt="" />
           <img class="lhw-tagline" src="../assets/lhw-tagline.png" alt="Advancing social, emotional and cognitive health and wellbeing for all. That's YOU to the power of us." />
-          <aside class="notes"><ul><li>Artificial intelligence has a PR problem. Look almost anywhere on social media, or indeed on campus right now, and you'll see comments like these. People are worried about AI slop ruining our ability to think, data centres taking over, and the environment going up in flames.</li><li>But look elsewhere and you'll find headlines like these: articles highlighting AI's potential to fill real and critical gaps in our healthcare system, by making care more accessible and personalised.</li><li>And some of the biggest gaps are in mental health. In Australia, only around half of children with a mental health problem seek help, and fewer than one in three receive evidence-based treatment. Digital tools, including those powered by generative AI, show genuine promise in closing the gap between the care kids need and the care they actually get.</li><li>Which brings us back to that PR problem. If we build these tools, will people actually use them?</li></ul></aside>
+          <aside class="notes"><ul><li>Artificial intelligence has a PR problem. Look almost anywhere on social media, or indeed on campus right now, and you'll see comments like these. People are worried about AI slop ruining our ability to think, data centres taking over, and the environment going up in flames.</li><li>But look elsewhere and you'll hear very different voices: articles highlighting AI's potential to fill real and critical gaps in our healthcare system, by making care more accessible and personalised.</li><li>And some of the biggest gaps in care can be found in child mental health settings. In Australia, only around half of children with a mental health problem seek help, and fewer than one in three receive evidence-based treatment. Digital tools, including those powered by generative AI, show genuine promise in closing the gap between the care kids need and the care they actually get.</li><li>Which brings us back to that PR problem. If we build these tools, will people actually use them?</li></ul></aside>
         </section>
 
         <section class="slide lhw-content" data-title="Method and Results">
@@ -63,7 +68,7 @@
             <h1>Will People Use It?</h1>
             <p class="lhw-sub">Method and results</p>
           </div>
-          <div class="lhw-body results-layout">
+          <div class="lhw-body results-layout results-v3">
             <div class="sample-card fragment">
               <div class="method-stat">186</div>
               <p class="method-stat-label">Australians, online survey</p>
@@ -73,12 +78,11 @@
                 <li>Each rated a <strong>general-purpose</strong> tool (e.g. ChatGPT) and a <strong>bespoke</strong>, clinician-approved tool</li>
               </ul>
             </div>
-            <div class="results-main">
-              <div class="scale-block fragment">
-                <div class="scale-title">Attitudes and intentions</div>
-                <svg class="scale-svg ac-fig" viewBox="0 0 1000 220" role="img" aria-label="Mean attitudes 4.94 and intentions 4.85 with 95% confidence intervals, both above the scale midpoint of 4"><line class="ac-mid" x1="560.0" y1="12" x2="560.0" y2="150" /><text class="ac-note" x="568.0" y="24">Scale midpoint</text><line class="ac-axis" x1="150" y1="150" x2="970" y2="150" /><line class="ac-axis" x1="150.0" y1="150" x2="150.0" y2="157" /><text class="ac-tick" x="150.0" y="178">1</text><line class="ac-axis" x1="286.7" y1="150" x2="286.7" y2="157" /><text class="ac-tick" x="286.7" y="178">2</text><line class="ac-axis" x1="423.3" y1="150" x2="423.3" y2="157" /><text class="ac-tick" x="423.3" y="178">3</text><line class="ac-axis" x1="560.0" y1="150" x2="560.0" y2="157" /><text class="ac-tick" x="560.0" y="178">4</text><line class="ac-axis" x1="696.7" y1="150" x2="696.7" y2="157" /><text class="ac-tick" x="696.7" y="178">5</text><line class="ac-axis" x1="833.3" y1="150" x2="833.3" y2="157" /><text class="ac-tick" x="833.3" y="178">6</text><line class="ac-axis" x1="970.0" y1="150" x2="970.0" y2="157" /><text class="ac-tick" x="970.0" y="178">7</text><text class="ac-title" x="560.0" y="208">Mean rating (1 = strongly disagree, 7 = strongly agree)</text><text class="ac-row" x="0" y="64">Attitudes</text><line x1="659.7" y1="57.0" x2="716.0" y2="57.0" stroke="#2a4e6e" stroke-width="3" /><line x1="659.7" y1="49.0" x2="659.7" y2="65.0" stroke="#2a4e6e" stroke-width="3" /><line x1="716.0" y1="49.0" x2="716.0" y2="65.0" stroke="#2a4e6e" stroke-width="3" /><circle cx="687.8" cy="57.0" r="10" fill="#2a4e6e" /><text class="ac-val" x="732.0" y="64.0">4.94</text><text class="ac-row" x="0" y="126">Intentions</text><line x1="644.9" y1="119.0" x2="707.5" y2="119.0" stroke="#2a4e6e" stroke-width="3" /><line x1="644.9" y1="111.0" x2="644.9" y2="127.0" stroke="#2a4e6e" stroke-width="3" /><line x1="707.5" y1="111.0" x2="707.5" y2="127.0" stroke="#2a4e6e" stroke-width="3" /><circle cx="676.2" cy="119.0" r="10" fill="#2a4e6e" /><text class="ac-val" x="723.5" y="126.0">4.85</text></svg>
-              </div>
-              <div class="finding-row">
+            <div class="v3-chart scale-block fragment">
+              <div class="scale-title">Attitudes and intentions</div>
+              <svg class="ac-fig ac-vert" viewBox="0 0 420 452" role="img" aria-label="Mean attitudes 4.94 and intentions 4.85 with 95% confidence intervals, both above the scale midpoint of 4"><line class="ac-axis" x1="70" y1="24" x2="70" y2="404" /><line class="ac-axis" x1="63" y1="404.0" x2="70" y2="404.0" /><text class="ac-tick" x="54" y="410.0" text-anchor="end">1</text><line class="ac-axis" x1="63" y1="340.7" x2="70" y2="340.7" /><text class="ac-tick" x="54" y="346.7" text-anchor="end">2</text><line class="ac-axis" x1="63" y1="277.3" x2="70" y2="277.3" /><text class="ac-tick" x="54" y="283.3" text-anchor="end">3</text><line class="ac-axis" x1="63" y1="214.0" x2="70" y2="214.0" /><text class="ac-tick" x="54" y="220.0" text-anchor="end">4</text><line class="ac-axis" x1="63" y1="150.7" x2="70" y2="150.7" /><text class="ac-tick" x="54" y="156.7" text-anchor="end">5</text><line class="ac-axis" x1="63" y1="87.3" x2="70" y2="87.3" /><text class="ac-tick" x="54" y="93.3" text-anchor="end">6</text><line class="ac-axis" x1="63" y1="24.0" x2="70" y2="24.0" /><text class="ac-tick" x="54" y="30.0" text-anchor="end">7</text><line class="ac-mid" x1="70" y1="214.0" x2="400" y2="214.0" /><text class="ac-note" x="400" y="236.0" text-anchor="end">Scale midpoint</text><line class="ac-axis" x1="70" y1="404" x2="400" y2="404" /><line x1="170" y1="141.7" x2="170" y2="167.8" stroke="#2a4e6e" stroke-width="3" /><line x1="161" y1="167.8" x2="179" y2="167.8" stroke="#2a4e6e" stroke-width="3" /><line x1="161" y1="141.7" x2="179" y2="141.7" stroke="#2a4e6e" stroke-width="3" /><circle cx="170" cy="154.8" r="11" fill="#2a4e6e" /><text class="ac-val" x="170" y="125.7" text-anchor="middle">4.94</text><text class="ac-row" x="170" y="436" text-anchor="middle">Attitudes</text><line x1="310" y1="145.6" x2="310" y2="174.6" stroke="#2a4e6e" stroke-width="3" /><line x1="301" y1="174.6" x2="319" y2="174.6" stroke="#2a4e6e" stroke-width="3" /><line x1="301" y1="145.6" x2="319" y2="145.6" stroke="#2a4e6e" stroke-width="3" /><circle cx="310" cy="160.1" r="11" fill="#2a4e6e" /><text class="ac-val" x="310" y="129.6" text-anchor="middle">4.85</text><text class="ac-row" x="310" y="436" text-anchor="middle">Intentions</text><text class="ac-title" transform="translate(18 214.0) rotate(-90)" text-anchor="middle">Mean rating (1&#8211;7)</text></svg>
+            </div>
+            <div class="v3-cards">
                 <div class="finding-card fragment">
                   <div class="finding-label">Adults and parents agreed</div>
                   <p>Parents rating AI for a child responded much like adults rating it for themselves.</p>
@@ -89,9 +93,8 @@
                 </div>
                 <div class="finding-card fragment">
                   <div class="finding-label">Not what the comments say</div>
-                  <p>Usefulness and ease of use drove attitudes. Environmental concerns dropped out.</p>
+                  <p>Usefulness and ease of use drove attitudes. Environmental concerns dropped out. Prior AI use for mental health mattered most.</p>
                 </div>
-              </div>
             </div>
           </div>
           <img class="lhw-logo" src="../assets/lhw-logo.png" alt="Macquarie University Lifespan Health and Wellbeing Research Centre" />
@@ -105,25 +108,35 @@
             <h1>Take-Home Message</h1>
             <p class="lhw-sub">Implications</p>
           </div>
-          <div class="lhw-body takehome-plain">
+          <div class="lhw-body takehome-journey">
             <p class="takehome-statement fragment">People will use AI for mental health care when it's <span>useful</span>, <span>trustworthy</span> and <span>familiar</span>.</p>
-            <ol class="takehome-actions">
-              <li class="fragment">
-                <span class="takehome-num">1</span>
-                <h3>Lead with usefulness</h3>
-                <p>Show people clearly what the tool does for them.</p>
-              </li>
-              <li class="fragment">
-                <span class="takehome-num">2</span>
-                <h3>Build in human oversight</h3>
-                <p>Users expect it, even for the tools they trust most.</p>
-              </li>
-              <li class="fragment">
-                <span class="takehome-num">3</span>
-                <h3>Support first use</h3>
-                <p>A promising place to start, though we can't yet say which way the link runs.</p>
-              </li>
-            </ol>
+            <div class="journey">
+              <figure class="journey-brain fragment">
+                <img src="../assets/brain-crop.png" alt="A distressed cartoon brain" />
+                <figcaption>Struggling</figcaption>
+              </figure>
+              <ol class="journey-steps">
+                <li class="fragment">
+                  <span class="journey-num">1</span>
+                  <h3>Lead with usefulness</h3>
+                  <p>Show people clearly what the tool does for them.</p>
+                </li>
+                <li class="fragment">
+                  <span class="journey-num">2</span>
+                  <h3>Build in human oversight</h3>
+                  <p>Users expect it, even for the tools they trust most.</p>
+                </li>
+                <li class="fragment">
+                  <span class="journey-num">3</span>
+                  <h3>Support first use</h3>
+                  <p>A promising place to start.</p>
+                </li>
+              </ol>
+              <figure class="journey-brain journey-happy fragment">
+                <img src="../assets/happy-brain-crop.png" alt="A happy cartoon brain" />
+                <figcaption>Supported</figcaption>
+              </figure>
+            </div>
             <p class="takehome-contact fragment"><span>Get in touch</span> Cathy Macpherson · <a href="mailto:cathy.macpherson@mq.edu.au">cathy.macpherson@mq.edu.au</a></p>
           </div>
           <img class="lhw-logo" src="../assets/lhw-logo.png" alt="Macquarie University Lifespan Health and Wellbeing Research Centre" />

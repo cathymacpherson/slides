@@ -243,9 +243,28 @@ def fig_students(res, res2):
                "Mean attitudes and intentions with 95% confidence intervals for the community and student samples, then for students by prior AI use")
 
 
+def tool_means(res):
+    """Descriptive means and 95% CIs by tool type, pooling adults and parents/carers."""
+    import math
+    from statistics import NormalDist
+    out = {}
+    for key in ("att", "intent"):
+        for tool in ("General-purpose AI", "Bespoke AI"):
+            grp = [r for r in rows(res / "03_subscale_descriptives.csv", subscale_key=key, ai_type=tool)]
+            n = sum(int(r["n"]) for r in grp)
+            m = sum(int(r["n"]) * float(r["mean"]) for r in grp) / n
+            ss = sum((int(r["n"]) - 1) * float(r["sd"]) ** 2 + int(r["n"]) * (float(r["mean"]) - m) ** 2 for r in grp)
+            sd = math.sqrt(ss / (n - 1))
+            half = 1.96 * sd / math.sqrt(n)
+            out[(key, tool)] = (m, m - half, m + half)
+    return out
+
+
 def fig_overall_portrait(res):
-    """Vertical dot-and-CI plot of overall attitudes and intentions on the 1-7 scale."""
+    """Vertical dot-and-CI plot of overall attitudes and intentions. A second build (class
+    "ov-open" via the .ov-step fragment) splits each point into general-purpose and bespoke."""
     data = {r["outcome_key"]: r for r in rows(res / "03_midpoint_comparison.csv")}
+    split = tool_means(res)
     x_axis, top, height = 80, 30, 440
     sy = lambda v: top + (7 - v) / 6 * height
     bottom = top + height
@@ -256,17 +275,25 @@ def fig_overall_portrait(res):
     parts.append(f'<line class="fig-zero" x1="{x_axis}" y1="{sy(4):.1f}" x2="440" y2="{sy(4):.1f}" />')
     parts.append(f'<text class="fig-note" x="438" y="{sy(4) + 24:.1f}" text-anchor="end">Scale midpoint</text>')
     parts.append(f'<line class="fig-axis" x1="{x_axis}" y1="{bottom}" x2="440" y2="{bottom}" />')
+
+    def point(x, m, l, h, col, label_size="fig-val"):
+        g = [f'<line x1="{x}" y1="{sy(h):.1f}" x2="{x}" y2="{sy(l):.1f}" stroke="{col}" stroke-width="3" />']
+        for yv in (l, h):
+            g.append(f'<line x1="{x - 9}" y1="{sy(yv):.1f}" x2="{x + 9}" y2="{sy(yv):.1f}" stroke="{col}" stroke-width="3" />')
+        g.append(f'<circle cx="{x}" cy="{sy(m):.1f}" r="11" fill="{col}" />')
+        g.append(f'<text class="{label_size}" x="{x}" y="{sy(h) - 16:.1f}" text-anchor="middle" fill="{col}">{fmt(m)}</text>')
+        return "".join(g)
+
+    dx = 38
     for x, (key, name) in zip((190, 330), [("att", "Attitudes"), ("intent", "Intentions")]):
         r = data[key]
-        m, l, h = float(r["mean"]), float(r["ci95_low"]), float(r["ci95_high"])
-        parts.append(f'<line x1="{x}" y1="{sy(h):.1f}" x2="{x}" y2="{sy(l):.1f}" stroke="{NAVY}" stroke-width="3" />')
-        for yv in (l, h):
-            parts.append(f'<line x1="{x - 9}" y1="{sy(yv):.1f}" x2="{x + 9}" y2="{sy(yv):.1f}" stroke="{NAVY}" stroke-width="3" />')
-        parts.append(f'<circle cx="{x}" cy="{sy(m):.1f}" r="11" fill="{NAVY}" />')
-        parts.append(f'<text class="fig-val" x="{x}" y="{sy(h) - 16:.1f}" text-anchor="middle">{fmt(m)}</text>')
+        parts.append('<g class="ov-base">' + point(x, float(r["mean"]), float(r["ci95_low"]), float(r["ci95_high"]), NAVY) + "</g>")
+        for tool, col, sign, cls in (("General-purpose AI", NAVY, -1, "ov-gen"), ("Bespoke AI", MAGENTA, 1, "ov-bes")):
+            m, l, h = split[(key, tool)]
+            parts.append(f'<g class="ov-split {cls}" style="--ov-dx: {-sign * dx}px">' + point(x + sign * dx, m, l, h, col, "fig-val-split") + "</g>")
         parts.append(f'<text class="fig-row" x="{x}" y="{bottom + 34}" text-anchor="middle">{name}</text>')
     parts.append(f'<text class="fig-axis-title" transform="translate(20 {top + height / 2}) rotate(-90)">Mean rating (1&#8211;7)</text>')
-    return svg(460, bottom + 50, parts, "Mean attitudes and intentions with 95% confidence intervals, both above the scale midpoint of 4")
+    return svg(460, bottom + 50, parts, "Mean attitudes and intentions with 95% confidence intervals, overall and then split into general-purpose and bespoke tools")
 
 
 def fig_tool_compact(res):
