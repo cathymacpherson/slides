@@ -3153,3 +3153,48 @@ body.presenter-mode .deck-shell {
   align-self: center;
   text-align: center;
 }
+
+/* Slide 2: hand-drawn speech bubbles with text overlaid */
+.hb {
+  position: absolute;
+  width: 215px;
+}
+
+.hb img {
+  display: block;
+  width: 100%;
+}
+
+.hb-flip img {
+  transform: scaleX(-1);
+}
+
+.lhw .lhw-body .hb p {
+  align-items: center;
+  color: #1c1c1c;
+  display: flex;
+  font-size: 17px;
+  font-style: italic;
+  justify-content: center;
+  line-height: 1.3;
+  margin: 0;
+  position: absolute;
+  text-align: center;
+}
+
+.lhw .lhw-body .hb-neg p {
+  inset: 9% 9% 26% 9%;
+}
+
+.lhw .lhw-body .hb-pos p {
+  inset: 9% 9% 24% 9%;
+}
+
+/* Slide 2: four bubbles in a symmetrical arc */
+.hb {
+  width: 190px;
+}
+
+.lhw .lhw-body .hb p {
+  font-size: 16px;
+}
