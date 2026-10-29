@@ -31,6 +31,22 @@ Each talk is available as an HTML presentation that can be opened directly in a 
       <h3>Communication Difficulties Workshop 2026</h3>
       <p><a href="https://cathymacpherson.github.io/slides/noise_coordination_2026/"><strong>Open slides</strong></a></p>
     </td>
+    <td width="50%" valign="top">
+      <a href="https://cathymacpherson.github.io/slides/lhw_conference_2026/">
+        <img src="previews/lhw_conference_2026.png" alt="Preview of the Lifespan, Health and Wellbeing Research Centre Conference 2026 slides" width="100%">
+      </a>
+      <h3>Lifespan, Health and Wellbeing Research Centre Conference 2026</h3>
+      <p><a href="https://cathymacpherson.github.io/slides/lhw_conference_2026/"><strong>Open slides</strong></a></p>
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" valign="top">
+      <a href="https://cathymacpherson.github.io/slides/perc_conference_2026/">
+        <img src="previews/perc_conference_2026.png" alt="Preview of the Performance and Expertise Research Centre Conference 2026 slides" width="100%">
+      </a>
+      <h3>Performance and Expertise Research Centre Conference 2026</h3>
+      <p><a href="https://cathymacpherson.github.io/slides/perc_conference_2026/"><strong>Open slides</strong></a></p>
+    </td>
     <td width="50%" valign="top"></td>
   </tr>
 </table>
