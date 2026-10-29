@@ -44,18 +44,21 @@ def coef_panel(items, x0, width, lo, hi, ticks, top, row_h, title=None, offsets=
         out.append(f'<text class="fig-tick" x="{sx(t):.1f}" y="{bottom + 30}">{fmt(t, 1)}</text>')
     for i, series in enumerate(items):
         yc = top + row_h * i + row_h / 2
-        for (est, low, high, sig, col), dy in zip(series, offsets):
+        for k, ((est, low, high, sig, col), dy) in enumerate(zip(series, offsets)):
             y = yc + dy
+            # each point is grouped by series index so a slide can reveal one series at a time
+            out.append(f'<g data-series="{k}" data-row="{i}">')
             out.append(f'<line x1="{sx(low):.1f}" y1="{y:.1f}" x2="{sx(high):.1f}" y2="{y:.1f}" stroke="{col}" stroke-width="3" />')
             for xv in (low, high):
                 out.append(f'<line x1="{sx(xv):.1f}" y1="{y - 7:.1f}" x2="{sx(xv):.1f}" y2="{y + 7:.1f}" stroke="{col}" stroke-width="3" />')
             fill = col if sig else "#ffffff"
             out.append(f'<circle cx="{sx(est):.1f}" cy="{y:.1f}" r="9" fill="{fill}" stroke="{col}" stroke-width="3" />')
+            out.append('</g>')
     return out, bottom
 
 
 def row_labels(labels, x, top, row_h):
-    return [f'<text class="fig-row" x="{x}" y="{top + row_h * i + row_h / 2 + 8:.0f}">{t}</text>' for i, t in enumerate(labels)]
+    return [f'<text class="fig-row" data-row="{i}" x="{x}" y="{top + row_h * i + row_h / 2 + 8:.0f}">{t}</text>' for i, t in enumerate(labels)]
 
 
 def svg(w, h, parts, label):
@@ -167,18 +170,21 @@ def fig_predictors(res):
 
 
 def fig_characteristics(res):
-    order = ["Bespoke AI (vs general-purpose)", "Parent/carer (vs adult)", "Age", "Female (vs male)", "Education",
-             "GenAI use frequency", "Digital technology confidence", "Used GenAI for mental health"]
-    terms = ["ai_typeBespoke AI", "respondent_typeParent", "age_c", "gender_adjFemale", "education_c",
-             "genai_freq_c", "tech_conf_c", "ai_mh_useYes"]
+    # Tool type first, then prior experience, then demographics (revealed last on the slide).
+    order = ["Bespoke AI (vs general-purpose)",
+             "GenAI use frequency", "Digital technology confidence", "Used GenAI for mental health",
+             "Parent/carer (vs adult)", "Age", "Female (vs male)", "Education"]
+    terms = ["ai_typeBespoke AI",
+             "genai_freq_c", "tech_conf_c", "ai_mh_useYes",
+             "respondent_typeParent", "age_c", "gender_adjFemale", "education_c"]
     data = rows(res / "06_model_c_coefficients.csv", step="C1")
     out = two_panel(data, order, terms, -0.75, 1.75, [-0.5, 0, 0.5, 1.0, 1.5], 360, 370,
                     "Coefficients for participant characteristics predicting attitudes and intentions, with 95% confidence intervals",
                     sig_key="p_fdr", series=[("", NAVY)], row_h_override=48)
-    # Group bubbles (revealed as fragments): rows 1-4 demographics, rows 5-7 prior experience.
+    # Group bubbles (revealed as fragments): rows 1-3 prior experience, rows 4-7 demographics.
     top, row_h, right = 56, 48, 1150
     bubbles = []
-    for cls, label, first, last in [("grp-demo", "Demographics", 1, 4), ("grp-exp", "Prior experience", 5, 7)]:
+    for cls, label, first, last in [("grp-exp", "Prior experience", 1, 3), ("grp-demo", "Demographics", 4, 7)]:
         y0, y1 = top + row_h * first + 4, top + row_h * (last + 1) - 9
         bubbles.append(
             f'<g class="grp-bubble {cls} fragment">'
