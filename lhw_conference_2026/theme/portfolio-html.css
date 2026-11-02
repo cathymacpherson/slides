@@ -3198,3 +3198,12 @@ body.presenter-mode .deck-shell {
 .lhw .lhw-body .hb p {
   font-size: 16px;
 }
+
+/* Slide 4: lift the pipeline and contact line */
+.lhw .lhw-body.takehome-journey .journey {
+  margin: 60px 0 0;
+}
+
+.lhw .lhw-body.takehome-journey .takehome-contact {
+  margin-top: 90px;
+}
